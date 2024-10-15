@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="38" height="36">
+	<path fill="none" stroke="#2A273F" stroke-width="2" stroke-miterlimit="10" transform="translate(1.15625 4.50412)" d="M7.0907993 0L28.472265 0C28.952114 0 29.403015 0.22961999 29.685314 0.61773002L35.419514 8.5023298C35.629963 8.7916498 35.606716 9.1892996 35.364166 9.4521599L18.332565 27.902925C18.051615 28.207275 17.577164 28.226324 17.272814 27.945375C17.258114 27.931725 17.244015 27.917625 17.230364 27.902925L0.19890238 9.4521599C-0.043746609 9.1892996 -0.06696061 8.7916498 0.14345339 8.5023298L5.8777046 0.61773002C6.1599746 0.22961999 6.6109042 0 7.0907993 0Z" fill-rule="evenodd"/>
+	<path fill="none" stroke="#2A273F" stroke-width="2" stroke-miterlimit="10" transform="translate(1.15625 12.7842)" d="M0 0.5L35.41824 0.5" fill-rule="evenodd"/>
+	<path fill="none" stroke="#2A273F" stroke-width="2" stroke-miterlimit="10" transform="translate(12.1392 4.50413)" d="M6.7985244 27.438015L0 8.7800713L3.3992622 0" fill-rule="evenodd"/>
+	<path fill="none" stroke="#2A273F" stroke-width="2" stroke-miterlimit="10" transform="matrix(-1 0 0 1 25.9377 4.50413)" d="M6.7985244 27.438015L0 8.7800713L3.3992622 0" fill-rule="evenodd"/>
+</svg>

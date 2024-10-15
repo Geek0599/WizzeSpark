@@ -1,0 +1,22 @@
+<svg width="3198.94067px" height="1950.91173px" viewBox="0 0 3198.94067 1950.91173" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <radialGradient cx="50%" cy="50%" fx="50%" fy="50%" r="45.9828019%" gradientTransform="translate(0.5, 0.5), scale(1, 0.3738), rotate(3.3083), scale(1, 2.7663), translate(-0.5, -0.5)" id="radialGradient-46md3ydtuq-1">
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="51.294799%"></stop>
+            <stop stop-color="#FFFFFF" offset="84.7219187%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="100%"></stop>
+        </radialGradient>
+        <filter x="-0.0%" y="0.0%" width="100.0%" height="100.0%" filterUnits="objectBoundingBox" id="filter-46md3ydtuq-2">
+            <feGaussianBlur stdDeviation="0" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+    </defs>
+    <g id="Page" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="desktop" transform="translate(639.7213, -4761.6274)" fill="url(#radialGradient-46md3ydtuq-1)">
+            <g id="Group-14" transform="translate(-639.7213, 4761.6274)">
+                <g id="Group-22" transform="translate(0, 0)">
+                    <path d="M1799.59675,2181.96326 C2089.02772,1689.08883 2234.05823,749.839584 2123.53146,84.0913378 C2050.52402,-355.662522 1883.14615,-568.27051 1695.27446,-518.409542 C1598.72512,-492.785437 1497.59393,-396.235183 1399.34392,-228.924412 C1109.91295,263.950009 964.882447,1203.19926 1075.40922,1868.94751 C1185.93598,2534.69575 1510.16579,2674.83768 1799.59675,2181.96326 Z" id="Oval-Copy-3" filter="url(#filter-46md3ydtuq-2)" transform="translate(1599.4703, 975.4559) rotate(73) translate(-1599.4703, -975.4559)"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

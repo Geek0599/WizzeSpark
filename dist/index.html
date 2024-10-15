@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<title>WizzeSpark</title>
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" href="css/homepage.min.css?_v=20241015110958">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="favicon.ico">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap&_v=20241015110958" rel="stylesheet">
+</head>
+
+<body>
+	<div class="wrapper">
+		<header class="header">
+			<div class="header__container">
+				<a href="#" class="header__logo">
+					<img width="205" height="49" fetchpriority="high" loading="eager" decoding="async" src="img/logo/logo.svg" alt="Wizze Spark Logo">
+				</a>
+				<div class="header__video video-ambient" data-video-ambient>
+					<video data-video preload="auto" playsinline muted loop class="video-ambient__video" id="js-video" src="files/main-s-top-intro.mp4"></video>
+					<canvas data-canvas width="10" height="6" aria-hidden="true" class="video-ambient__canvas" id="js-canvas"></canvas>
+				</div>
+				<nav class="header__actions header-actions">
+					<div class="header-actions__lang lang">
+						<ul class="lang__list">
+							<li class="lang__item">
+								<a href="#" class="lang__link lang__link--active">ру</a>
+							</li>
+							<li class="lang__item">
+								<a href="#" class="lang__link">en</a>
+							</li>
+						</ul>
+					</div>
+					<a href="#" class="header-actions__link action-link">
+						<i class="action-link__icon _icon-arrow"></i>
+						<span class="action-link__text">Связаться <br> сейчас</span>
+					</a>
+				</nav>
+			</div>
+		</header>
+		<main class="page">
+			<section class="page__main-section main-section">
+				<div class="main-section__container-title">
+					<div class="main-section__title">
+						WIZZ<span>E</span> S<span>P</span>ARK
+					</div>
+					<div class="main-section__title-bg">
+						<img width="288" height="140" fetchpriority="high" loading="eager" decoding="async" src="img/bg/bg-gradient.svg" alt="background gradient">
+					</div>
+				</div>
+				<div class="main-section__container">
+					<h1 class="main-section__slogan-title">
+						<span>AI</span>
+						<span>Маркетиг</span>
+						<span>Для</span>
+						<span>Социальных</span>
+						<span>Сетей</span>
+					</h1>
+					<div class="main-section__content">
+						<div class="main-section__text">
+							Автоматизирова&shy;нное создание и ведение контента для Instagram, YouTube, TikTok и более.
+						</div>
+						<div class="main-section__text">
+							Все при помощи нейросетей и вашего персонального менеджера.
+						</div>
+						<div data-video-ambient class="main-section__video video-ambient">
+							<video data-video preload="auto" playsinline muted loop class="video-ambient__video" src="files/main-s-bottom-intro.mp4"></video>
+							<canvas data-canvas width="10" height="6" aria-hidden="true" class="video-ambient__canvas"></canvas>
+						</div>
+						<button class="main-section__btn action-link">
+							<i class="action-link__icon action-link__icon--border _icon-play"></i>
+							<span class="action-link__text">Как это работает?</span>
+						</button>
+						<div class="main-section__socials socials">
+							<ul class="socials__list">
+								<li class="socials__item">
+									<a href="#" class="socials__link">
+										<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="21" height="24">
+											<g fill="currentColor">
+												<path transform="translate(0 8.44275)" d="M8.306818 1.0074443L8.306818 0.071465075C7.980082 0.025332769 7.6503954 0.0015999645 7.3204403 0C3.2839911 0 0 3.2649941 0 7.2774382C0 9.7387171 1.2374653 11.917602 3.1251833 13.235172C1.8611608 11.891469 1.1583297 10.120308 1.1594028 8.2806158C1.1594028 4.3252373 4.3500404 1.0997089 8.306818 1.0074443" />
+												<path transform="translate(5.76938 0)" d="M2.7101912 20.046488C4.5112624 20.046488 5.9802327 18.622253 6.047297 16.847359L6.0534668 1.0031776L8.9653864 1.0031776C8.9031515 0.6722517 8.8717651 0.33652586 8.8714972 0L4.8943324 0L4.8876257 15.844714C4.8213668 17.619076 3.3515916 19.042776 1.5510566 19.042776C1.0105207 19.043043 0.47803235 18.912113 0 18.661184C0.62637794 19.529966 1.6350209 20.045422 2.7101912 20.046488M14.404547 6.3814583L14.404547 5.5009441C13.334474 5.5020108 12.287202 5.1924181 11.391495 4.6105642C12.176949 5.5094776 13.234146 6.1307969 14.405084 6.3814583" />
+												<path transform="translate(3.97716 1.00398)" d="M13.183714 3.6057866C12.30598 2.6074088 11.822314 1.3261038 11.82285 0L10.757338 0C11.036056 1.4810337 11.912985 2.7842047 13.183714 3.6057866M3.3432755 11.39228C1.4976737 11.394413 0.0021460487 12.881047 0 14.715672C0.0010730244 15.950846 0.6910277 17.08362 1.7916824 17.657475C1.3804458 17.093754 1.1591345 16.415634 1.1591345 15.719384C1.1610123 13.884758 2.6565399 12.397591 4.5024099 12.395458C4.8468509 12.395458 5.177074 12.45199 5.4887877 12.549321L5.4887877 8.5131445C5.1620517 8.4670115 4.832365 8.4432793 4.5024099 8.441679C4.4444666 8.441679 4.3873281 8.4448786 4.3299212 8.4459457L4.3299212 11.546144C4.0106969 11.445346 3.6780591 11.393347 3.3432755 11.39228" />
+												<path transform="translate(3.12545 6.38066)" d="M17.048479 0.00079998223L17.048479 3.0735316C14.985858 3.0735316 13.075606 2.4178128 11.515161 1.3047709L11.515161 9.3392591C11.515161 13.351703 8.2317066 16.616163 4.1952567 16.616163C2.6353478 16.616163 1.188911 16.126841 0 15.296993C1.3817871 16.778294 3.3220832 17.619875 5.3541231 17.619343C9.3905725 17.619343 12.674563 14.354881 12.674563 10.34297L12.674563 2.3084819C14.286514 3.4607232 16.222519 4.0796428 18.207882 4.0772429L18.207882 0.12266394C17.80979 0.12266394 17.422697 0.079731561 17.04821 0" />
+												<path transform="translate(1.1594 1.00398)" d="M13.480941 14.715672L13.480941 6.6811848C15.092892 7.8336926 17.028896 8.4523458 19.014259 8.4499454L19.014259 5.3774805C17.84359 5.1265526 16.786392 4.5049667 16.001207 3.6057866C14.730478 2.7842047 13.853549 1.4810337 13.574831 0L10.663179 0L10.657009 15.844181C10.590214 17.618542 9.1209755 19.042776 7.3199039 19.042776C6.2450018 19.04171 5.2360907 18.525988 4.6099806 17.657742C3.509326 17.084154 2.8191032 15.951379 2.8177619 14.71594C2.8199079 12.881313 4.3154354 11.39468 6.1610374 11.392547C6.5049419 11.392547 6.835165 11.448545 7.1474152 11.54641L7.1474152 8.4462118C3.1906378 8.5384769 0 11.764005 0 15.719384C0 17.632141 0.7476297 19.373436 1.9657806 20.673941C3.193857 21.533388 4.6593399 21.993912 6.1610374 21.99258C10.197755 21.99258 13.480941 18.728117 13.480941 14.715672" />
+											</g>
+										</svg>
+										TikTok
+									</a>
+								</li>
+								<li class="socials__item">
+									<a href="#" class="socials__link">
+										<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="28" height="20">
+											<path fill="currentColor" transform="translate(0.00104523 0.0011797)" d="M14.14712 -0.0011847832C14.171281 -0.0011168387 14.198244 -0.001031908 14.2279 -0.00092574459L14.564571 0.00071766437C16.537224 0.012675907 23.090456 0.090404481 24.937918 0.59564024C26.142872 0.92418861 27.091532 1.8922532 27.41353 3.121608C27.952473 5.1737728 27.99502 9.2795992 27.998379 9.9150972L27.998379 10.081987C27.99502 10.717465 27.952473 14.823178 27.41353 16.875641C27.091532 18.104834 26.142872 19.072899 24.937918 19.401608C22.964493 19.941145 15.621725 19.993025 14.2279 19.998013L13.769435 19.998013C12.375608 19.993025 5.0328269 19.941145 3.0592582 19.401608C1.8544629 19.072899 0.90564466 18.104834 0.58364469 16.875641C0.091032237 14.999104 0.013251326 11.406217 0.00097012921 10.318404L-0.00065030641 10.144826C-0.0008208786 10.121133 -0.00094880775 10.100143 -0.0010447545 10.081987L-0.0010447545 9.9150972C-0.00094880775 9.8969402 -0.0008208786 9.8759499 -0.00065030641 9.8522558L0.00097012921 9.6786728C0.013251326 8.5908318 0.091032237 4.9978728 0.58364469 3.121608C0.90564466 1.8922532 1.8544629 0.92418861 3.0592582 0.59564024C3.9830563 0.34302235 6.0832686 0.19728127 8.1991129 0.11319988L8.7756777 0.09176337C10.693035 0.025177706 12.536101 0.0061532292 13.432763 0.00071766437L13.769435 -0.00092574459C13.79909 -0.001031908 13.826054 -0.0011168387 13.850214 -0.0011847832L14.14712 -0.0011847832ZM11.134983 5.7777534L11.134983 14.219366L18.453165 9.9987211L11.134983 5.7777534Z" fill-rule="evenodd" />
+										</svg>
+										YouTube
+									</a>
+								</li>
+								<li class="socials__item">
+									<a href="#" class="socials__link">
+										<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="29" height="29">
+											<path fill="currentColor" d="M15.238976 0.00077251316C17.092804 0.0034538701 17.918823 0.013635966 18.683279 0.039292272L18.911736 0.047461361C19.178368 0.05755217 19.449295 0.069636241 19.765944 0.084055446C21.255611 0.15186535 22.273001 0.38800791 23.163221 0.7333228C24.083555 1.0902257 24.864056 1.5678337 25.642166 2.3443484C26.420221 3.1209188 26.898777 3.8998733 27.256445 4.8183842C27.602388 5.7068434 27.839001 6.722218 27.906944 8.2089348C27.919329 8.4798117 27.929993 8.7171621 27.939156 8.9470243L27.951796 9.2894564C27.977503 10.052402 27.987705 10.876793 27.990393 12.726976L27.990982 13.31377L27.991085 13.524045L27.991121 14.303734C27.991091 14.412713 27.991045 14.518766 27.990982 14.622014L27.990393 15.208799C27.987705 17.058958 27.977503 17.883341 27.951796 18.646282L27.939156 18.988714C27.929993 19.218576 27.919329 19.455927 27.906944 19.726805C27.839001 21.21352 27.602388 22.228895 27.256445 23.117355C26.898777 24.035866 26.420221 24.814819 25.642166 25.591391C24.864056 26.367905 24.083555 26.845512 23.163221 27.202471C22.273001 27.547731 21.255611 27.783873 19.765944 27.851683C19.449295 27.866102 19.178368 27.878187 18.911736 27.888277L18.683279 27.896446C17.8806 27.923386 17.010048 27.933264 14.953072 27.935312L13.038136 27.935312C10.981131 27.933264 10.11057 27.923386 9.307888 27.896446L9.0794315 27.888277C8.8127995 27.878187 8.541872 27.866102 8.2252226 27.851683C6.7355556 27.783873 5.7181668 27.547731 4.8279443 27.202471C3.9076111 26.845512 3.1271112 26.367905 2.349 25.591391C1.5709444 24.814819 1.0923889 24.035866 0.73477775 23.117355C0.38877779 22.228895 0.15216666 21.21352 0.08422222 19.726805C0.069774412 19.410782 0.057666361 19.14039 0.047555532 18.874287L0.039370231 18.646282C0.013663022 17.883341 0.003460723 17.058958 0.00077404594 15.208799L0.00077404594 12.726976C0.003460723 10.876793 0.013663022 10.052402 0.039370231 9.2894564L0.047555532 9.0614529C0.057666361 8.7953482 0.069774412 8.5249577 0.08422222 8.2089348C0.15216666 6.722218 0.38877779 5.7068434 0.73477775 4.8183842C1.0923889 3.8998733 1.5709444 3.1209188 2.349 2.3443484C3.1271112 1.5678337 3.9076111 1.0902257 4.8279443 0.7333228C5.7181668 0.38800791 6.7355556 0.15186535 8.2252226 0.084055446C8.541872 0.069636241 8.8127995 0.05755217 9.0794315 0.047461361L9.307888 0.039292272C10.072347 0.013635966 10.898374 0.0034538701 12.752229 0.00077251316L15.238976 0.00077251316ZM14.65874 2.5169051L13.332473 2.5169051L13.178009 2.5170081L12.468669 2.51792C10.095056 2.5224745 9.5853539 2.5414782 8.340167 2.5981781C6.9756112 2.6602771 6.2345557 2.8878257 5.7413888 3.0791128C5.0881109 3.332499 4.6218891 3.6351762 4.1321669 4.1239843C3.6423888 4.6127367 3.3391111 5.0780358 3.0852222 5.7300196C2.8935556 6.2222099 2.6655555 6.9617982 2.6033332 8.3236513C2.5886042 8.6458387 2.5764139 8.9186878 2.5663562 9.1874065L2.5582485 9.4177799C2.5354352 10.112192 2.5259583 10.864703 2.5229158 12.443978L2.5221307 13.002079C2.5220363 13.100551 2.5219595 13.201838 2.521899 13.306071L2.521899 14.629713L2.5220022 14.783868L2.5229158 15.491794C2.5257893 16.983311 2.5344021 17.737387 2.5545685 18.401556L2.5621753 18.633289L2.5707984 18.863882C2.5799487 19.096014 2.5907083 19.335926 2.6033332 19.612087C2.6655555 20.97394 2.8935556 21.71353 3.0852222 22.205719C3.3391111 22.857702 3.6424444 23.323002 4.1321669 23.811754C4.6218891 24.300562 5.0881109 24.603239 5.7413888 24.856627C6.2345557 25.047913 6.9756112 25.275461 8.340167 25.337561C8.7090693 25.354361 9.0134058 25.367851 9.3207989 25.378637L9.5529728 25.386229C10.257552 25.407539 11.063184 25.415922 12.740119 25.418266L13.654761 25.418966L13.995611 25.41901L14.168397 25.418999L15.251087 25.418266C16.928005 25.415922 17.733644 25.407539 18.438221 25.386229L18.670393 25.378637C18.977781 25.367851 19.28211 25.354361 19.650999 25.337561C21.015556 25.275461 21.756611 25.047913 22.249777 24.856627C22.903055 24.603239 23.369278 24.300562 23.858999 23.811754C24.348778 23.323002 24.652056 22.857702 24.905945 22.205719C25.09761 21.71353 25.325611 20.97394 25.387833 19.612087C25.400457 19.335926 25.411219 19.096014 25.420368 18.863882L25.428991 18.633289L25.436598 18.401556C25.459137 17.659248 25.467243 16.804636 25.469036 14.933702L25.469036 13.002079C25.46715 11.032644 25.458267 10.189349 25.432919 9.4177799L25.42481 9.1874065C25.414753 8.9186878 25.402563 8.6458387 25.387833 8.3236513C25.325611 6.9617982 25.09761 6.2222099 24.905945 5.7300196C24.652056 5.0780358 24.348778 4.6127367 23.858999 4.1239843C23.369278 3.6351762 22.903055 3.332499 22.249777 3.0791128C21.756611 2.8878257 21.015556 2.6602771 19.650999 2.5981781C19.282055 2.5813782 18.97768 2.5678875 18.670259 2.5571017L18.438066 2.54951C17.772579 2.5293834 17.017008 2.5207877 15.522532 2.51792L14.963331 2.5171363C14.864666 2.5170422 14.76318 2.5169656 14.65874 2.5169051ZM13.995611 6.7951841C17.964834 6.7951841 21.182501 10.006479 21.182501 13.967897C21.182501 17.92926 17.964834 21.140554 13.995611 21.140554C10.026334 21.140554 6.8086667 17.92926 6.8086667 13.967897C6.8086667 10.006479 10.026334 6.7951841 13.995611 6.7951841ZM13.995611 9.3119125C11.419056 9.3119125 9.330389 11.396443 9.330389 13.967897C9.330389 16.539295 11.419056 18.623825 13.995611 18.623825C16.572111 18.623825 18.660778 16.539295 18.660778 13.967897C18.660778 11.396443 16.572111 9.3119125 13.995611 9.3119125ZM21.466444 4.8356276C22.393999 4.8356276 23.145945 5.5860829 23.145945 6.5118022C23.145945 7.437521 22.393999 8.1879206 21.466444 8.1879206C20.538944 8.1879206 19.787001 7.437521 19.787001 6.5118022C19.787001 5.5860829 20.538944 4.8356276 21.466444 4.8356276Z" fill-rule="evenodd" />
+										</svg>
+										Instagram
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="page__video-examples video-examples">
+				<div class="video-examples__container-content">
+					<h2 class="video-examples__title">Забудьте о ведении соцсетей.</h2>
+					<a href="#" class="video-examples__link action-link">
+						<i class="action-link__icon _icon-arrow"></i>
+						<span class="action-link__text">Начать</span>
+					</a>
+					<div class="video-examples__text-content">
+						<div class="video-examples__subtitle">Осталось мест: 6 🔥</div>
+						<button class="video-examples__btn btn btn--border-sm">Почему?</button>
+						<div class="video-examples__text">Свяжитесь с нами, чтобы получить <span>персонализированное</span> решение.</div>
+					</div>
+				</div>
+				<div class="video-examples__videos example-videos">
+					<div class="example-videos__container">
+						<div class="example-videos__body">
+							<div data-video-ambient class="example-videos__video-left video-ambient">
+								<video data-video preload="auto" playsinline muted loop class="video-ambient__video" src="files/example-1.mp4"></video>
+								<canvas data-canvas width="10" height="6" aria-hidden="true" class="video-ambient__canvas"></canvas>
+							</div>
+							<div data-video-ambient class="example-videos__video-top-lage video-ambient">
+								<video data-video preload="auto" playsinline muted loop class="video-ambient__video" src="files/example-2.mp4"></video>
+								<canvas data-canvas width="10" height="6" aria-hidden="true" class="video-ambient__canvas"></canvas>
+							</div>
+							<div data-video-ambient class="example-videos__video video-ambient">
+								<video data-video preload="auto" playsinline muted loop class="video-ambient__video" src="files/example-3.mp4"></video>
+								<canvas data-canvas width="10" height="6" aria-hidden="true" class="video-ambient__canvas"></canvas>
+							</div>
+							<div data-video-ambient class="example-videos__bottom-large video-ambient">
+								<video data-video preload="auto" playsinline muted loop class="video-ambient__video" src="files/example-4.mp4"></video>
+								<canvas data-canvas width="10" height="6" aria-hidden="true" class="video-ambient__canvas"></canvas>
+							</div>
+							<div data-video-ambient class="example-videos__video-middle video-ambient">
+								<video data-video preload="auto" playsinline muted loop class="video-ambient__video" src="files/example-5.mp4"></video>
+								<canvas data-canvas width="10" height="6" aria-hidden="true" class="video-ambient__canvas"></canvas>
+							</div>
+							<div class="example-videos__bottom-double">
+								<div data-video-ambient class="example-videos__bouble-top video-ambient">
+									<video data-video preload="auto" playsinline muted loop class="video-ambient__video" src="files/example-6.mp4"></video>
+									<canvas data-canvas width="10" height="6" aria-hidden="true" class="video-ambient__canvas"></canvas>
+								</div>
+								<div data-video-ambient class="example-videos__bouble-bottom video-ambient">
+									<video data-video preload="auto" playsinline muted loop class="video-ambient__video" src="files/example-7.mp4"></video>
+									<canvas data-canvas width="10" height="6" aria-hidden="true" class="video-ambient__canvas"></canvas>
+								</div>
+							</div>
+							<div data-video-ambient class="example-videos__video-right video-ambient">
+								<video data-video preload="auto" playsinline muted loop class="video-ambient__video" src="files/example-8.mp4"></video>
+								<canvas data-canvas width="10" height="6" aria-hidden="true" class="video-ambient__canvas"></canvas>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="page__why-important">
+				<div class="why-important__container">
+					<h2 class="why-important__title">Почему SMM — важно?</h2>
+					<ul class="why-important__content">
+						<li class="why-important__column col-why-important">
+							<div class="col-why-important__persent"><span>76</span>%</div>
+							<h3 class="col-why-important__title">Покупок проходит через Instagram и Facebook</h3>
+							<div class="col-why-important__text">И процент продолжает расти!</div>
+						</li>
+						<li class="why-important__column col-why-important">
+							<div class="col-why-important__persent"><span>90</span>%</div>
+							<h3 class="col-why-important__title">Люди совершают свою покупку после обзора товара на Youtube и TikTok </h3>
+							<div class="col-why-important__text">Вспомните, как минимум, свой опыт.</div>
+						</li>
+						<li class="why-important__column col-why-important">
+							<div class="col-why-important__persent"><span>88</span>%</div>
+							<h3 class="col-why-important__title">Населения имеет хотя-бы один аккаунт в соц сети</h3>
+							<div class="col-why-important__text">Каждый день процент растет!</div>
+						</li>
+						<li class="why-important__column col-why-important">
+							<div class="col-why-important__persent"><span>1000</span>%</div>
+							<h3 class="col-why-important__title">Через соцсети растет узнаваемость бренда и доверие к нему</h3>
+							<div class="col-why-important__text">Чем чаще человек видит бренд, тем выше у него доверия.</div>
+						</li>
+						</г>
+				</div>
+			</section>
+			<section class="page__steps steps">
+				<div class="steps__container">
+					<div class="steps__title-body">
+						<h2 class="steps__title">
+							<span class="text-gradient text-gradient--mb">
+								<span class="text-gradient text-gradient--pc">Три простых этапа</span> создания
+							</span>
+							<span class="underline">популярного</span> и <span class="underline">продающего</span> контента
+						</h2>
+					</div>
+				</div>
+				<div data-spollers class="steps__body">
+					<div class="steps__container-body">
+						<div data-spoller-item class="steps__item step-item">
+							<div class="step-item__stage">Этап 01</div>
+							<button aria-label="Spoller button" data-spoller class="step-item__btn _icon-arrow"></button>
+							<h3 class="step-item__title">Стратегия и контент</h3>
+							<div data-spoller-content class="step-item__content spoller-text">
+								<p class="spoller-text__text">Полный цикл разработки уникальной контент-стратегии, с идеями, рубриками, сценариями и SEO-оптимизацией для максимальной видимости и роста на всех платформах.</p>
+								<ul class="spoller-text__list">
+									<li class="spoller-text__item"><span>Разработка идей и рубрик:</span> создание контент-стратегии, включая глубокую проработку идей и рубрик для канала, с возможностью экспериментов с форматами.</li>
+									<li class="spoller-text__item"><span>Позиционирование:</span> анализ конкурентов, создание уникального стиля и подбор целевой аудитории.</li>
+									<li class="spoller-text__item"><span>Сценарий:</span> индивидуальная разработка сценариев с возможностью до 4 правок.</li>
+									<li class="spoller-text__item"><span>SEO:</span> оптимизация контента для поисковых систем и платформ.</li>
+									<li class="spoller-text__item"><span>Кроссплатформенность:</span> адаптация контента для Instagram, YouTube, TikTok и других платформ.</li>
+									<li class="spoller-text__item"><span>Мультиязычность:</span> перевод видео и адаптация на несколько языков и ведение аккаунтов на разных языках.</li>
+								</ul>
+							</div>
+						</div>
+						<div data-spoller-item class="steps__item step-item">
+							<div class="step-item__stage">Этап 02</div>
+							<button aria-label="Spoller button" data-spoller class="step-item__btn _icon-arrow"></button>
+							<h3 class="step-item__title">Производство и монтаж</h3>
+							<div data-spoller-content class="step-item__content spoller-text">
+								<p class="spoller-text__text">Полный цикл разработки уникальной контент-стратегии, с идеями, рубриками, сценариями и SEO-оптимизацией для максимальной видимости и роста на всех платформах.</p>
+								<ul class="spoller-text__list">
+									<li class="spoller-text__item"><span>Разработка идей и рубрик:</span> создание контент-стратегии, включая глубокую проработку идей и рубрик для канала, с возможностью экспериментов с форматами.</li>
+									<li class="spoller-text__item"><span>Позиционирование:</span> анализ конкурентов, создание уникального стиля и подбор целевой аудитории.</li>
+									<li class="spoller-text__item"><span>Сценарий:</span> индивидуальная разработка сценариев с возможностью до 4 правок.</li>
+									<li class="spoller-text__item"><span>SEO:</span> оптимизация контента для поисковых систем и платформ.</li>
+									<li class="spoller-text__item"><span>Кроссплатформенность:</span> адаптация контента для Instagram, YouTube, TikTok и других платформ.</li>
+									<li class="spoller-text__item"><span>Мультиязычность:</span> перевод видео и адаптация на несколько языков и ведение аккаунтов на разных языках.</li>
+								</ul>
+							</div>
+						</div>
+						<div data-spoller-item class="steps__item step-item">
+							<div class="step-item__stage">Этап 03</div>
+							<button aria-label="Spoller button" data-spoller class="step-item__btn _icon-arrow"></button>
+							<h3 class="step-item__title">Аналитика и поддержка</h3>
+							<div data-spoller-content class="step-item__content spoller-text">
+								<p class="spoller-text__text">Полный цикл разработки уникальной контент-стратегии, с идеями, рубриками, сценариями и SEO-оптимизацией для максимальной видимости и роста на всех платформах.</p>
+								<ul class="spoller-text__list">
+									<li class="spoller-text__item"><span>Разработка идей и рубрик:</span> создание контент-стратегии, включая глубокую проработку идей и рубрик для канала, с возможностью экспериментов с форматами.</li>
+									<li class="spoller-text__item"><span>Позиционирование:</span> анализ конкурентов, создание уникального стиля и подбор целевой аудитории.</li>
+									<li class="spoller-text__item"><span>Сценарий:</span> индивидуальная разработка сценариев с возможностью до 4 правок.</li>
+									<li class="spoller-text__item"><span>SEO:</span> оптимизация контента для поисковых систем и платформ.</li>
+									<li class="spoller-text__item"><span>Кроссплатформенность:</span> адаптация контента для Instagram, YouTube, TikTok и других платформ.</li>
+									<li class="spoller-text__item"><span>Мультиязычность:</span> перевод видео и адаптация на несколько языков и ведение аккаунтов на разных языках.</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="page__get-started get-started">
+				<div class="get-started__container">
+					<div class="get-started__text get-started__text--top">Записывайся на встречу сейчас!</div>
+					<a href="#" class="get-started__link action-link">
+						<i class="action-link__icon _icon-arrow"></i>
+						<span class="action-link__text">Начать</span>
+					</a>
+					<div class="get-started__text get-started__text--bottom">Удиви своих конкурентов и выйди вперед!</div>
+				</div>
+			</section>
+		</main>
+		<footer class="footer">
+			<div class="footer__container">
+			</div>
+		</footer>
+		<div class="noice"></div>
+		<div class="lines">
+			<div class="lines__container">
+				<div class="lines__item"></div>
+				<div class="lines__item"></div>
+				<div class="lines__item"></div>
+				<div class="lines__item"></div>
+				<div class="lines__item"></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- <div id="popup" aria-hidden="true" class="popup">
+	<div class="popup__wrapper">
+		<div class="popup__content">
+			<button data-close type="button" class="popup__close">Close</button>
+			<div class="popup__text">
+				Text
+			</div>
+		</div>
+	</div>
+</div> -->
+
+	<script async src="js/homepage.min.js?_v=20241015110958"></script>
+</body>
+
+</html>

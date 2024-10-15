@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1348px" height="947px" viewBox="0 0 1348 947" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Oval Copy</title>
+    <defs>
+        <radialGradient cx="50%" cy="50%" fx="50%" fy="50%" r="45.9828419%" gradientTransform="translate(0.5, 0.5), scale(1, 0.3737), rotate(3.3091), scale(1, 2.7663), translate(-0.5, -0.5)" id="radialGradient-1">
+            <stop stop-color="#D7FA00" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#D7FA00" stop-opacity="0" offset="50.5873033%"></stop>
+            <stop stop-color="#D7FA00" offset="83.9324738%"></stop>
+            <stop stop-color="#D7FA00" stop-opacity="0" offset="100%"></stop>
+        </radialGradient>
+        <filter x="-0.0%" y="0.0%" width="100.0%" height="100.0%" filterUnits="objectBoundingBox" id="filter-2">
+            <feGaussianBlur stdDeviation="0" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+    </defs>
+    <g id="Page" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="desktop" transform="translate(-286, -5268)" fill="url(#radialGradient-1)">
+            <g id="Group-14" transform="translate(-639.7213, 4761.6274)">
+                <g id="Group-22" transform="translate(0, 0)">
+                    <path d="M1683.70196,1487.86382 C1805.5358,1280.33775 1866.58532,884.864382 1820.05989,604.549331 C1789.32795,419.389811 1718.87146,329.870658 1639.78826,350.86475 C1599.14652,361.653847 1556.57609,402.306586 1515.21847,472.753226 C1393.38464,680.279298 1332.33511,1075.75267 1378.86054,1356.06772 C1425.38597,1636.38277 1561.86813,1695.38989 1683.70196,1487.86382 Z" id="Oval-Copy" filter="url(#filter-2)" transform="translate(1599.4602, 979.8607) rotate(66) translate(-1599.4602, -979.8607)"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
