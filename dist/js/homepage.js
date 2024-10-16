@@ -267,4 +267,47 @@
         }
     }
     customSpollers();
+    function animateCount(element, duration = 2e3) {
+        const DURATION = duration;
+        let start = 0;
+        const end = 100;
+        const increment = end / (DURATION / 16);
+        const interval = 16;
+        function updateCount() {
+            start += increment;
+            if (start >= end) element.textContent = end; else {
+                element.textContent = Math.floor(start);
+                setTimeout(updateCount, interval);
+            }
+        }
+        updateCount();
+    }
+    function observeElements(observeElemets) {
+        observeElemets.forEach((({element, callback, threshold, offset}) => {
+            const observer = new IntersectionObserver(((entries, observer) => {
+                entries.forEach((entry => {
+                    if (entry.isIntersecting) {
+                        callback();
+                        observer.unobserve(entry.target);
+                    }
+                }));
+            }), {
+                rootMargin: `${parseOffset(offset)}px`
+            });
+            observer.observe(element);
+        }));
+        function parseOffset(offset) {
+            if (typeof offset === "string") {
+                if (offset.endsWith("%")) return parseFloat(offset) / 100 * window.innerHeight;
+                return parseFloat(offset);
+            }
+            return offset;
+        }
+    }
+    observeElements([ {
+        element: document.querySelector("#counter"),
+        callback: () => animateCount(document.querySelector("#counter"), 1500),
+        threshold: 1,
+        offset: "-20%"
+    } ]);
 })();
