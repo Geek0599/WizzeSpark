@@ -295,7 +295,7 @@
 				if (forse) {
 					progressBar.style.width = 100 + "%";
 					progressPersent.textContent = Math.floor(100) + '%';
-					hidePreloader()
+					hidePreloader(true)
 				}
 			}
 
@@ -344,10 +344,10 @@
 				}
 			}
 
-			function hidePreloader() {
+			function hidePreloader(forse = false) {
 				preloader.classList.add('_loaded');
 				wrapper.classList.add('_loaded');
-				window.scrollTo(0, 0)
+				!forse ? window.scrollTo(0, 0) : null;
 			}
 
 			resources.forEach((resource) => observer.observe(resource));
