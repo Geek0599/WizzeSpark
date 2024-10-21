@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="708px" height="691px" viewBox="0 0 708 691" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Oval Copy 3</title>
+    <defs>
+        <radialGradient cx="50%" cy="50%" fx="50%" fy="50%" r="40.049598%" gradientTransform="translate(0.5, 0.5), scale(0.9747, 1), rotate(54.8812), scale(1, 1.3585), translate(-0.5, -0.5)" id="radialGradient-1">
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="51.294799%"></stop>
+            <stop stop-color="#FFFFFF" offset="84.7219187%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="100%"></stop>
+        </radialGradient>
+        <filter x="0.0%" y="0.0%" width="100.0%" height="100.0%" filterUnits="objectBoundingBox" id="filter-2">
+            <feGaussianBlur stdDeviation="0" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+    </defs>
+    <g id="Page" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M93.4246139,660.599142 C225.719735,737.586559 449.545884,658.722138 593.35431,484.450528 C688.345638,369.337023 725.081971,240.392956 700.66493,144.603986 C688.116741,95.3769714 659.109792,55.639902 614.200993,29.5058127 C481.905872,-47.4816045 258.079723,31.3828166 114.271297,205.654427 C-29.537129,379.926038 -38.8705069,583.611725 93.4246139,660.599142 Z" id="Oval-Copy-3" fill="url(#radialGradient-1)" filter="url(#filter-2)"></path>
+    </g>
+</svg>

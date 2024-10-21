@@ -127,59 +127,6 @@
     }
     window["FLS"] = false;
     isWebp();
-    class VideoWithBackground {
-        video;
-        canvas;
-        step;
-        ctx;
-        frameRate=200;
-        constructor(videoElement, canvasElement) {
-            const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-            if (!mediaQuery.matches) {
-                this.video = videoElement;
-                this.canvas = canvasElement;
-                window.addEventListener("load", this.init, false);
-                window.addEventListener("unload", this.cleanup, false);
-                console.log("video init");
-            }
-        }
-        draw=() => {
-            this.ctx.drawImage(this.video, 0, 0, this.canvas.width, this.canvas.height);
-        };
-        drawLoop=() => {
-            this.draw();
-            this.step = setTimeout((() => {
-                window.requestAnimationFrame(this.drawLoop);
-            }), this.frameRate);
-        };
-        drawPause=() => {
-            clearTimeout(this.step);
-            this.step = void 0;
-        };
-        init=() => {
-            this.ctx = this.canvas.getContext("2d");
-            this.ctx.filter = "blur(1px)";
-            this.video.addEventListener("loadeddata", this.draw, false);
-            this.video.addEventListener("seeked", this.draw, false);
-            this.video.addEventListener("play", this.drawLoop, false);
-            this.video.addEventListener("pause", this.drawPause, false);
-            this.video.addEventListener("ended", this.drawPause, false);
-            this.video.play();
-        };
-        cleanup=() => {
-            this.video.removeEventListener("loadeddata", this.draw);
-            this.video.removeEventListener("seeked", this.draw);
-            this.video.removeEventListener("play", this.drawLoop);
-            this.video.removeEventListener("pause", this.drawPause);
-            this.video.removeEventListener("ended", this.drawPause);
-        };
-    }
-    const videoContainers = document.querySelectorAll("[data-video-ambient]");
-    if (videoContainers.length) videoContainers.forEach((container => {
-        const videoElement = container.querySelector("[data-video]");
-        const canvasElement = container.querySelector("[data-canvas]");
-        if (videoElement && canvasElement) new VideoWithBackground(videoElement, canvasElement);
-    }));
     function customSpollers() {
         const spollersArray = document.querySelectorAll("[data-spollers]");
         if (spollersArray.length > 0) {
@@ -282,11 +229,16 @@
         }
         updateCount();
     }
-    function observeElements(observeElemets) {
-        observeElemets.forEach((({element, callback, threshold, offset}) => {
+    function observeElements(observeElements) {
+        console.log(observeElements);
+        observeElements.forEach((({element, callback, threshold = 1, offset = "0px"}) => {
+            if (!element || typeof callback !== "function") {
+                console.warn("Element is not correct:", element, callback);
+                return;
+            }
             const options = {
                 threshold,
-                rootMargin: `-${parseOffset(offset)}px`
+                rootMargin: offset
             };
             const observer = new IntersectionObserver(((entries, observer) => {
                 entries.forEach((entry => {
@@ -298,27 +250,23 @@
             }), options);
             observer.observe(element);
         }));
-        function parseOffset(offset) {
-            if (typeof offset === "string") {
-                if (offset.endsWith("%")) return parseFloat(offset) / 100 * window.innerHeight;
-                return parseFloat(offset);
-            }
-            console.log(offset);
-            return offset;
-        }
+    }
+    function parseOffset(offset) {
+        if (typeof offset === "string") {
+            if (offset.endsWith("%")) return Math.floor(parseFloat(offset) / 100 * window.innerHeight);
+            return Math.floor(parseFloat(offset));
+        } else if (typeof offset === "number") return Math.floor(offset);
+        return 0;
     }
     observeElements([ {
         element: document.querySelector("#counter"),
         callback: () => animateCount(document.querySelector("#counter"), 1500),
-        threshold: 1,
-        offset: "20%"
+        offset: `${parseOffset("-10%")}px 0px`
     }, {
         element: document.querySelector("#socials-platforms"),
         callback: () => {
-            console.log("anim");
             document.querySelector("#socials-platforms").classList.add("_anim");
         },
-        threshold: 1,
-        offset: "10%"
+        offset: `${parseOffset("-10%")}px 0px`
     } ]);
 })();

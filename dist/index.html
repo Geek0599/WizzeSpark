@@ -5,13 +5,13 @@
 	<title>WizzeSpark</title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
-	<link rel="stylesheet" href="css/homepage.min.css?_v=20241021163450">
+	<link rel="stylesheet" href="css/homepage.min.css?_v=20241022005908">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" href="favicon.ico">
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap&_v=20241021163450" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap&_v=20241022005908" rel="stylesheet">
 
 	<style>
 		.preloader {
@@ -242,12 +242,12 @@
 			}
 		}
 
-		.wrapper {
+		.preloader+.wrapper {
 			padding-top: 10%;
 			position: relative;
 		}
 
-		.wrapper._loaded {
+		.preloader+.wrapper._loaded {
 			padding-top: 0;
 			-webkit-transition: padding-top 1.5s cubic-bezier(0.9, 0, 0.1, 1) .48s;
 			transition: padding-top 1.5s cubic-bezier(0.9, 0, 0.1, 1) .48s;
@@ -256,109 +256,113 @@
 	<script>
 		document.addEventListener("DOMContentLoaded", () => {
 			const preloader = document.querySelector('.preloader');
-			const wrapper = document.querySelector('.wrapper');
-			const progressBar = document.getElementById("progress-bar");
-			const progressPersent = document.getElementById("progress-persent");
+			if (preloader) {
+				const wrapper = document.querySelector('.wrapper');
+				const progressBar = document.getElementById("progress-bar");
+				const progressPersent = document.getElementById("progress-persent");
 
 
-			const resources = Array.from(document.images)
-				.concat(Array.from(document.querySelectorAll('video')))
-				.concat(Array.from(document.querySelectorAll("link[rel='stylesheet'], script")));
+				const resources = Array.from(document.images)
+					.concat(Array.from(document.querySelectorAll('video')))
+					.concat(Array.from(document.querySelectorAll("link[rel='stylesheet'], script")));
 
 
-			let loadedResources = 0;
-			const resourcesIsIntersecting = new Set();
-			let fontLoaded = false;
+				let loadedResources = 0;
+				const resourcesIsIntersecting = new Set();
+				let fontLoaded = false;
 
-			function updateProgress(forse = false) {
-				const totalResources = resourcesIsIntersecting.size + 1;
-				const targetPercent = Math.min(100, ((loadedResources + (fontLoaded ? 1 : 0)) / totalResources) * 100);
-				const currentPercent = parseFloat(progressBar.style.width) || 0;
+				function updateProgress(forse = false) {
+					const totalResources = resourcesIsIntersecting.size + 1;
+					const targetPercent = Math.min(100, ((loadedResources + (fontLoaded ? 1 : 0)) / totalResources) * 100);
+					const currentPercent = parseFloat(progressBar.style.width) || 0;
 
-				let increment = currentPercent;
-				const step = (targetPercent - currentPercent) / 50;
-				const interval = setInterval(() => {
-					increment += step;
-					if (increment >= targetPercent) {
-						clearInterval(interval);
-						increment = targetPercent;
+					let increment = currentPercent;
+					const step = (targetPercent - currentPercent) / 50;
+					const interval = setInterval(() => {
+						increment += step;
+						if (increment >= targetPercent) {
+							clearInterval(interval);
+							increment = targetPercent;
+						}
+						progressBar.style.width = increment + "%";
+						progressPersent.textContent = Math.floor(increment) + '%';
+					}, 10);
+
+					if (targetPercent === 100) {
+
+						setTimeout(() => {
+							hidePreloader()
+						}, 850)
 					}
-					progressBar.style.width = increment + "%";
-					progressPersent.textContent = Math.floor(increment) + '%';
-				}, 10);
-
-				if (targetPercent === 100) {
-					setTimeout(() => {
-						hidePreloader()
-					}, 850)
+					if (forse) {
+						progressBar.style.width = 100 + "%";
+						progressPersent.textContent = Math.floor(100) + '%';
+						hidePreloader(true)
+					}
 				}
-				if (forse) {
-					progressBar.style.width = 100 + "%";
-					progressPersent.textContent = Math.floor(100) + '%';
-					hidePreloader(true)
-				}
-			}
 
-			const observerOptions = {
-				root: null,
-				rootMargin: "100px",
-				threshold: 0
-			};
+				const observerOptions = {
+					rootMargin: "100px",
+					threshold: 0
+				};
 
-			const observer = new IntersectionObserver((entries) => {
-				entries.forEach((entry) => {
-					const resource = entry.target;
-					if (entry.isIntersecting && !resourcesIsIntersecting.has(resource)) {
-						resourcesIsIntersecting.add(resource);
-						checkResourceLoad(resource);
+				const observer = new IntersectionObserver((entries) => {
+					entries.forEach((entry) => {
+						const resource = entry.target;
+						if (entry.isIntersecting && !resourcesIsIntersecting.has(resource)) {
+							resourcesIsIntersecting.add(resource);
+							checkResourceLoad(resource);
+						}
 						observer.unobserve(resource);
-					}
-				});
-			}, observerOptions);
+					});
+				}, observerOptions);
 
-			function checkResourceLoad(resource) {
-				if (resource.nodeName === "IMG") {
-					if (!resource.complete) {
+				function checkResourceLoad(resource) {
+					if (resource.nodeName === "IMG") {
+						if (!resource.complete) {
+							resource.addEventListener("load", () => {
+								loadedResources++;
+								updateProgress();
+							});
+							resource.addEventListener("error", () => {
+								loadedResources++;
+								updateProgress();
+							});
+						} else {
+							loadedResources++;
+							updateProgress();
+						}
+					} else if (resource.nodeName === "VIDEO") {
+						resource.addEventListener("loadeddata", () => {
+							loadedResources++;
+							updateProgress();
+						});
+					} else if (resource.nodeName === "LINK" || resource.nodeName === "SCRIPT") {
 						resource.addEventListener("load", () => {
 							loadedResources++;
 							updateProgress();
 						});
-						resource.addEventListener("error", () => {
-							loadedResources++;
-							updateProgress();
-						});
-					} else {
-						loadedResources++;
-						updateProgress();
 					}
-				} else if (resource.nodeName === "VIDEO") {
-					resource.addEventListener("loadeddata", () => {
-						loadedResources++;
-						updateProgress();
-					});
-				} else if (resource.nodeName === "LINK" || resource.nodeName === "SCRIPT") {
-					resource.addEventListener("load", () => {
-						loadedResources++;
-						updateProgress();
-					});
 				}
+
+				function hidePreloader(forse) {
+					if (!preloader.classList.contains('_loaded')) {
+						preloader.classList.add('_loaded');
+						wrapper.classList.add('_loaded');
+						!forse ? window.scrollTo(0, 0) : null;
+					}
+				}
+
+				resources.forEach((resource) => observer.observe(resource));
+
+				document.fonts.ready.then(() => {
+					fontLoaded = true;
+					updateProgress();
+				});
+				setTimeout(() => {
+					updateProgress(true)
+				}, 15000);
 			}
-
-			function hidePreloader(forse = false) {
-				preloader.classList.add('_loaded');
-				wrapper.classList.add('_loaded');
-				!forse ? window.scrollTo(0, 0) : null;
-			}
-
-			resources.forEach((resource) => observer.observe(resource));
-
-			document.fonts.ready.then(() => {
-				fontLoaded = true;
-				updateProgress();
-			});
-			setTimeout(() => {
-				updateProgress(true)
-			}, 15000);
 		});
 	</script>
 </head>
@@ -445,7 +449,7 @@
 					<img width="205" height="49" fetchpriority="high" loading="eager" decoding="async" src="img/logo/logo.svg" alt="Wizze Spark Logo">
 				</a>
 				<div class="header__video video" data-video-ambient>
-					<video data-video preload="auto" playsinline muted loop class="video__video" id="js-video" src="files/main-intro-top.mp4"></video>
+					<video data-video autoplay playsinline muted loop class="video__video" id="js-video" src="files/main-intro-top.mp4"></video>
 					<canvas data-canvas width="10" height="6" aria-hidden="true" class="video__canvas" id="js-canvas"></canvas>
 				</div>
 				<nav class="header__actions header-actions">
@@ -498,7 +502,7 @@
 							Все при помощи нейросетей и вашего персонального менеджера.
 						</div>
 						<div data-video-ambient class="main-section__video video">
-							<video data-video preload="auto" playsinline muted loop class="video__video" src="files/main-intro-bottom.mp4"></video>
+							<video data-video autoplay playsinline muted loop class="video__video" src="files/main-intro-bottom.mp4"></video>
 							<canvas data-canvas width="10" height="6" aria-hidden="true" class="video__canvas"></canvas>
 						</div>
 						<div class="main-section__btn">
@@ -562,44 +566,44 @@
 						<div class="example-videos__body grid">
 							<div data-video-ambient class="example-videos__video-left video">
 								<picture><source srcset="img/example-videos/demo_1.webp" type="image/webp"><img width="288" height="200" loading="lazy" decoding="async" src="img/example-videos/demo_1.jpg" alt="video poster"></picture>
-								<video data-video preload="auto" playsinline muted loop class="video__video" src="files/demo_1.mp4"></video>
+								<video data-video autoplay playsinline muted loop class="video__video" src="files/demo_1.mp4"></video>
 								<canvas data-canvas width="10" height="6" aria-hidden="true" class="video__canvas"></canvas>
 							</div>
 							<div data-video-ambient class="example-videos__video-top-lage video">
 								<picture><source srcset="img/example-videos/demo_2.webp" type="image/webp"><img width="288" height="200" loading="lazy" decoding="async" src="img/example-videos/demo_2.jpg" alt="video poster"></picture>
-								<video data-video preload="auto" playsinline muted loop class="video__video" src="files/demo_2.mp4"></video>
+								<video data-video autoplay playsinline muted loop class="video__video" src="files/demo_2.mp4"></video>
 								<canvas data-canvas width="10" height="6" aria-hidden="true" class="video__canvas"></canvas>
 							</div>
 							<div data-video-ambient class="example-videos__video video">
 								<picture><source srcset="img/example-videos/demo_3.webp" type="image/webp"><img width="288" height="200" loading="lazy" decoding="async" src="img/example-videos/demo_3.jpg" alt="video poster"></picture>
-								<video data-video preload="auto" playsinline muted loop class="video__video" src="files/demo_3.mp4"></video>
+								<video data-video autoplay playsinline muted loop class="video__video" src="files/demo_3.mp4"></video>
 								<canvas data-canvas width="10" height="6" aria-hidden="true" class="video__canvas"></canvas>
 							</div>
 							<div data-video-ambient class="example-videos__bottom-large video">
 								<picture><source srcset="img/example-videos/demo_4.webp" type="image/webp"><img width="288" height="200" loading="lazy" decoding="async" src="img/example-videos/demo_4.jpg" alt="video poster"></picture>
-								<video data-video preload="auto" playsinline muted loop class="video__video" src="files/demo_4.mp4"></video>
+								<video data-video autoplay playsinline muted loop class="video__video" src="files/demo_4.mp4"></video>
 								<canvas data-canvas width="10" height="6" aria-hidden="true" class="video__canvas"></canvas>
 							</div>
 							<div data-video-ambient class="example-videos__video-middle video">
 								<picture><source srcset="img/example-videos/demo_5.webp" type="image/webp"><img width="288" height="200" loading="lazy" decoding="async" src="img/example-videos/demo_5.jpg" alt="video poster"></picture>
-								<video data-video preload="auto" playsinline muted loop class="video__video" src="files/demo_5.mp4"></video>
+								<video data-video autoplay playsinline muted loop class="video__video" src="files/demo_5.mp4"></video>
 								<canvas data-canvas width="10" height="6" aria-hidden="true" class="video__canvas"></canvas>
 							</div>
 							<div class="example-videos__bottom-double">
 								<div data-video-ambient class="example-videos__bouble-top video">
 									<picture><source srcset="img/example-videos/demo_6.webp" type="image/webp"><img width="288" height="200" loading="lazy" decoding="async" src="img/example-videos/demo_6.jpg" alt="video poster"></picture>
-									<video data-video preload="auto" playsinline muted loop class="video__video" src="files/demo_6.mp4"></video>
+									<video data-video autoplay playsinline muted loop class="video__video" src="files/demo_6.mp4"></video>
 									<canvas data-canvas width="10" height="6" aria-hidden="true" class="video__canvas"></canvas>
 								</div>
 								<div data-video-ambient class="example-videos__bouble-bottom video">
 									<picture><source srcset="img/example-videos/demo_7.webp" type="image/webp"><img width="288" height="200" loading="lazy" decoding="async" src="img/example-videos/demo_7.jpg" alt="video poster"></picture>
-									<video data-video preload="auto" playsinline muted loop class="video__video" src="files/demo_7.mp4"></video>
+									<video data-video autoplay playsinline muted loop class="video__video" src="files/demo_7.mp4"></video>
 									<canvas data-canvas width="10" height="6" aria-hidden="true" class="video__canvas"></canvas>
 								</div>
 							</div>
 							<div data-video-ambient class="example-videos__video-right video">
 								<picture><source srcset="img/example-videos/demo_8.webp" type="image/webp"><img width="288" height="200" loading="lazy" decoding="async" src="img/example-videos/demo_8.jpg" alt="video poster"></picture>
-								<video data-video preload="auto" playsinline muted loop class="video__video" src="files/demo_8.mp4"></video>
+								<video data-video autoplay playsinline muted loop class="video__video" src="files/demo_8.mp4"></video>
 								<canvas data-canvas width="10" height="6" aria-hidden="true" class="video__canvas"></canvas>
 							</div>
 						</div>
@@ -844,19 +848,23 @@
 			</section>
 			<section class="page__professional professional">
 				<div class="professional__container grid">
-					<h2 class="professional__title main-title">Профессиональные <span class="main-title--bold">видео с ИИ</span></h2>
-					<div class="professional__text title">Профессиональное редактирование с анимациями, эффектами и субтитрами — всё автоматически генерируется нашим ИИ и адаптируется под ваш уникальный стиль и аудиторию.</div>
-					<div class="professional__text title">Создавайте яркие видео до 90 секунд (а если нужно то 30 минут и более), которые мгновенно привлекут внимание.</div>
-					<div data-video-ambient class="professional__video-left video">
-						<video data-video preload="auto" playsinline muted loop class="video__video" src="files/professional_1.mp4"></video>
-						<canvas data-canvas width="10" height="6" aria-hidden="true" class="video__canvas"></canvas>
+					<h2 class="professional__title main-title">Профессио&shy;нальные <span class="main-title--bold">видео с ИИ</span></h2>
+					<div class="professional__column">
+						<div class="professional__text title">Профессиональное редактирование с анимациями, эффектами и субтитрами — всё автоматически генерируется нашим ИИ и адаптируется под ваш уникальный стиль и аудиторию.</div>
+						<div data-video-ambient class="professional__video-left video">
+							<video data-video autoplay playsinline muted loop class="video__video" src="files/professional_1.mp4"></video>
+							<canvas data-canvas width="10" height="6" aria-hidden="true" class="video__canvas"></canvas>
+						</div>
 					</div>
-					<div data-video-ambient class="professional__video-right video">
-						<video data-video preload="auto" playsinline muted loop class="video__video" src="files/professional_2.mp4"></video>
-						<canvas data-canvas width="10" height="6" aria-hidden="true" class="video__canvas"></canvas>
+					<div class="professional__column">
+						<div class="professional__text title">Создавайте яркие видео до 90 секунд (а если нужно то 30 минут и более), которые мгновенно привлекут внимание.</div>
+						<div data-video-ambient class="professional__video-right video">
+							<video data-video autoplay playsinline muted loop class="video__video" src="files/professional_2.mp4"></video>
+							<canvas data-canvas width="10" height="6" aria-hidden="true" class="video__canvas"></canvas>
+						</div>
 					</div>
 					<div class="professional__text-bottom title">Готовы обсудить детали?</div>
-					<a href="#" class="professional__link action-link">
+					<a href="#" class="professional__link action-link action-link--large">
 						<i class="action-link__icon _icon-arrow"></i>
 						<span class="action-link__text">Начать</span>
 					</a>
@@ -871,7 +879,7 @@
 						<p>Это ваша возможность быть на шаг впереди!</p>
 					</div>
 					<div class="analysis__video-mask video">
-						<video class="video__video" preload="auto" autoplay playsinline muted loop src="files/analysis.mp4"></video>
+						<video class="video__video" autoplay autoplay playsinline muted loop src="files/analysis.mp4"></video>
 					</div>
 					<div class="analysis__banner text">
 						Чем дольше вы откладываете, тем выше риск упустить лидерство. Конкуренты уже используют нашу экспертизу в ИИ для анализа и создания уникального контента. Это ваш шанс изменить всё!
@@ -1113,7 +1121,7 @@
 	</div>
 </div> -->
 
-	<script async src="js/homepage.min.js?_v=20241021163450"></script>
+	<script async src="js/homepage.min.js?_v=20241022005908"></script>
 </body>
 
 </html>
