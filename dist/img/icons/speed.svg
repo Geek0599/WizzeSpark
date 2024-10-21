@@ -1,5 +1,19 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="36" height="36">
-	<path fill="none" stroke="#2A273F" stroke-width="2" stroke-miterlimit="10" transform="translate(3.49653 6.99859)" d="M26.942589 7.0504532C28.24893 9.2276802 29 11.776129 29 14.5C29 16.447056 28.616236 18.30448 27.920219 20.000757L1.0797801 20.000757C0.38376459 18.30448 0 16.447056 0 14.5C0 6.4918714 6.4918714 0 14.5 0C18.661203 0 22.413008 1.7528542 25.05732 4.5604739" fill-rule="evenodd"/>
-	<path fill="none" stroke="#2A273F" stroke-width="2" stroke-miterlimit="10" transform="translate(8.99978 12.0001)" d="M10.596467 0.14112389C7.6587577 -0.38480842 4.6512556 0.57826465 2.5655 2.7128289C0.47974443 4.847393 -0.41351593 7.8763638 0.18021673 10.801124" fill-rule="evenodd"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="36px" height="36px" viewBox="0 0 36 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group</title>
+    <g id="Page" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="desktop" transform="translate(-945, -7981)">
+            <g id="Group-28" transform="translate(0, 7475)">
+                <g id="Group-24-Copy-6" transform="translate(933, 506)">
+                    <g id="Group" transform="translate(12, 0)">
+                        <polygon id="Path" points="0 0 36 0 36 36 0 36"></polygon>
+                        <g id="Speedometer" transform="translate(3.4965, 6.9986)" stroke="#2A273F" stroke-width="2">
+                            <path d="M26.942588,7.05045335 C28.2489293,9.22768017 29,11.7761291 29,14.5 C29,16.4470565 28.6162354,18.30448 27.9202199,20.0007568 L1.07978007,20.0007568 C0.383764584,18.30448 0,16.4470565 0,14.5 C0,6.49187113 6.49187113,0 14.5,0 C18.661204,0 22.4130069,1.75285421 25.0573204,4.56047411" id="Path"></path>
+                            <path d="M16.0997178,5.14266037 C13.1620087,4.61672805 10.1545065,5.57980113 8.06875103,7.71436525 C5.98299554,9.84892938 5.08973518,12.8779003 5.68346783,15.8026604" id="Path"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
 </svg>

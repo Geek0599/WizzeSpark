@@ -284,6 +284,10 @@
     }
     function observeElements(observeElemets) {
         observeElemets.forEach((({element, callback, threshold, offset}) => {
+            const options = {
+                threshold,
+                rootMargin: `-${parseOffset(offset)}px`
+            };
             const observer = new IntersectionObserver(((entries, observer) => {
                 entries.forEach((entry => {
                     if (entry.isIntersecting) {
@@ -291,9 +295,7 @@
                         observer.unobserve(entry.target);
                     }
                 }));
-            }), {
-                rootMargin: `${parseOffset(offset)}px`
-            });
+            }), options);
             observer.observe(element);
         }));
         function parseOffset(offset) {
@@ -301,6 +303,7 @@
                 if (offset.endsWith("%")) return parseFloat(offset) / 100 * window.innerHeight;
                 return parseFloat(offset);
             }
+            console.log(offset);
             return offset;
         }
     }
@@ -308,6 +311,14 @@
         element: document.querySelector("#counter"),
         callback: () => animateCount(document.querySelector("#counter"), 1500),
         threshold: 1,
-        offset: "-20%"
+        offset: "20%"
+    }, {
+        element: document.querySelector("#socials-platforms"),
+        callback: () => {
+            console.log("anim");
+            document.querySelector("#socials-platforms").classList.add("_anim");
+        },
+        threshold: 1,
+        offset: "10%"
     } ]);
 })();

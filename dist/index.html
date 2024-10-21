@@ -5,31 +5,454 @@
 	<title>WizzeSpark</title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
-	<link rel="stylesheet" href="css/homepage.min.css?_v=20241016181313">
+	<link rel="stylesheet" href="css/homepage.min.css?_v=20241021163450">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" href="favicon.ico">
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap&_v=20241016181313" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap&_v=20241021163450" rel="stylesheet">
+
+	<style>
+		.preloader {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 1000;
+			background-color: #503dd9;
+			-webkit-transition: -webkit-transform 1.5s cubic-bezier(0.9, 0, 0.1, 1) .48s;
+			transition: -webkit-transform 1.5s cubic-bezier(0.9, 0, 0.1, 1) .48s;
+			transition: transform 1.5s cubic-bezier(0.9, 0, 0.1, 1) .48s;
+			transition: transform 1.5s cubic-bezier(0.9, 0, 0.1, 1) .48s, -webkit-transform 1.5s cubic-bezier(0.9, 0, 0.1, 1) .48s;
+		}
+
+		.preloader::before {
+			content: "";
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			left: 0;
+			top: 0;
+			background-color: #fff;
+			-webkit-transition: -webkit-transform 1.5s cubic-bezier(0.9, 0, 0.1, 1) .18s;
+			transition: -webkit-transform 1.5s cubic-bezier(0.9, 0, 0.1, 1) .18s;
+			transition: transform 1.5s cubic-bezier(0.9, 0, 0.1, 1) .18s;
+			transition: transform 1.5s cubic-bezier(0.9, 0, 0.1, 1) .18s, -webkit-transform 1.5s cubic-bezier(0.9, 0, 0.1, 1) .18s;
+		}
+
+		.preloader._loaded {
+			-webkit-transform: translateY(-100%);
+			-ms-transform: translateY(-100%);
+			transform: translateY(-100%);
+		}
+
+		.preloader._loaded::before {
+			-webkit-transform: translateY(-100%);
+			-ms-transform: translateY(-100%);
+			transform: translateY(-100%);
+		}
+
+		.preloader._loaded .preloader__body {
+			-webkit-transform: translateY(-100%);
+			-ms-transform: translateY(-100%);
+			transform: translateY(-100%);
+		}
+
+		.preloader__body {
+			padding: 66px 50px;
+			width: 100%;
+			height: 100%;
+			position: relative;
+			z-index: 1;
+			background: #fff;
+			display: -ms-grid;
+			display: grid;
+			gap: 1.5625rem;
+			-ms-grid-columns: auto auto;
+			grid-template-columns: auto auto;
+			-ms-grid-rows: 1fr auto;
+			grid-template-rows: 1fr auto;
+			-webkit-transition: -webkit-transform 1.5s cubic-bezier(0.9, 0, 0.1, 1) 0s;
+			transition: -webkit-transform 1.5s cubic-bezier(0.9, 0, 0.1, 1) 0s;
+			transition: transform 1.5s cubic-bezier(0.9, 0, 0.1, 1) 0s;
+			transition: transform 1.5s cubic-bezier(0.9, 0, 0.1, 1) 0s, -webkit-transform 1.5s cubic-bezier(0.9, 0, 0.1, 1) 0s;
+		}
+
+		@supports (padding-top: clamp(1.5625rem, 0.2416237113rem + 4.2268041237vw, 4.125rem)) {
+			.preloader__body {
+				padding-top: clamp(1.5625rem, 0.2416237113rem + 4.2268041237vw, 4.125rem);
+			}
+		}
+
+		@supports not (padding-top: clamp(1.5625rem, 0.2416237113rem + 4.2268041237vw, 4.125rem)) {
+			.preloader__body {
+				padding-top: calc(1.5625rem + 2.5625*(100vw - 31.25rem)/60.625);
+			}
+		}
+
+		@supports (padding-bottom: clamp(1.5625rem, 0.2416237113rem + 4.2268041237vw, 4.125rem)) {
+			.preloader__body {
+				padding-bottom: clamp(1.5625rem, 0.2416237113rem + 4.2268041237vw, 4.125rem);
+			}
+		}
+
+		@supports not (padding-bottom: clamp(1.5625rem, 0.2416237113rem + 4.2268041237vw, 4.125rem)) {
+			.preloader__body {
+				padding-bottom: calc(1.5625rem + 2.5625*(100vw - 31.25rem)/60.625);
+			}
+		}
+
+		@supports (padding-left: clamp(1rem, -0.0953608247rem + 3.5051546392vw, 3.125rem)) {
+			.preloader__body {
+				padding-left: clamp(1rem, -0.0953608247rem + 3.5051546392vw, 3.125rem);
+			}
+		}
+
+		@supports not (padding-left: clamp(1rem, -0.0953608247rem + 3.5051546392vw, 3.125rem)) {
+			.preloader__body {
+				padding-left: calc(1rem + 2.125*(100vw - 31.25rem)/60.625);
+			}
+		}
+
+		@supports (padding-right: clamp(1rem, -0.0953608247rem + 3.5051546392vw, 3.125rem)) {
+			.preloader__body {
+				padding-right: clamp(1rem, -0.0953608247rem + 3.5051546392vw, 3.125rem);
+			}
+		}
+
+		@supports not (padding-right: clamp(1rem, -0.0953608247rem + 3.5051546392vw, 3.125rem)) {
+			.preloader__body {
+				padding-right: calc(1rem + 2.125*(100vw - 31.25rem)/60.625);
+			}
+		}
+
+		.preloader__persent {
+			-ms-grid-column-span: 2;
+			grid-column: span 2;
+			color: #503dd9;
+			font-family: "Libre";
+			line-height: 80%;
+			letter-spacing: -0.0600878294em;
+			text-align: right;
+			-ms-grid-row-align: center;
+			align-self: center;
+			text-transform: uppercase;
+			position: relative;
+			z-index: 1;
+		}
+
+		@supports (font-size: clamp(9.0625rem, -1.5391260163rem + 53.0081300813vw, 49.8125rem)) {
+			.preloader__persent {
+				font-size: clamp(9.0625rem, -1.5391260163rem + 53.0081300813vw, 49.8125rem);
+			}
+		}
+
+		@supports not (font-size: clamp(9.0625rem, -1.5391260163rem + 53.0081300813vw, 49.8125rem)) {
+			.preloader__persent {
+				font-size: calc(9.0625rem + 40.75*(100vw - 20rem)/76.875);
+			}
+		}
+
+		.preloader__progress-bar {
+			position: absolute;
+			height: 100%;
+			width: 0%;
+			left: 0;
+			top: 0;
+			background-color: #d4ee50;
+			-webkit-transition: width .1s ease 0s;
+			transition: width .1s ease 0s;
+		}
+
+		.preloader__logo {
+			position: relative;
+			z-index: 1;
+		}
+
+		@supports (max-width: clamp(7.5rem, 6.9444444444rem + 2.7777777778vw, 9.375rem)) {
+			.preloader__logo {
+				max-width: clamp(7.5rem, 6.9444444444rem + 2.7777777778vw, 9.375rem);
+			}
+		}
+
+		@supports not (max-width: clamp(7.5rem, 6.9444444444rem + 2.7777777778vw, 9.375rem)) {
+			.preloader__logo {
+				max-width: calc(7.5rem + 1.875*(100vw - 20rem)/67.5);
+			}
+		}
+
+		.preloader__logo svg {
+			max-width: 100%;
+			height: auto;
+		}
+
+		.preloader__text {
+			color: #0b0d00;
+			font-family: "Gothic60";
+			letter-spacing: -0.02125rem;
+			text-align: right;
+			line-height: .8729545455;
+			text-transform: lowercase;
+			-ms-flex-item-align: center;
+			-ms-grid-row-align: center;
+			align-self: center;
+			position: relative;
+			z-index: 1;
+		}
+
+		@supports (font-size: clamp(1.5625rem, 1.2106481481rem + 1.7592592593vw, 2.75rem)) {
+			.preloader__text {
+				font-size: clamp(1.5625rem, 1.2106481481rem + 1.7592592593vw, 2.75rem);
+			}
+		}
+
+		@supports not (font-size: clamp(1.5625rem, 1.2106481481rem + 1.7592592593vw, 2.75rem)) {
+			.preloader__text {
+				font-size: calc(1.5625rem + 1.1875*(100vw - 20rem)/67.5);
+			}
+		}
+
+		@media (max-height: 53.125em) {
+			@supports (font-size: clamp(9.0625rem, 0.0381097561rem + 45.1219512195vw, 43.75rem)) {
+				.preloader__persent {
+					font-size: clamp(9.0625rem, 0.0381097561rem + 45.1219512195vw, 43.75rem);
+				}
+			}
+
+			@supports not (font-size: clamp(9.0625rem, 0.0381097561rem + 45.1219512195vw, 43.75rem)) {
+				.preloader__persent {
+					font-size: calc(9.0625rem + 34.6875*(100vw - 20rem)/76.875);
+				}
+			}
+		}
+
+		@media (max-height: 48.125em) {
+			@supports (font-size: clamp(9.0625rem, 3.2901422764rem + 28.8617886179vw, 31.25rem)) {
+				.preloader__persent {
+					font-size: clamp(9.0625rem, 3.2901422764rem + 28.8617886179vw, 31.25rem);
+				}
+			}
+
+			@supports not (font-size: clamp(9.0625rem, 3.2901422764rem + 28.8617886179vw, 31.25rem)) {
+				.preloader__persent {
+					font-size: calc(9.0625rem + 22.1875*(100vw - 20rem)/76.875);
+				}
+			}
+		}
+
+		.wrapper {
+			padding-top: 10%;
+			position: relative;
+		}
+
+		.wrapper._loaded {
+			padding-top: 0;
+			-webkit-transition: padding-top 1.5s cubic-bezier(0.9, 0, 0.1, 1) .48s;
+			transition: padding-top 1.5s cubic-bezier(0.9, 0, 0.1, 1) .48s;
+		}
+	</style>
+	<script>
+		document.addEventListener("DOMContentLoaded", () => {
+			const preloader = document.querySelector('.preloader');
+			const wrapper = document.querySelector('.wrapper');
+			const progressBar = document.getElementById("progress-bar");
+			const progressPersent = document.getElementById("progress-persent");
+
+
+			const resources = Array.from(document.images)
+				.concat(Array.from(document.querySelectorAll('video')))
+				.concat(Array.from(document.querySelectorAll("link[rel='stylesheet'], script")));
+
+
+			let loadedResources = 0;
+			const resourcesIsIntersecting = new Set();
+			let fontLoaded = false;
+
+			function updateProgress(forse = false) {
+				const totalResources = resourcesIsIntersecting.size + 1;
+				const targetPercent = Math.min(100, ((loadedResources + (fontLoaded ? 1 : 0)) / totalResources) * 100);
+				const currentPercent = parseFloat(progressBar.style.width) || 0;
+
+				let increment = currentPercent;
+				const step = (targetPercent - currentPercent) / 50;
+				const interval = setInterval(() => {
+					increment += step;
+					if (increment >= targetPercent) {
+						clearInterval(interval);
+						increment = targetPercent;
+					}
+					progressBar.style.width = increment + "%";
+					progressPersent.textContent = Math.floor(increment) + '%';
+				}, 10);
+
+				if (targetPercent === 100) {
+					setTimeout(() => {
+						hidePreloader()
+					}, 850)
+				}
+				if (forse) {
+					progressBar.style.width = 100 + "%";
+					progressPersent.textContent = Math.floor(100) + '%';
+					hidePreloader()
+				}
+			}
+
+			const observerOptions = {
+				root: null,
+				rootMargin: "100px",
+				threshold: 0
+			};
+
+			const observer = new IntersectionObserver((entries) => {
+				entries.forEach((entry) => {
+					const resource = entry.target;
+					if (entry.isIntersecting && !resourcesIsIntersecting.has(resource)) {
+						resourcesIsIntersecting.add(resource);
+						checkResourceLoad(resource);
+						observer.unobserve(resource);
+					}
+				});
+			}, observerOptions);
+
+			function checkResourceLoad(resource) {
+				if (resource.nodeName === "IMG") {
+					if (!resource.complete) {
+						resource.addEventListener("load", () => {
+							loadedResources++;
+							updateProgress();
+						});
+						resource.addEventListener("error", () => {
+							loadedResources++;
+							updateProgress();
+						});
+					} else {
+						loadedResources++;
+						updateProgress();
+					}
+				} else if (resource.nodeName === "VIDEO") {
+					resource.addEventListener("loadeddata", () => {
+						loadedResources++;
+						updateProgress();
+					});
+				} else if (resource.nodeName === "LINK" || resource.nodeName === "SCRIPT") {
+					resource.addEventListener("load", () => {
+						loadedResources++;
+						updateProgress();
+					});
+				}
+			}
+
+			function hidePreloader() {
+				preloader.classList.add('_loaded');
+				wrapper.classList.add('_loaded');
+				window.scrollTo(0, 0)
+			}
+
+			resources.forEach((resource) => observer.observe(resource));
+
+			document.fonts.ready.then(() => {
+				fontLoaded = true;
+				updateProgress();
+			});
+			setTimeout(() => {
+				updateProgress(true)
+			}, 15000);
+		});
+	</script>
 </head>
 
-<body>
+<body class="bg-page">
+	<div class="preloader">
+		<div class="preloader__body">
+			<div id="progress-persent" class="preloader__persent">0%</div>
+			<div id="progress-bar" class="preloader__progress-bar"></div>
+			<div class="preloader__logo"><svg height="48" viewBox="0 0 150 48" width="150" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+					<defs>
+						<radialGradient id="a" cx="64.546324%" cy="70.245041%" gradientTransform="matrix(.33703775 .94149114 -1.24154436 .44445168 1.300127 -.21746)" r="142.532236%">
+							<stop offset="0" stop-color="#503dd9" />
+							<stop offset=".0823593964" stop-color="#503dd9" stop-opacity=".882353" />
+							<stop offset=".144060357" stop-color="#503dd9" stop-opacity=".745098" />
+							<stop offset=".197037037" stop-color="#503dd9" stop-opacity=".6" />
+							<stop offset=".253223594" stop-color="#503dd9" stop-opacity=".45098" />
+							<stop offset=".324554184" stop-color="#503dd9" stop-opacity=".309804" />
+							<stop offset=".422962963" stop-color="#503dd9" stop-opacity=".188235" />
+							<stop offset=".560384088" stop-color="#503dd9" stop-opacity=".090196" />
+							<stop offset=".748751715" stop-color="#503dd9" stop-opacity=".023529" />
+							<stop offset="1" stop-color="#503dd9" stop-opacity="0" />
+						</radialGradient>
+						<radialGradient id="b" cx="50.908833%" cy="51.179751%" gradientTransform="matrix(.48975531 .87185993 -1.9445092 1.09230127 1.254965 -.491104)" r="45.33113%">
+							<stop offset="0" stop-color="#d7fa00" stop-opacity="0" />
+							<stop offset=".321186626" stop-color="#d7fa00" stop-opacity="0" />
+							<stop offset=".651879371" stop-color="#d7fa00" />
+							<stop offset="1" stop-color="#d7fa00" stop-opacity="0" />
+						</radialGradient>
+						<radialGradient id="c" cx="53.397132%" cy="50%" gradientTransform="matrix(.52190765 .853002 -1.90245035 1.16401063 1.206526 -.537508)" r="43.891965%">
+							<stop offset="0" stop-color="#d7fa00" stop-opacity="0" />
+							<stop offset=".321186626" stop-color="#d7fa00" stop-opacity="0" />
+							<stop offset=".651879371" stop-color="#d7fa00" />
+							<stop offset="1" stop-color="#d7fa00" stop-opacity="0" />
+							<stop offset="1" stop-opacity="0" />
+						</radialGradient>
+						<radialGradient id="d" cx="49.911721%" cy="46.991461%" gradientTransform="matrix(.53072865 .8475418 -1.89027247 1.18368411 1.122452 -.509321)" r="43.413343%">
+							<stop offset="0" stop-color="#d7fa00" stop-opacity="0" />
+							<stop offset=".51294799" stop-color="#d7fa00" stop-opacity="0" />
+							<stop offset=".679742133" stop-color="#fff" />
+							<stop offset="1" stop-color="#d7fa00" stop-opacity="0" />
+						</radialGradient>
+						<path id="e" d="m18.1126083 0h11.7747834c6.2981485 0 8.5820093.65576803 10.8845183 1.88716329 2.3025089 1.23139527 4.1095314 3.03841778 5.3409267 5.34092674s1.8871633 4.58636977 1.8871633 10.88451827v11.7747834c0 6.2981485-.655768 8.5820093-1.8871633 10.8845183-1.2313953 2.3025089-3.0384178 4.1095314-5.3409267 5.3409267-2.302509 1.2313953-4.5863698 1.8871633-10.8845183 1.8871633h-11.7747834c-6.2981485 0-8.58200931-.655768-10.88451827-1.8871633s-4.10953147-3.0384178-5.34092674-5.3409267c-1.23139526-2.302509-1.88716329-4.5863698-1.88716329-10.8845183v-11.7747834c0-6.2981485.65576803-8.58200931 1.88716329-10.88451827 1.23139527-2.30250896 3.03841778-4.10953147 5.34092674-5.34092674 2.30250896-1.23139526 4.58636977-1.88716329 10.88451827-1.88716329z" />
+						<filter id="f" height="108.3%" width="108.3%" x="-4.2%" y="-4.2%">
+							<feMorphology in="SourceAlpha" operator="erode" radius="1" result="shadowSpreadInner1" />
+							<feGaussianBlur in="shadowSpreadInner1" result="shadowBlurInner1" stdDeviation="1.5" />
+							<feOffset dx="0" dy="0" in="shadowBlurInner1" result="shadowOffsetInner1" />
+							<feComposite in="shadowOffsetInner1" in2="SourceAlpha" k2="-1" k3="1" operator="arithmetic" result="shadowInnerInner1" />
+							<feColorMatrix in="shadowInnerInner1" type="matrix" values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.28783326 0" />
+						</filter>
+					</defs>
+					<g fill="none" fill-rule="evenodd">
+						<g fill="#2a273f" fill-rule="nonzero" transform="translate(72.24 3.5952)">
+							<path d="m0 .384 5.376 16.8h2.112l4.704-13.776 4.632 13.776h2.112l5.376-16.8h-2.256l-4.08 13.608-4.752-13.608h-2.04l-4.848 13.608-4.08-13.608z" />
+							<path d="m25.896.384v16.8h2.16v-16.8z" />
+							<path d="m30.36.384v1.992h11.016l-11.016 12.816v1.992h13.56v-1.992h-11.016l11.016-12.816v-1.992z" />
+							<path d="m45.744.384v1.992h11.016l-11.016 12.816v1.992h13.56v-1.992h-11.016l11.016-12.816v-1.992z" />
+							<path d="m63.24 9.096h14.352c.192-5.808-2.88-9.096-8.112-9.096-4.896 0-8.352 3.384-8.352 8.784s3.456 8.784 8.352 8.784c3.432 0 6.888-1.56 8.112-5.784l-1.92-.864c-1.008 3.504-3.576 4.728-6.192 4.728-3.816 0-6.12-2.664-6.24-6.552zm.12-1.92c.552-3.168 2.76-5.256 6.12-5.256 4.008 0 5.688 2.4 5.976 5.256z" />
+							<path d="m7.752 42.3232208c3.936 0 6.648-1.8 6.648-5.088 0-3-2.232-4.08-6.144-4.968-3.888-.864-4.632-1.584-4.632-2.856 0-1.416.936-2.712 3.936-2.712 2.976 0 4.536 1.272 4.512 4.512l2.112-.288c0-3.672-2.04-6.144-6.6-6.144-4.344 0-5.952 2.232-5.952 4.752 0 2.88 2.136 3.768 5.976 4.752 3.024.768 4.776 1.008 4.776 2.976 0 2.304-2.568 3.144-4.8 3.144-3.528 0-5.28-2.088-4.968-5.688l-2.112.312c-.216 4.176 2.088 7.296 7.248 7.296z" />
+							<path d="m16.464 25.1632208v16.8h2.16v-6.312h5.472c4.68 0 5.784-3.528 5.784-5.232 0-1.488-.84-5.208-5.784-5.232l-5.472-.024zm2.16 8.592v-6.696c2.256.024 5.424.024 5.472.024 2.736.048 3.672 1.728 3.672 3.336 0 1.68-1.032 3.36-4.032 3.36-.6 0-3.84-.072-5.112-.024z" />
+							<path d="m42.192 41.9632208-.24-3.408v-3.216-.12l.024 3.288-.024.048c-1.104 2.208-4.272 3.768-6.768 3.768-2.568 0-5.16-1.656-5.16-4.704 0-2.184 1.536-4.176 4.032-5.088 2.208-.792 5.784-1.272 7.872-1.272l.024 1.536h-.024v-1.656c0-1.08-.072-4.44-4.752-4.44-4.056 0-4.704 2.952-5.04 4.416l-2.088-.456c.264-1.632 1.608-5.88 7.224-5.88 4.704 0 6.816 2.928 6.816 6.888v6.888c0 1.08 0 1.536 1.44 1.536l1.128.024v1.848zm-9.96-4.296c0 1.176.576 2.592 2.952 2.592 3.312 0 6.504-2.688 6.768-4.92l-.024-2.544c-1.248.072-5.136.84-7.272 1.632-1.944.72-2.424 2.184-2.424 3.24z" />
+							<path d="m57.936 38.2672208v3.696h4.128v-1.608l-.648-.024c-1.44-.048-1.44-.528-1.44-1.224 0-2.04-.192-3.816-2.016-4.92 2.016-.576 3.216-2.04 3.216-4.224 0-2.856-2.088-4.752-5.616-4.776l-5.4-.024h-2.16v16.8h2.16v-7.08h4.296c2.904 0 3.48 1.896 3.48 3.384zm-7.776-5.256v-5.952h4.896c2.736 0 3.912 1.128 3.912 3.072 0 1.824-1.032 2.88-3.792 2.88z" />
+							<path d="m63.648 25.1632208v16.8h2.16v-5.184l.024.024 2.976-3.264 6.384 8.424h2.448l-7.464-9.96 6.216-6.84h-2.592l-7.992 8.856v-8.856z" />
+						</g>
+						<g>
+							<g fill-rule="evenodd">
+								<use fill="#3a3a3a" xlink:href="#e" />
+								<use fill="url(#a)" xlink:href="#e" />
+								<use fill="url(#b)" xlink:href="#e" />
+								<use fill="url(#c)" xlink:href="#e" />
+								<use fill="url(#d)" xlink:href="#e" />
+							</g>
+							<use fill="#000" filter="url(#f)" xlink:href="#e" />
+						</g>
+					</g>
+				</svg></div>
+			<div class="preloader__text">Загрузка</div>
+		</div>
+	</div>
 	<div class="wrapper">
 		<header class="header">
-			<div class="header__container">
-				<a href="#" class="header__logo">
+			<div class="header__container grid">
+				<a href="#" class="header__logo logo">
 					<img width="205" height="49" fetchpriority="high" loading="eager" decoding="async" src="img/logo/logo.svg" alt="Wizze Spark Logo">
 				</a>
-				<div class="header__video video-ambient" data-video-ambient>
-					<video data-video preload="auto" playsinline muted loop class="video-ambient__video" id="js-video" src="files/main-intro-top.mp4"></video>
-					<canvas data-canvas width="10" height="6" aria-hidden="true" class="video-ambient__canvas" id="js-canvas"></canvas>
+				<div class="header__video video" data-video-ambient>
+					<video data-video preload="auto" playsinline muted loop class="video__video" id="js-video" src="files/main-intro-top.mp4"></video>
+					<canvas data-canvas width="10" height="6" aria-hidden="true" class="video__canvas" id="js-canvas"></canvas>
 				</div>
 				<nav class="header__actions header-actions">
 					<div class="header-actions__lang lang">
 						<ul class="lang__list">
 							<li class="lang__item">
-								<a href="#" class="lang__link lang__link--active">ру</a>
+								<a href="#" class="lang__link _active">ру</a>
 							</li>
 							<li class="lang__item">
 								<a href="#" class="lang__link">en</a>
@@ -41,6 +464,10 @@
 						<span class="action-link__text">Связаться <br> сейчас</span>
 					</a>
 				</nav>
+				<a href="#" class="header-actions__link header-actions__link--mobile action-link">
+					<i class="action-link__icon _icon-arrow"></i>
+					<span class="action-link__text">Связаться <br> сейчас</span>
+				</a>
 			</div>
 		</header>
 		<main class="page">
@@ -50,32 +477,36 @@
 						WIZZ<span>E</span> S<span>P</span>ARK
 					</div>
 					<div class="main-section__title-bg">
-						<img width="288" height="140" fetchpriority="high" loading="eager" decoding="async" src="img/bg/bg-gradient.svg" alt="background gradient">
+						<picture>
+							<img width="288" height="140" fetchpriority="high" loading="eager" decoding="async" src="img/bg/bg-gradient.svg" alt="background gradient">
+						</picture>
 					</div>
 				</div>
 				<div class="main-section__container">
-					<h1 class="main-section__slogan-title">
+					<h1 class="main-section__slogan-title text-lg grid">
 						<span>AI</span>
 						<span>Маркетиг</span>
 						<span>Для</span>
 						<span>Социальных</span>
 						<span>Сетей</span>
 					</h1>
-					<div class="main-section__content">
-						<div class="main-section__text">
+					<div class="main-section__content grid">
+						<div class="main-section__text title">
 							Автоматизирова&shy;нное создание и ведение контента для Instagram, YouTube, TikTok и более.
 						</div>
-						<div class="main-section__text">
+						<div class="main-section__text title">
 							Все при помощи нейросетей и вашего персонального менеджера.
 						</div>
-						<div data-video-ambient class="main-section__video video-ambient">
-							<video data-video preload="auto" playsinline muted loop class="video-ambient__video" src="files/main-intro-bottom.mp4"></video>
-							<canvas data-canvas width="10" height="6" aria-hidden="true" class="video-ambient__canvas"></canvas>
+						<div data-video-ambient class="main-section__video video">
+							<video data-video preload="auto" playsinline muted loop class="video__video" src="files/main-intro-bottom.mp4"></video>
+							<canvas data-canvas width="10" height="6" aria-hidden="true" class="video__canvas"></canvas>
 						</div>
-						<button class="main-section__btn action-link">
-							<i class="action-link__icon action-link__icon--border _icon-play"></i>
-							<span class="action-link__text">Как это работает?</span>
-						</button>
+						<div class="main-section__btn">
+							<button class="action-link">
+								<i class="action-link__icon action-link__icon--border _icon-play"></i>
+								<span class="action-link__text">Как это <br> работает?</span>
+							</button>
+						</div>
 						<div class="main-section__socials socials">
 							<ul class="socials__list">
 								<li class="socials__item">
@@ -114,54 +545,62 @@
 				</div>
 			</section>
 			<section class="page__video-examples video-examples">
-				<div class="video-examples__container-content">
-					<h2 class="video-examples__title">Забудьте о ведении соцсетей.</h2>
-					<a href="#" class="video-examples__link action-link">
+				<div class="video-examples__container-content grid">
+					<h2 class="video-examples__title title">Забудьте о ведении соцсетей.</h2>
+					<a href="#" class="video-examples__link action-link action-link--round action-link--middle">
 						<i class="action-link__icon _icon-arrow"></i>
 						<span class="action-link__text">Начать</span>
 					</a>
 					<div class="video-examples__text-content">
-						<div class="video-examples__subtitle">Осталось мест: 6 🔥</div>
-						<button class="video-examples__btn btn btn--border-sm">Почему?</button>
-						<div class="video-examples__text">Свяжитесь с нами, чтобы получить <span>персонализированное</span> решение.</div>
+						<div class="video-examples__subtitle"><span class="title">Осталось мест: 6 🔥</span> <button class="video-examples__btn btn btn--border-sm">Почему?</button>
+						</div>
+						<div class="video-examples__text text--lh text--medium">Свяжитесь с нами, чтобы получить <span>персонализированное</span> решение.</div>
 					</div>
 				</div>
 				<div class="video-examples__videos example-videos">
 					<div class="example-videos__container">
-						<div class="example-videos__body">
-							<div data-video-ambient class="example-videos__video-left video-ambient">
-								<video data-video preload="auto" playsinline muted loop class="video-ambient__video" src="files/demo_1.mp4"></video>
-								<canvas data-canvas width="10" height="6" aria-hidden="true" class="video-ambient__canvas"></canvas>
+						<div class="example-videos__body grid">
+							<div data-video-ambient class="example-videos__video-left video">
+								<picture><source srcset="img/example-videos/demo_1.webp" type="image/webp"><img width="288" height="200" loading="lazy" decoding="async" src="img/example-videos/demo_1.jpg" alt="video poster"></picture>
+								<video data-video preload="auto" playsinline muted loop class="video__video" src="files/demo_1.mp4"></video>
+								<canvas data-canvas width="10" height="6" aria-hidden="true" class="video__canvas"></canvas>
 							</div>
-							<div data-video-ambient class="example-videos__video-top-lage video-ambient">
-								<video data-video preload="auto" playsinline muted loop class="video-ambient__video" src="files/demo_2.mp4"></video>
-								<canvas data-canvas width="10" height="6" aria-hidden="true" class="video-ambient__canvas"></canvas>
+							<div data-video-ambient class="example-videos__video-top-lage video">
+								<picture><source srcset="img/example-videos/demo_2.webp" type="image/webp"><img width="288" height="200" loading="lazy" decoding="async" src="img/example-videos/demo_2.jpg" alt="video poster"></picture>
+								<video data-video preload="auto" playsinline muted loop class="video__video" src="files/demo_2.mp4"></video>
+								<canvas data-canvas width="10" height="6" aria-hidden="true" class="video__canvas"></canvas>
 							</div>
-							<div data-video-ambient class="example-videos__video video-ambient">
-								<video data-video preload="auto" playsinline muted loop class="video-ambient__video" src="files/demo_3.mp4"></video>
-								<canvas data-canvas width="10" height="6" aria-hidden="true" class="video-ambient__canvas"></canvas>
+							<div data-video-ambient class="example-videos__video video">
+								<picture><source srcset="img/example-videos/demo_3.webp" type="image/webp"><img width="288" height="200" loading="lazy" decoding="async" src="img/example-videos/demo_3.jpg" alt="video poster"></picture>
+								<video data-video preload="auto" playsinline muted loop class="video__video" src="files/demo_3.mp4"></video>
+								<canvas data-canvas width="10" height="6" aria-hidden="true" class="video__canvas"></canvas>
 							</div>
-							<div data-video-ambient class="example-videos__bottom-large video-ambient">
-								<video data-video preload="auto" playsinline muted loop class="video-ambient__video" src="files/demo_4.mp4"></video>
-								<canvas data-canvas width="10" height="6" aria-hidden="true" class="video-ambient__canvas"></canvas>
+							<div data-video-ambient class="example-videos__bottom-large video">
+								<picture><source srcset="img/example-videos/demo_4.webp" type="image/webp"><img width="288" height="200" loading="lazy" decoding="async" src="img/example-videos/demo_4.jpg" alt="video poster"></picture>
+								<video data-video preload="auto" playsinline muted loop class="video__video" src="files/demo_4.mp4"></video>
+								<canvas data-canvas width="10" height="6" aria-hidden="true" class="video__canvas"></canvas>
 							</div>
-							<div data-video-ambient class="example-videos__video-middle video-ambient">
-								<video data-video preload="auto" playsinline muted loop class="video-ambient__video" src="files/demo_5.mp4"></video>
-								<canvas data-canvas width="10" height="6" aria-hidden="true" class="video-ambient__canvas"></canvas>
+							<div data-video-ambient class="example-videos__video-middle video">
+								<picture><source srcset="img/example-videos/demo_5.webp" type="image/webp"><img width="288" height="200" loading="lazy" decoding="async" src="img/example-videos/demo_5.jpg" alt="video poster"></picture>
+								<video data-video preload="auto" playsinline muted loop class="video__video" src="files/demo_5.mp4"></video>
+								<canvas data-canvas width="10" height="6" aria-hidden="true" class="video__canvas"></canvas>
 							</div>
 							<div class="example-videos__bottom-double">
-								<div data-video-ambient class="example-videos__bouble-top video-ambient">
-									<video data-video preload="auto" playsinline muted loop class="video-ambient__video" src="files/demo_6.mp4"></video>
-									<canvas data-canvas width="10" height="6" aria-hidden="true" class="video-ambient__canvas"></canvas>
+								<div data-video-ambient class="example-videos__bouble-top video">
+									<picture><source srcset="img/example-videos/demo_6.webp" type="image/webp"><img width="288" height="200" loading="lazy" decoding="async" src="img/example-videos/demo_6.jpg" alt="video poster"></picture>
+									<video data-video preload="auto" playsinline muted loop class="video__video" src="files/demo_6.mp4"></video>
+									<canvas data-canvas width="10" height="6" aria-hidden="true" class="video__canvas"></canvas>
 								</div>
-								<div data-video-ambient class="example-videos__bouble-bottom video-ambient">
-									<video data-video preload="auto" playsinline muted loop class="video-ambient__video" src="files/demo_7.mp4"></video>
-									<canvas data-canvas width="10" height="6" aria-hidden="true" class="video-ambient__canvas"></canvas>
+								<div data-video-ambient class="example-videos__bouble-bottom video">
+									<picture><source srcset="img/example-videos/demo_7.webp" type="image/webp"><img width="288" height="200" loading="lazy" decoding="async" src="img/example-videos/demo_7.jpg" alt="video poster"></picture>
+									<video data-video preload="auto" playsinline muted loop class="video__video" src="files/demo_7.mp4"></video>
+									<canvas data-canvas width="10" height="6" aria-hidden="true" class="video__canvas"></canvas>
 								</div>
 							</div>
-							<div data-video-ambient class="example-videos__video-right video-ambient">
-								<video data-video preload="auto" playsinline muted loop class="video-ambient__video" src="files/demo_8.mp4"></video>
-								<canvas data-canvas width="10" height="6" aria-hidden="true" class="video-ambient__canvas"></canvas>
+							<div data-video-ambient class="example-videos__video-right video">
+								<picture><source srcset="img/example-videos/demo_8.webp" type="image/webp"><img width="288" height="200" loading="lazy" decoding="async" src="img/example-videos/demo_8.jpg" alt="video poster"></picture>
+								<video data-video preload="auto" playsinline muted loop class="video__video" src="files/demo_8.mp4"></video>
+								<canvas data-canvas width="10" height="6" aria-hidden="true" class="video__canvas"></canvas>
 							</div>
 						</div>
 					</div>
@@ -169,49 +608,47 @@
 			</section>
 			<section class="page__why-important">
 				<div class="why-important__container">
-					<h2 class="why-important__title">Почему SMM — важно?</h2>
-					<ul class="why-important__content">
+					<h2 class="why-important__title main-title">Почему SMM — важно?</h2>
+					<ul class="why-important__content grid">
 						<li class="why-important__column col-why-important bg-tile">
 							<div class="col-why-important__persent"><span>76</span>%</div>
-							<h3 class="col-why-important__title">Покупок проходит через Instagram и Facebook</h3>
-							<div class="col-why-important__text">И процент продолжает расти!</div>
+							<h3 class="col-why-important__title text-lg-medium">Покупок проходит через Instagram и Facebook</h3>
+							<div class="col-why-important__text text text--medium">И процент продолжает расти!</div>
 						</li>
 						<li class="why-important__column col-why-important bg-tile">
 							<div class="col-why-important__persent"><span>90</span>%</div>
-							<h3 class="col-why-important__title">Люди совершают свою покупку после обзора товара на Youtube и TikTok </h3>
-							<div class="col-why-important__text">Вспомните, как минимум, свой опыт.</div>
+							<h3 class="col-why-important__title text-lg-medium">Люди совершают свою покупку после обзора товара на Youtube и TikTok </h3>
+							<div class="col-why-important__text text text--medium">Вспомните, как минимум, свой опыт.</div>
 						</li>
 						<li class="why-important__column col-why-important bg-tile">
 							<div class="col-why-important__persent"><span>88</span>%</div>
-							<h3 class="col-why-important__title">Населения имеет хотя-бы один аккаунт в соц сети</h3>
-							<div class="col-why-important__text">Каждый день процент растет!</div>
+							<h3 class="col-why-important__title text-lg-medium">Населения имеет хотя-бы один аккаунт в соц сети</h3>
+							<div class="col-why-important__text text text--medium">Каждый день процент растет!</div>
 						</li>
 						<li class="why-important__column col-why-important bg-tile">
 							<div class="col-why-important__persent"><span>1000</span>%</div>
-							<h3 class="col-why-important__title">Через соцсети растет узнаваемость бренда и доверие к нему</h3>
-							<div class="col-why-important__text">Чем чаще человек видит бренд, тем выше у него доверия.</div>
+							<h3 class="col-why-important__title text-lg-medium">Через соцсети растет узнаваемость бренда и доверие к нему</h3>
+							<div class="col-why-important__text text text--medium">Чем чаще человек видит бренд, тем выше у него доверия.</div>
 						</li>
-						</г>
+					</ul>
 				</div>
 			</section>
 			<section class="page__steps steps">
 				<div class="steps__container">
-					<div class="steps__title-body">
-						<h2 class="steps__title">
-							<span class="text-gradient text-gradient--mb">
-								<span class="text-gradient text-gradient--pc">Три простых этапа</span> создания
-							</span>
-							<span class="underline">популярного</span> и <span class="underline">продающего</span> контента
-						</h2>
-					</div>
+					<h2 class="steps__title main-title main-title--medium">
+						<span class="text-gradient text-gradient--mb">
+							<span class="text-gradient text-gradient--pc">Три простых этапа</span> создания
+						</span>
+						<span class="underline">популярного</span> и <span class="underline">продающего</span> контента
+					</h2>
 				</div>
-				<div data-spollers class="steps__body">
-					<div class="steps__container-body">
-						<div data-spoller-item class="steps__item step-item">
-							<div class="step-item__stage">Этап 01</div>
+				<div data-spollers class="steps__body bg-white gradient-top gradient-bottom">
+					<div data-spoller-item class="steps__item">
+						<div class="steps__container-item grid step-item">
+							<div class="step-item__stage title title--gothic">Этап</div>
 							<button aria-label="Spoller button" data-spoller class="step-item__btn _icon-arrow"></button>
-							<h3 class="step-item__title">Стратегия и контент</h3>
-							<div data-spoller-content class="step-item__content spoller-text">
+							<h3 class="step-item__title title">Стратегия и контент</h3>
+							<div data-spoller-content class="step-item__content spoller-text text text--medium">
 								<p class="spoller-text__text">Полный цикл разработки уникальной контент-стратегии, с идеями, рубриками, сценариями и SEO-оптимизацией для максимальной видимости и роста на всех платформах.</p>
 								<ul class="spoller-text__list">
 									<li class="spoller-text__item"><span>Разработка идей и рубрик:</span> создание контент-стратегии, включая глубокую проработку идей и рубрик для канала, с возможностью экспериментов с форматами.</li>
@@ -223,11 +660,13 @@
 								</ul>
 							</div>
 						</div>
-						<div data-spoller-item class="steps__item step-item">
-							<div class="step-item__stage">Этап 02</div>
+					</div>
+					<div data-spoller-item class="steps__item">
+						<div class="step-item__container-item grid step-item">
+							<div class="step-item__stage title title--gothic">Этап</div>
 							<button aria-label="Spoller button" data-spoller class="step-item__btn _icon-arrow"></button>
-							<h3 class="step-item__title">Производство и монтаж</h3>
-							<div data-spoller-content class="step-item__content spoller-text">
+							<h3 class="step-item__title title">Производство и монтаж</h3>
+							<div data-spoller-content class="step-item__content spoller-text text text--medium">
 								<p class="spoller-text__text">Полный цикл разработки уникальной контент-стратегии, с идеями, рубриками, сценариями и SEO-оптимизацией для максимальной видимости и роста на всех платформах.</p>
 								<ul class="spoller-text__list">
 									<li class="spoller-text__item"><span>Разработка идей и рубрик:</span> создание контент-стратегии, включая глубокую проработку идей и рубрик для канала, с возможностью экспериментов с форматами.</li>
@@ -239,11 +678,13 @@
 								</ul>
 							</div>
 						</div>
-						<div data-spoller-item class="steps__item step-item">
-							<div class="step-item__stage">Этап 03</div>
+					</div>
+					<div data-spoller-item class="steps__item">
+						<div class="step-item__container-item grid step-item">
+							<div class="step-item__stage title title--gothic">Этап</div>
 							<button aria-label="Spoller button" data-spoller class="step-item__btn _icon-arrow"></button>
-							<h3 class="step-item__title">Аналитика и поддержка</h3>
-							<div data-spoller-content class="step-item__content spoller-text">
+							<h3 class="step-item__title title">Аналитика и поддержка</h3>
+							<div data-spoller-content class="step-item__content spoller-text text text--medium">
 								<p class="spoller-text__text">Полный цикл разработки уникальной контент-стратегии, с идеями, рубриками, сценариями и SEO-оптимизацией для максимальной видимости и роста на всех платформах.</p>
 								<ul class="spoller-text__list">
 									<li class="spoller-text__item"><span>Разработка идей и рубрик:</span> создание контент-стратегии, включая глубокую проработку идей и рубрик для канала, с возможностью экспериментов с форматами.</li>
@@ -258,54 +699,400 @@
 					</div>
 				</div>
 			</section>
-			<section class="page__get-started get-started">
-				<div class="get-started__container">
-					<div class="get-started__text get-started__text--top">Записывайся на встречу сейчас!</div>
-					<a href="#" class="get-started__link action-link">
+			<section class="page__get-started-top get-started">
+				<div class="get-started__container grid">
+					<div class="get-started__text get-started__text--top title">Записывайся на встречу сейчас!</div>
+					<a href="#" class="get-started__link action-link action-link--gradient action-link--large">
 						<i class="action-link__icon _icon-arrow"></i>
 						<span class="action-link__text">Начать</span>
 					</a>
-					<div class="get-started__text get-started__text--bottom">Удиви своих конкурентов и выйди вперед!</div>
+					<div class="get-started__text get-started__text--bottom title">Удиви своих конкурентов и выйди вперед!</div>
 				</div>
 			</section>
 			<section class="page__power power">
 				<div class="power__container">
-					<h2 class="power__title">
-						<span>Сила ИИ</span>
+					<h2 class="power__title main-title grid">
+						<span class="main-title--bold">Сила ИИ</span>
 						<span>для Вашего SMM</span>
 					</h2>
-					<div class="power__body">
-						<div class="power__images power-images">
-							<div class="power-images__eye">
-								<img width="183" height="82" loading="lazy" decoding="async" src="img/power/eye-anim.svg" alt="eye icon">
-							</div>
-							<div class="power-images__icon bg-tile">
-								<img width="81" height="59" loading="lazy" decoding="async" src="img/icons/camera.svg" alt="camera icon">
-							</div>
-							<div class="power-images__likes likes">
-								<img width="280" height="131" class="likes__img" loading="lazy" decoding="async" src="img/power/likes.svg" alt="like icon">
-								<span id="counter" class="likes__quantity">0</span>
+					<div class="power__body grid">
+						<div class="power__images">
+							<div class="power-images">
+								<div class="power-images__eye">
+									<img width="183" height="82" loading="lazy" decoding="async" src="img/power/eye-anim.svg" alt="eye icon">
+								</div>
+								<div class="power-images__icon bg-tile">
+									<img width="81" height="59" loading="lazy" decoding="async" src="img/icons/camera.svg" alt="camera icon">
+								</div>
+								<div class="power-images__likes likes">
+									<img width="280" height="131" class="likes__img" loading="lazy" decoding="async" src="img/power/likes.svg" alt="like icon">
+									<span id="counter" class="likes__quantity">0</span>
+								</div>
 							</div>
 						</div>
 						<div class="power__content power-content">
-							<div class="power-content__text">Мы предлагаем не просто автоматизацию, но и <span>глубокую персонализацию контента.</span></div>
+							<div class="power-content__text title">Мы предлагаем не просто автоматизацию, но и <span class="underline">глубокую персонализацию контента.</span></div>
 							<div class="power-content__banner banner bg-tile">
-								<div class="banner__title _icon-check"><span>Все, как надо!</span></div>
-								<div class="banner__text">Всё в соответствии с вашим уникальным брендом, адаптировано под разные платформы и языки!</div>
+								<div class="banner__title title title--gothic _icon-check"><span>Все, как надо!</span></div>
+								<div class="banner__text text">Всё в соответствии с вашим уникальным брендом, адаптировано под разные платформы и языки!</div>
 							</div>
-							<div class="power-content__text">Профессионально созданные видео до 90 секунд с редактированием, анимацией и субтитрами.</div>
+							<div class="power-content__text title">Профессионально созданные видео до 90 секунд с редактированием, анимацией и субтитрами.</div>
 						</div>
 					</div>
 				</div>
 			</section>
+			<section class="page__comparison comparison">
+				<div class="comparison__wrapper">
+					<div class="comparison__container grid">
+						<div class="comparison__tile bg-tile"></div>
+						<ul class="comparison__list grid">
+							<li class="comparison__title title">Преимущества</li>
+							<li class="comparison__title title bg-tile">Недостатки</li>
+							<li class="comparison__item comparison-item">
+								<div class="comparison-item__icon-box">
+									<img class="comparison-item__icon" width="36" height="36" loading="lazy" decoding="async" src="img/icons/unicorn.svg" alt="unicorn icon">
+									<div class="comparison-item__icon-sm">
+										<img width="12" height="12" loading="lazy" decoding="async" src="img/icons/star.svg" alt="star icon">
+									</div>
+								</div>
+								<div class="comparison-item__title text">Генерация уникального видео-контента</div>
+							</li>
+							<li class="comparison__item comparison-item">
+								<div class="comparison-item__icon-box">
+									<img class="comparison-item__icon" width="36" height="36" loading="lazy" decoding="async" src="img/icons/number.svg" alt="number icon">
+									<div class="comparison-item__icon-sm comparison-item__icon-sm--color">
+										<img width="12" height="12" loading="lazy" decoding="async" src="img/icons/dislike.svg" alt="dislike icon">
+									</div>
+								</div>
+								<div class="comparison-item__title text">Конкуренты могут воспользоваться услугой первыми</div>
+							</li>
+							<li class="comparison__item comparison-item">
+								<div class="comparison-item__icon-box">
+									<img class="comparison-item__icon" width="36" height="36" loading="lazy" decoding="async" src="img/icons/users.svg" alt="users icon">
+									<div class="comparison-item__icon-sm">
+										<img width="12" height="12" loading="lazy" decoding="async" src="img/icons/gear.svg" alt="gear icon">
+									</div>
+								</div>
+								<div class="comparison-item__title text">Управление аккаунтами на разных платформах</div>
+							</li>
+							<li class="comparison__item comparison-item">
+								<div class="comparison-item__icon-box">
+									<img class="comparison-item__icon" width="36" height="36" loading="lazy" decoding="async" src="img/icons/diamond.svg" alt="diamond icon">
+									<div class="comparison-item__icon-sm comparison-item__icon-sm--color">
+										<img width="12" height="12" loading="lazy" decoding="async" src="img/icons/dislike.svg" alt="dislike icon">
+									</div>
+								</div>
+								<div class="comparison-item__title text">Идеальное количество контента для соцсетей</div>
+							</li>
+							<li class="comparison__item comparison-item">
+								<div class="comparison-item__icon-box">
+									<img class="comparison-item__icon" width="36" height="36" loading="lazy" decoding="async" src="img/icons/film.svg" alt="film icon">
+									<div class="comparison-item__icon-sm">
+										<img width="12" height="12" loading="lazy" decoding="async" src="img/icons/pen.svg" alt="pen icon">
+									</div>
+								</div>
+								<div class="comparison-item__title text">Профессиональное редактирование и анимация</div>
+							</li>
+							<li class="comparison__item comparison-item">
+								<div class="comparison-item__icon-box">
+									<img class="comparison-item__icon" width="36" height="36" loading="lazy" decoding="async" src="img/icons/speed.svg" alt="speed icon">
+									<div class="comparison-item__icon-sm comparison-item__icon-sm--color">
+										<img width="12" height="12" loading="lazy" decoding="async" src="img/icons/dislike.svg" alt="dislike icon">
+									</div>
+								</div>
+								<div class="comparison-item__title text">Слишком быстрые результаты</div>
+							</li>
+							<li class="comparison__item comparison-item">
+								<div class="comparison-item__icon-box">
+									<img class="comparison-item__icon" width="36" height="36" loading="lazy" decoding="async" src="img/icons/translate.svg" alt="translate icon">
+									<div class="comparison-item__icon-sm">
+										<img width="12" height="12" loading="lazy" decoding="async" src="img/icons/loop.svg" alt="loop icon">
+									</div>
+								</div>
+								<div class="comparison-item__title text">Перевод контента на различные языки</div>
+							</li>
+							<li class="comparison__item comparison-item">
+								<div class="comparison-item__icon-box">
+									<img class="comparison-item__icon" width="36" height="36" loading="lazy" decoding="async" src="img/icons/target.svg" alt="target icon">
+									<div class="comparison-item__icon-sm comparison-item__icon-sm--color">
+										<img width="12" height="12" loading="lazy" decoding="async" src="img/icons/dislike.svg" alt="dislike icon">
+									</div>
+								</div>
+								<div class="comparison-item__title text">Чрезмерная персонализация</div>
+							</li>
+							<li class="comparison__item comparison-item">
+								<div class="comparison-item__icon-box">
+									<img class="comparison-item__icon" width="36" height="36" loading="lazy" decoding="async" src="img/icons/smile.svg" alt="smile icon">
+									<div class="comparison-item__icon-sm">
+										<img width="12" height="12" loading="lazy" decoding="async" src="img/icons/heart.svg" alt="heart icon">
+									</div>
+								</div>
+								<div class="comparison-item__title text">Высококачественные AI-аватары и графика</div>
+							</li>
+							<li class="comparison__item comparison-item">
+								<div class="comparison-item__icon-box">
+									<img class="comparison-item__icon" width="36" height="36" loading="lazy" decoding="async" src="img/icons/infinity.svg" alt="infinity icon">
+									<div class="comparison-item__icon-sm comparison-item__icon-sm--color">
+										<img width="12" height="12" loading="lazy" decoding="async" src="img/icons/dislike.svg" alt="dislike icon">
+									</div>
+								</div>
+								<div class="comparison-item__title text">Постоянный поток контента</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+			<section class="page__professional professional">
+				<div class="professional__container grid">
+					<h2 class="professional__title main-title">Профессиональные <span class="main-title--bold">видео с ИИ</span></h2>
+					<div class="professional__text title">Профессиональное редактирование с анимациями, эффектами и субтитрами — всё автоматически генерируется нашим ИИ и адаптируется под ваш уникальный стиль и аудиторию.</div>
+					<div class="professional__text title">Создавайте яркие видео до 90 секунд (а если нужно то 30 минут и более), которые мгновенно привлекут внимание.</div>
+					<div data-video-ambient class="professional__video-left video">
+						<video data-video preload="auto" playsinline muted loop class="video__video" src="files/professional_1.mp4"></video>
+						<canvas data-canvas width="10" height="6" aria-hidden="true" class="video__canvas"></canvas>
+					</div>
+					<div data-video-ambient class="professional__video-right video">
+						<video data-video preload="auto" playsinline muted loop class="video__video" src="files/professional_2.mp4"></video>
+						<canvas data-canvas width="10" height="6" aria-hidden="true" class="video__canvas"></canvas>
+					</div>
+					<div class="professional__text-bottom title">Готовы обсудить детали?</div>
+					<a href="#" class="professional__link action-link">
+						<i class="action-link__icon _icon-arrow"></i>
+						<span class="action-link__text">Начать</span>
+					</a>
+				</div>
+			</section>
+			<section class="page__analysis analysis">
+				<div class="analysis__container grid">
+					<h2 class="analysis__title analysis__title--top main-title">От анализа конкурентов</h2>
+					<h2 class="analysis__title analysis__title--bottom main-title">До личного уникального стиля</h2>
+					<div class="analysis__text title">
+						<p>Мы поможем вам стать лидером в своей нише.</p>
+						<p>Это ваша возможность быть на шаг впереди!</p>
+					</div>
+					<div class="analysis__video-mask video">
+						<video class="video__video" preload="auto" autoplay playsinline muted loop src="files/analysis.mp4"></video>
+					</div>
+					<div class="analysis__banner text">
+						Чем дольше вы откладываете, тем выше риск упустить лидерство. Конкуренты уже используют нашу экспертизу в ИИ для анализа и создания уникального контента. Это ваш шанс изменить всё!
+					</div>
+				</div>
+			</section>
+			<section class="page__avatars avatars bg-tile">
+				<div class="avatars__container grid">
+					<h2 class="avatars__title main-title">
+						<span class="main-title--bold">AI-аватар</span> — это уникальный ваш голос в социальных сетях.
+					</h2>
+					<div class="avatars__preview preview">
+						<div class="preview__image-ibg">
+							<picture><source srcset="img/avatars/user-1.webp" type="image/webp"><img width="192" height="192" loading="lazy" decoding="async" src="img/avatars/user-1.png" alt="user avatar"></picture>
+						</div>
+						<div class="preview__image-ibg">
+							<picture><source srcset="img/avatars/user-2.webp" type="image/webp"><img width="192" height="192" loading="lazy" decoding="async" src="img/avatars/user-2.png" alt="user avatar"></picture>
+						</div>
+						<div class="preview__image-ibg">
+							<picture><source srcset="img/avatars/user-3.webp" type="image/webp"><img width="192" height="192" loading="lazy" decoding="async" src="img/avatars/user-3.png" alt="user avatar"></picture>
+						</div>
+						<div class="preview__image-ibg">
+							<picture><source srcset="img/avatars/user-4.webp" type="image/webp"><img width="192" height="192" loading="lazy" decoding="async" src="img/avatars/user-4.png" alt="user avatar"></picture>
+						</div>
+						<div class="preview__image-ibg">
+							<picture><source srcset="img/avatars/user-5.webp" type="image/webp"><img width="192" height="192" loading="lazy" decoding="async" src="img/avatars/user-5.png" alt="user avatar"></picture>
+						</div>
+					</div>
+					<div class="avatars__content">
+						<h3 class="avatars__sub-title title">Мы создадим для вас аватар, который будет точной копией вас, или вы можете выбрать из готовой базы.</h3>
+						<div class="avatars__text text">Все аватары идеально соответствуют вашему бренду и помогут взаимодействовать с подписчиками на любых платформах.</div>
+					</div>
+				</div>
+			</section>
+			<section class="page__support support">
+				<div class="support__container grid">
+					<div class="support__column">
+						<h2 class="support__title main-title">Личный менеджер</h2>
+						<div class="support__text title">Вы и ваш менеджер сможете вести анализ статистики и менять стратегию для лучших результатов.</div>
+					</div>
+					<div class="support__column">
+						<h2 class="support__title main-title">И еженедельные отчеты</h2>
+						<div class="support__text title">Каждую неделю получайте детальные отчеты о просмотрах и вовлеченности.</div>
+						<div class="support__image support-image">
+							<div class="support-image__grafic">
+								<img width="288" height="200" loading="lazy" decoding="async" src="img/support/grafic.svg" alt="grafic">
+							</div>
+							<div class="support-image__letter">
+								<img width="288" height="200" loading="lazy" decoding="async" src="img/support/letter.svg" alt="letter">
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="page__get-started-bottom get-started">
+				<div class="get-started__body bg-white">
+					<div class="get-started__container grid gradient-top gradient-bottom">
+						<div class="get-started__text get-started__text--top title">Записывайся на встречу сейчас!</div>
+						<a href="#" class="get-started__link action-link action-link--gradient action-link--large">
+							<i class="action-link__icon _icon-arrow"></i>
+							<span class="action-link__text">Начать</span>
+						</a>
+						<div class="get-started__text get-started__text--bottom title">Удиви своих конкурентов и выйди вперед!</div>
+					</div>
+				</div>
+			</section>
+			<section class="page__platforms platforms">
+				<div class="platforms__container grid">
+					<div class="platforms__column">
+						<div class="platforms__title main-title">Множество платформ</div>
+						<div id="socials-platforms" class="platforms__image">
+							<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 667 373" text-rendering="geometricPrecision" shape-rendering="geometricPrecision" style="white-space: pre;">
+								<defs>
+									<linearGradient id="Gradient-0" x1="0" y1="186.5" x2="269.153" y2="186.5" gradientUnits="userSpaceOnUse">
+										<stop offset="0" stop-color="#bc4141" />
+										<stop offset="1" stop-color="#f88383" />
+									</linearGradient>
+									<linearGradient id="Gradient-1" x1="1.49252" y1="186.5" x2="269.153" y2="186.5" gradientUnits="userSpaceOnUse">
+										<stop offset="0" stop-color="#ca8d38" />
+										<stop offset="1" stop-color="#f9c274" />
+									</linearGradient>
+									<linearGradient id="Gradient-2" x1="269.153" y1="186.5" x2="0" y2="186.5" gradientUnits="userSpaceOnUse">
+										<stop offset="0" stop-color="#c88fff" />
+										<stop offset="1" stop-color="#9756ff" />
+									</linearGradient>
+								</defs>
+								<style>
+									@keyframes insta_yt_t {
+										0% {
+											transform: translate(0px, 0.000002px);
+											animation-timing-function: cubic-bezier(0, 0, 0, 1);
+										}
+
+										75% {
+											transform: translate(198.923512px, 0.000002px);
+										}
+
+										100% {
+											transform: translate(198.923512px, 0.000002px);
+										}
+									}
+
+									@keyframes yt_t {
+										0% {
+											transform: translate(0px, -0.000002px);
+											animation-timing-function: cubic-bezier(0, 0, 0, 1);
+										}
+
+										75% {
+											transform: translate(198.9235px, -0.000002px);
+										}
+
+										100% {
+											transform: translate(198.9235px, -0.000002px);
+										}
+									}
+
+									@keyframes tt_t {
+										0% {
+											transform: translate(0px, -0.000293px);
+										}
+
+										100% {
+											transform: translate(0px, -0.000293px);
+										}
+									}
+								</style>
+								<g id="insta_yt" transform="translate(234.038,186.5) translate(-234.038,-186.5)">
+									<g id="yt" fill="none" fill-rule="evenodd" transform="translate(134.576,186.5) translate(-134.576,-186.5)">
+										<path d="M195.513,2.67883L34.1278,49.2956C14.6527,54.9218,0,80.7673,0,107.428L0,265.572C0,292.234,14.6527,318.079,34.1278,323.705L195.513,370.322C234.18,381.49,269.153,356.784,269.153,313.847L269.153,59.1538C269.153,16.2158,234.18,-8.49073,195.513,2.67883Z" fill="url(#Gradient-0)" transform="translate(134.576,186.5) translate(-134.576,-186.5)" />
+										<path d="M138,143.776C142.66,144.952,146.377,149.149,147.643,154.737C149.671,163.658,149.925,181.283,149.957,185.551L149.961,186.435L149.961,186.559L149.957,187.444C149.925,191.711,149.671,209.337,147.643,218.259C146.358,223.866,142.643,228.063,138,229.219C134.835,230.01,128.816,230.182,122.687,230.096L121.605,230.078C121.425,230.075,121.244,230.071,121.064,230.068L118.753,230.009C112.336,229.819,106.428,229.425,104.103,229.259L103.089,229.184L103.043,229.18C103.043,229.18,103.029,229.179,102.999,229.177L101.989,229.093C97.1683,228.682,77.9083,226.912,72.0685,224.353C68.4643,222.761,65.6662,218.713,64.7279,213.785C63.2401,205.995,63.0561,190.946,63.0327,187.306L63.0327,185.69C63.0561,182.05,63.2401,167.001,64.7279,159.211C65.6792,154.264,68.4773,150.216,72.0685,148.643C77.9083,146.083,97.1683,144.313,101.989,143.903L104.103,143.737C106.428,143.57,112.336,143.176,118.753,142.986L121.064,142.927L122.146,142.907C123.048,142.892,123.95,142.882,124.841,142.879L125.907,142.879C130.852,142.893,135.394,143.124,138,143.776ZM94.1526,168L94.1526,205L120.153,186.5Z" fill="#f2ece5" transform="translate(106.497,186.498) translate(-106.497,-186.498)" />
+									</g>
+									<g id="insta" fill="none" fill-rule="evenodd" transform="translate(134.576,186.5) translate(-134.576,-186.5)">
+										<path d="M195.513,2.67883L34.1291,49.2956C14.654,54.9205,0,80.7673,0,107.428L0,265.572C0,292.234,14.654,318.079,34.1291,323.704L195.513,370.322C234.18,381.49,269.153,356.784,269.153,313.846L269.153,59.1538C269.153,16.2158,234.18,-8.49073,195.513,2.67883Z" fill="url(#Gradient-1)" transform="translate(134.576,186.5) translate(-134.576,-186.5)" />
+										<path d="M132.958,133.167C136.145,134.31,138.862,136.016,141.603,138.954C144.365,141.919,146.088,145.003,147.373,148.705C148.621,152.307,149.477,156.465,149.732,162.617C149.792,164.159,149.841,165.44,149.881,166.738L149.913,167.861C149.987,170.715,150.022,174.02,150.033,180.543L150.036,184.865L150.036,188.135L150.034,192.458C150.024,198.981,149.994,202.286,149.919,205.14L149.886,206.263C149.846,207.561,149.795,208.842,149.732,210.384C149.48,216.536,148.621,220.689,147.373,224.295C146.091,228.007,144.365,231.082,141.603,234.047C138.862,236.979,136.132,238.684,132.958,239.833C129.909,240.931,126.478,241.54,121.52,241.336C120.292,241.281,119.277,241.235,118.252,241.178L117.367,241.126C115.134,240.987,112.571,240.772,107.584,240.295L104.329,239.98C103.934,239.941,103.527,239.901,103.108,239.86L101.891,239.741L98.7028,239.424C93.962,238.95,91.5903,238.686,89.5582,238.41L88.7624,238.3C87.8461,238.169,86.9441,238.029,85.8619,237.858C81.5864,237.189,78.7132,236.049,76.2093,234.559C73.6522,233.039,71.506,231.115,69.3845,228.151C67.2811,225.21,65.9928,222.331,65.0377,219.004C64.1149,215.788,63.4928,212.16,63.3062,206.888C63.2621,205.568,63.2271,204.472,63.1973,203.363L63.174,202.403C63.1212,200.038,63.0965,197.315,63.0879,192.079L63.0872,181.419C63.0936,175.856,63.1157,173.035,63.1701,170.598L63.1934,169.638C63.2232,168.527,63.2608,167.433,63.3062,166.112C63.4889,160.836,64.1149,157.213,65.0377,153.995C65.9902,150.661,67.2811,147.791,69.3845,144.848C71.506,141.881,73.6548,139.966,76.2093,138.442C78.7093,136.948,81.5838,135.816,85.8619,135.142C86.9441,134.975,87.8461,134.837,88.7624,134.706L89.5582,134.596C91.5903,134.32,93.962,134.053,98.7028,133.577L107.584,132.704C112.571,132.226,115.134,132.007,117.367,131.869L118.252,131.817C119.277,131.76,120.292,131.716,121.52,131.665C126.478,131.455,129.909,132.064,132.958,133.167ZM103.108,159.82C91.428,160.393,82.3314,172.333,82.3314,186.5C82.3314,200.68,91.4371,212.607,103.108,213.18C115.312,213.779,125.603,201.839,125.603,186.5C125.603,171.148,115.301,159.223,103.108,159.82ZM116.385,186.5C116.385,195.558,110.363,202.722,103.108,202.508C96.0418,202.301,90.4483,195.138,90.4483,186.5C90.4483,177.865,96.0405,170.701,103.108,170.492C110.361,170.278,116.385,177.441,116.385,186.5ZM126.776,150.307C123.551,150.513,120.955,153.764,120.955,157.562C120.955,161.361,123.547,164.349,126.776,164.222C130.036,164.096,132.718,160.839,132.718,156.957C132.718,153.079,130.033,150.095,126.776,150.307Z" fill="#f2ece5" transform="translate(106.562,186.5) translate(-106.562,-186.5)" />
+									</g>
+								</g>
+								<g id="tt" fill="none" fill-rule="evenodd" transform="translate(134.576,186.5) translate(-134.576,-186.5)">
+									<path d="M195.513,2.67883L34.1291,49.2956C14.654,54.9218,0,80.7673,0,107.428L0,265.572C0,292.234,14.654,318.079,34.1291,323.705L195.513,370.322C234.181,381.49,269.153,356.785,269.153,313.847L269.153,59.1538C269.153,16.2158,234.181,-8.49073,195.513,2.67883Z" fill="url(#Gradient-2)" transform="translate(134.576,186.5) translate(-134.576,-186.5)" />
+									<path d="M144.671,175.365C135.351,175.543,127.045,172.042,120.669,166.156L120.669,206.117C120.669,225.891,107.584,240.629,92.259,239.117C77.7671,237.687,66.5851,222.097,66.5851,204.227C66.5851,186.359,77.7671,171.55,92.259,171.132C94.4104,171.07,96.519,171.326,98.5564,171.871L98.5564,188.607C96.6331,187.461,94.496,186.822,92.259,186.821C84.356,186.816,78.1209,194.79,78.1209,204.63C78.1209,214.472,84.356,222.881,92.259,223.428C100.403,223.992,107.189,216.038,107.189,205.646L107.189,133.07L120.669,131.756C120.669,146.966,131.168,158.788,144.671,158.134Z" fill="#f2ece5" transform="translate(105.628,185.49) translate(-105.628,-185.49)" />
+								</g>
+							</svg>
+						</div>
+					</div>
+					<div class="platforms__column">
+						<div class="platforms__title main-title">Один контент</div>
+						<div class="platforms__content">
+							<h2 class="platforms__sub-title title">Мы оптимизируем ваш контент для всех ключевых платформ — Instagram, YouTube, TikTok.</h2>
+							<div class="platforms__text text">
+								<p>А также подстроим контент под самый работоспособный формат и требования каждой платформы, что поможет получить самые большие охваты.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="page__places-left places-left">
+				<div class="places-left__wrapper bg-tile">
+					<div class="places-left__container grid">
+						<div class="places-left__content">
+							<div class="places-left__sub-title title">Мы стремимся помочь всем, но можем принять только ограниченное количество клиентов. </div>
+							<div class="places-left__text text">
+								<p>Время — ваш самый ценный ресурс. Пока вы раздумываете, ваши конкуренты уже используют наши технологии и занимают лидирующие позиции. Не упустите возможность обогнать их.</p>
+							</div>
+						</div>
+						<div class="places-left__actions">
+							<h2 class="places-left__title main-title">Осталось <span class="main-title--bold">всего <mark class="mark-color underline">6</mark> мест</span></h2>
+							<a href="#" class="places-left__link action-link">
+								<i class="action-link__icon _icon-arrow"></i>
+								<span class="action-link__text">Связаться <br> сейчас</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</section>
+			<div class="bg-white">
+				<div class="noice noice--bg"></div>
+				<div class="page__action-start action-start">
+					<div class="action-start__container">
+						<div class="action-start__title title">Доверьте рутину специалистам по ИИ-решениям, чтобы сфокусироваться на развитии бизнеса.</div>
+						<a href="#" class="action-start__link action-link action-link--middle action-link--gradient-green">
+							<i class="action-link__icon _icon-arrow"></i>
+							<span class="action-link__text">Начать</span>
+						</a>
+						<div class="action-start__text text">Все данные, статистика и ключевые показатели будут в ваших руках, давая полную уверенность для принятия решений.</div>
+					</div>
+				</div>
+			</div>
 		</main>
-		<footer class="footer">
+		<footer class="footer bg-page">
+			<div class="noice noice--bg"></div>
 			<div class="footer__container">
+				<div class="footer__top top-footer grid">
+					<div class="top-footer__logo">
+						<a href="#" class="logo">
+							<img width="205" height="49" fetchpriority="high" loading="eager" decoding="async" src="img/logo/logo.svg" alt="Wizze Spark Logo">
+						</a>
+						<a class="top-footer__power-by text-sm" target="_blank" href="https://wizze.ai">Powered by Wizze.AI</a>
+					</div>
+					<ul class="top-footer__contacts">
+						<li class="top-footer__contact-item contact-item">
+							<div class="contact-item__text text">Для связи:</div>
+							<a href="mailto:contact@wizzespark.com" class="contact-item__link text-lg">
+								contact@wizzespark.com
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="footer__bottom bottom-footer grid">
+					<div class="bottom-footer__left">
+						<a target="_blank" href="https://maps.app.goo.gl/sUCSyV3ooCQZgPXy9" class="text-sm">12130 Millennium Drive Suite 300, Los Angeles, CA 90094</a>
+					</div>
+					<div class="bottom-footer__right">
+						<a href="#" class="text-sm">Privacy Policy</a>
+					</div>
+				</div>
 			</div>
 		</footer>
 		<div class="noice"></div>
 		<div class="lines">
-			<div class="lines__container">
+			<div class="lines__container grid">
 				<div class="lines__item"></div>
 				<div class="lines__item"></div>
 				<div class="lines__item"></div>
@@ -326,7 +1113,7 @@
 	</div>
 </div> -->
 
-	<script async src="js/homepage.min.js?_v=20241016181313"></script>
+	<script async src="js/homepage.min.js?_v=20241021163450"></script>
 </body>
 
 </html>
