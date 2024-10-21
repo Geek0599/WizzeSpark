@@ -140,7 +140,6 @@
                 this.canvas = canvasElement;
                 window.addEventListener("load", this.init, false);
                 window.addEventListener("unload", this.cleanup, false);
-                console.log("video init");
             }
         }
         draw=() => {
@@ -158,6 +157,7 @@
         };
         init=() => {
             this.ctx = this.canvas.getContext("2d");
+            this.ctx.filter = "blur(1px)";
             this.video.addEventListener("loadeddata", this.draw, false);
             this.video.addEventListener("seeked", this.draw, false);
             this.video.addEventListener("play", this.drawLoop, false);
