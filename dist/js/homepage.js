@@ -127,6 +127,59 @@
     }
     window["FLS"] = false;
     isWebp();
+    class VideoWithBackground {
+        video;
+        canvas;
+        step;
+        ctx;
+        frameRate=200;
+        constructor(videoElement, canvasElement) {
+            const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+            if (!mediaQuery.matches) {
+                this.video = videoElement;
+                this.canvas = canvasElement;
+                window.addEventListener("load", this.init, false);
+                window.addEventListener("unload", this.cleanup, false);
+                console.log("video init");
+            }
+        }
+        draw=() => {
+            this.ctx.drawImage(this.video, 0, 0, this.canvas.width, this.canvas.height);
+        };
+        drawLoop=() => {
+            this.draw();
+            this.step = setTimeout((() => {
+                window.requestAnimationFrame(this.drawLoop);
+            }), this.frameRate);
+        };
+        drawPause=() => {
+            clearTimeout(this.step);
+            this.step = void 0;
+        };
+        init=() => {
+            this.ctx = this.canvas.getContext("2d");
+            this.video.addEventListener("loadeddata", this.draw, false);
+            this.video.addEventListener("seeked", this.draw, false);
+            this.video.addEventListener("play", this.drawLoop, false);
+            this.video.addEventListener("pause", this.drawPause, false);
+            this.video.addEventListener("ended", this.drawPause, false);
+            this.video.controls = false;
+            if (!this.video.paused) this.drawLoop();
+        };
+        cleanup=() => {
+            this.video.removeEventListener("loadeddata", this.draw);
+            this.video.removeEventListener("seeked", this.draw);
+            this.video.removeEventListener("play", this.drawLoop);
+            this.video.removeEventListener("pause", this.drawPause);
+            this.video.removeEventListener("ended", this.drawPause);
+        };
+    }
+    const videoContainers = document.querySelectorAll("[data-video-ambient]");
+    if (videoContainers.length) videoContainers.forEach((container => {
+        const videoElement = container.querySelector("[data-video]");
+        const canvasElement = container.querySelector("[data-canvas]");
+        if (videoElement && canvasElement) new VideoWithBackground(videoElement, canvasElement);
+    }));
     function customSpollers() {
         const spollersArray = document.querySelectorAll("[data-spollers]");
         if (spollersArray.length > 0) {
@@ -230,7 +283,6 @@
         updateCount();
     }
     function observeElements(observeElements) {
-        console.log(observeElements);
         observeElements.forEach((({element, callback, threshold = 1, offset = "0px"}) => {
             if (!element || typeof callback !== "function") {
                 console.warn("Element is not correct:", element, callback);
