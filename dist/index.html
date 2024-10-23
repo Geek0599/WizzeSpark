@@ -5,13 +5,13 @@
 	<title>WizzeSpark</title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
-	<link rel="stylesheet" href="css/homepage.min.css?_v=20241022011628">
+	<link rel="stylesheet" href="css/homepage.min.css?_v=20241023102433">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" href="favicon.ico">
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap&_v=20241022011628" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap&_v=20241023102433" rel="stylesheet">
 
 	<style>
 		.preloader {
@@ -500,12 +500,14 @@
 						<div class="main-section__text title">
 							Все при помощи нейросетей и вашего персонального менеджера.
 						</div>
-						<div data-video-ambient class="main-section__video video">
-							<video data-video autoplay playsinline muted loop class="video__video" src="files/main-intro-bottom.mp4"></video>
-							<canvas data-canvas width="10" height="6" aria-hidden="true" class="video__canvas"></canvas>
+						<div data-video-ambient class="main-section__video">
+							<div class="video">
+								<video data-video autoplay playsinline muted loop class="video__video video__video--popup" src="files/main-intro-bottom.mp4"></video>
+								<canvas data-canvas width="10" height="6" aria-hidden="true" class="video__canvas"></canvas>
+							</div>
 						</div>
 						<div class="main-section__btn">
-							<button class="action-link">
+							<button data-popup="#how-it-works" class="action-link">
 								<i class="action-link__icon action-link__icon--border _icon-play"></i>
 								<span class="action-link__text">Как это <br> работает?</span>
 							</button>
@@ -513,7 +515,7 @@
 						<div class="main-section__socials socials">
 							<ul class="socials__list">
 								<li class="socials__item">
-									<a href="#" class="socials__link">
+									<div class="socials__item-social">
 										<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="21" height="24">
 											<g fill="currentColor">
 												<path transform="translate(0 8.44275)" d="M8.306818 1.0074443L8.306818 0.071465075C7.980082 0.025332769 7.6503954 0.0015999645 7.3204403 0C3.2839911 0 0 3.2649941 0 7.2774382C0 9.7387171 1.2374653 11.917602 3.1251833 13.235172C1.8611608 11.891469 1.1583297 10.120308 1.1594028 8.2806158C1.1594028 4.3252373 4.3500404 1.0997089 8.306818 1.0074443" />
@@ -524,23 +526,23 @@
 											</g>
 										</svg>
 										TikTok
-									</a>
+									</div>
 								</li>
 								<li class="socials__item">
-									<a href="#" class="socials__link">
+									<div class="socials__item-social">
 										<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="28" height="20">
 											<path fill="currentColor" transform="translate(0.00104523 0.0011797)" d="M14.14712 -0.0011847832C14.171281 -0.0011168387 14.198244 -0.001031908 14.2279 -0.00092574459L14.564571 0.00071766437C16.537224 0.012675907 23.090456 0.090404481 24.937918 0.59564024C26.142872 0.92418861 27.091532 1.8922532 27.41353 3.121608C27.952473 5.1737728 27.99502 9.2795992 27.998379 9.9150972L27.998379 10.081987C27.99502 10.717465 27.952473 14.823178 27.41353 16.875641C27.091532 18.104834 26.142872 19.072899 24.937918 19.401608C22.964493 19.941145 15.621725 19.993025 14.2279 19.998013L13.769435 19.998013C12.375608 19.993025 5.0328269 19.941145 3.0592582 19.401608C1.8544629 19.072899 0.90564466 18.104834 0.58364469 16.875641C0.091032237 14.999104 0.013251326 11.406217 0.00097012921 10.318404L-0.00065030641 10.144826C-0.0008208786 10.121133 -0.00094880775 10.100143 -0.0010447545 10.081987L-0.0010447545 9.9150972C-0.00094880775 9.8969402 -0.0008208786 9.8759499 -0.00065030641 9.8522558L0.00097012921 9.6786728C0.013251326 8.5908318 0.091032237 4.9978728 0.58364469 3.121608C0.90564466 1.8922532 1.8544629 0.92418861 3.0592582 0.59564024C3.9830563 0.34302235 6.0832686 0.19728127 8.1991129 0.11319988L8.7756777 0.09176337C10.693035 0.025177706 12.536101 0.0061532292 13.432763 0.00071766437L13.769435 -0.00092574459C13.79909 -0.001031908 13.826054 -0.0011168387 13.850214 -0.0011847832L14.14712 -0.0011847832ZM11.134983 5.7777534L11.134983 14.219366L18.453165 9.9987211L11.134983 5.7777534Z" fill-rule="evenodd" />
 										</svg>
 										YouTube
-									</a>
+									</div>
 								</li>
 								<li class="socials__item">
-									<a href="#" class="socials__link">
+									<div class="socials__item-social">
 										<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="29" height="29">
 											<path fill="currentColor" d="M15.238976 0.00077251316C17.092804 0.0034538701 17.918823 0.013635966 18.683279 0.039292272L18.911736 0.047461361C19.178368 0.05755217 19.449295 0.069636241 19.765944 0.084055446C21.255611 0.15186535 22.273001 0.38800791 23.163221 0.7333228C24.083555 1.0902257 24.864056 1.5678337 25.642166 2.3443484C26.420221 3.1209188 26.898777 3.8998733 27.256445 4.8183842C27.602388 5.7068434 27.839001 6.722218 27.906944 8.2089348C27.919329 8.4798117 27.929993 8.7171621 27.939156 8.9470243L27.951796 9.2894564C27.977503 10.052402 27.987705 10.876793 27.990393 12.726976L27.990982 13.31377L27.991085 13.524045L27.991121 14.303734C27.991091 14.412713 27.991045 14.518766 27.990982 14.622014L27.990393 15.208799C27.987705 17.058958 27.977503 17.883341 27.951796 18.646282L27.939156 18.988714C27.929993 19.218576 27.919329 19.455927 27.906944 19.726805C27.839001 21.21352 27.602388 22.228895 27.256445 23.117355C26.898777 24.035866 26.420221 24.814819 25.642166 25.591391C24.864056 26.367905 24.083555 26.845512 23.163221 27.202471C22.273001 27.547731 21.255611 27.783873 19.765944 27.851683C19.449295 27.866102 19.178368 27.878187 18.911736 27.888277L18.683279 27.896446C17.8806 27.923386 17.010048 27.933264 14.953072 27.935312L13.038136 27.935312C10.981131 27.933264 10.11057 27.923386 9.307888 27.896446L9.0794315 27.888277C8.8127995 27.878187 8.541872 27.866102 8.2252226 27.851683C6.7355556 27.783873 5.7181668 27.547731 4.8279443 27.202471C3.9076111 26.845512 3.1271112 26.367905 2.349 25.591391C1.5709444 24.814819 1.0923889 24.035866 0.73477775 23.117355C0.38877779 22.228895 0.15216666 21.21352 0.08422222 19.726805C0.069774412 19.410782 0.057666361 19.14039 0.047555532 18.874287L0.039370231 18.646282C0.013663022 17.883341 0.003460723 17.058958 0.00077404594 15.208799L0.00077404594 12.726976C0.003460723 10.876793 0.013663022 10.052402 0.039370231 9.2894564L0.047555532 9.0614529C0.057666361 8.7953482 0.069774412 8.5249577 0.08422222 8.2089348C0.15216666 6.722218 0.38877779 5.7068434 0.73477775 4.8183842C1.0923889 3.8998733 1.5709444 3.1209188 2.349 2.3443484C3.1271112 1.5678337 3.9076111 1.0902257 4.8279443 0.7333228C5.7181668 0.38800791 6.7355556 0.15186535 8.2252226 0.084055446C8.541872 0.069636241 8.8127995 0.05755217 9.0794315 0.047461361L9.307888 0.039292272C10.072347 0.013635966 10.898374 0.0034538701 12.752229 0.00077251316L15.238976 0.00077251316ZM14.65874 2.5169051L13.332473 2.5169051L13.178009 2.5170081L12.468669 2.51792C10.095056 2.5224745 9.5853539 2.5414782 8.340167 2.5981781C6.9756112 2.6602771 6.2345557 2.8878257 5.7413888 3.0791128C5.0881109 3.332499 4.6218891 3.6351762 4.1321669 4.1239843C3.6423888 4.6127367 3.3391111 5.0780358 3.0852222 5.7300196C2.8935556 6.2222099 2.6655555 6.9617982 2.6033332 8.3236513C2.5886042 8.6458387 2.5764139 8.9186878 2.5663562 9.1874065L2.5582485 9.4177799C2.5354352 10.112192 2.5259583 10.864703 2.5229158 12.443978L2.5221307 13.002079C2.5220363 13.100551 2.5219595 13.201838 2.521899 13.306071L2.521899 14.629713L2.5220022 14.783868L2.5229158 15.491794C2.5257893 16.983311 2.5344021 17.737387 2.5545685 18.401556L2.5621753 18.633289L2.5707984 18.863882C2.5799487 19.096014 2.5907083 19.335926 2.6033332 19.612087C2.6655555 20.97394 2.8935556 21.71353 3.0852222 22.205719C3.3391111 22.857702 3.6424444 23.323002 4.1321669 23.811754C4.6218891 24.300562 5.0881109 24.603239 5.7413888 24.856627C6.2345557 25.047913 6.9756112 25.275461 8.340167 25.337561C8.7090693 25.354361 9.0134058 25.367851 9.3207989 25.378637L9.5529728 25.386229C10.257552 25.407539 11.063184 25.415922 12.740119 25.418266L13.654761 25.418966L13.995611 25.41901L14.168397 25.418999L15.251087 25.418266C16.928005 25.415922 17.733644 25.407539 18.438221 25.386229L18.670393 25.378637C18.977781 25.367851 19.28211 25.354361 19.650999 25.337561C21.015556 25.275461 21.756611 25.047913 22.249777 24.856627C22.903055 24.603239 23.369278 24.300562 23.858999 23.811754C24.348778 23.323002 24.652056 22.857702 24.905945 22.205719C25.09761 21.71353 25.325611 20.97394 25.387833 19.612087C25.400457 19.335926 25.411219 19.096014 25.420368 18.863882L25.428991 18.633289L25.436598 18.401556C25.459137 17.659248 25.467243 16.804636 25.469036 14.933702L25.469036 13.002079C25.46715 11.032644 25.458267 10.189349 25.432919 9.4177799L25.42481 9.1874065C25.414753 8.9186878 25.402563 8.6458387 25.387833 8.3236513C25.325611 6.9617982 25.09761 6.2222099 24.905945 5.7300196C24.652056 5.0780358 24.348778 4.6127367 23.858999 4.1239843C23.369278 3.6351762 22.903055 3.332499 22.249777 3.0791128C21.756611 2.8878257 21.015556 2.6602771 19.650999 2.5981781C19.282055 2.5813782 18.97768 2.5678875 18.670259 2.5571017L18.438066 2.54951C17.772579 2.5293834 17.017008 2.5207877 15.522532 2.51792L14.963331 2.5171363C14.864666 2.5170422 14.76318 2.5169656 14.65874 2.5169051ZM13.995611 6.7951841C17.964834 6.7951841 21.182501 10.006479 21.182501 13.967897C21.182501 17.92926 17.964834 21.140554 13.995611 21.140554C10.026334 21.140554 6.8086667 17.92926 6.8086667 13.967897C6.8086667 10.006479 10.026334 6.7951841 13.995611 6.7951841ZM13.995611 9.3119125C11.419056 9.3119125 9.330389 11.396443 9.330389 13.967897C9.330389 16.539295 11.419056 18.623825 13.995611 18.623825C16.572111 18.623825 18.660778 16.539295 18.660778 13.967897C18.660778 11.396443 16.572111 9.3119125 13.995611 9.3119125ZM21.466444 4.8356276C22.393999 4.8356276 23.145945 5.5860829 23.145945 6.5118022C23.145945 7.437521 22.393999 8.1879206 21.466444 8.1879206C20.538944 8.1879206 19.787001 7.437521 19.787001 6.5118022C19.787001 5.5860829 20.538944 4.8356276 21.466444 4.8356276Z" fill-rule="evenodd" />
 										</svg>
 										Instagram
-									</a>
+									</div>
 								</li>
 							</ul>
 						</div>
@@ -555,7 +557,7 @@
 						<span class="action-link__text">Начать</span>
 					</a>
 					<div class="video-examples__text-content">
-						<div class="video-examples__subtitle"><span class="title">Осталось мест: 6 🔥</span> <button class="video-examples__btn btn btn--border-sm">Почему?</button>
+						<div class="video-examples__subtitle"><span class="title">Осталось мест: 6 🔥</span> <button data-popup="#why" class="video-examples__btn btn btn--border-sm">Почему?</button>
 						</div>
 						<div class="video-examples__text text--lh text--medium">Свяжитесь с нами, чтобы получить <span>персонализированное</span> решение.</div>
 					</div>
@@ -702,7 +704,7 @@
 					</div>
 				</div>
 			</section>
-			<section class="page__get-started-top get-started">
+			<div class="page__get-started-top get-started">
 				<div class="get-started__container grid">
 					<div class="get-started__text get-started__text--top title">Записывайся на встречу сейчас!</div>
 					<a href="#" class="get-started__link action-link action-link--gradient action-link--large">
@@ -711,7 +713,7 @@
 					</a>
 					<div class="get-started__text get-started__text--bottom title">Удиви своих конкурентов и выйди вперед!</div>
 				</div>
-			</section>
+			</div>
 			<section class="page__power power">
 				<div class="power__container">
 					<h2 class="power__title main-title grid">
@@ -744,7 +746,7 @@
 					</div>
 				</div>
 			</section>
-			<section class="page__comparison comparison">
+			<div class="page__comparison comparison">
 				<div class="comparison__wrapper">
 					<div class="comparison__container grid">
 						<div class="comparison__tile bg-tile"></div>
@@ -844,7 +846,7 @@
 						</ul>
 					</div>
 				</div>
-			</section>
+			</div>
 			<section class="page__professional professional">
 				<div class="professional__container grid">
 					<h2 class="professional__title main-title">Профессио&shy;нальные <span class="main-title--bold">видео с ИИ</span></h2>
@@ -878,7 +880,7 @@
 						<p>Это ваша возможность быть на шаг впереди!</p>
 					</div>
 					<div class="analysis__video-mask video">
-						<video class="video__video" autoplay autoplay playsinline muted loop src="files/analysis.mp4"></video>
+						<video class="video__video" autoplay playsinline muted loop src="files/analysis.mp4"></video>
 					</div>
 					<div class="analysis__banner text">
 						Чем дольше вы откладываете, тем выше риск упустить лидерство. Конкуренты уже используют нашу экспертизу в ИИ для анализа и создания уникального контента. Это ваш шанс изменить всё!
@@ -922,18 +924,139 @@
 					<div class="support__column">
 						<h2 class="support__title main-title">И еженедельные отчеты</h2>
 						<div class="support__text title">Каждую неделю получайте детальные отчеты о просмотрах и вовлеченности.</div>
-						<div class="support__image support-image">
+						<div class="support__image support-image" id="support-image">
 							<div class="support-image__grafic">
 								<img width="288" height="200" loading="lazy" decoding="async" src="img/support/grafic.svg" alt="grafic">
 							</div>
-							<div class="support-image__letter">
-								<img width="288" height="200" loading="lazy" decoding="async" src="img/support/letter.svg" alt="letter">
+							<div id="letter" class="support-image__letter">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 350" style="background: rgba(243,237,229,0.00);">
+									<style>
+										@keyframes a0_t {
+											0% {
+												transform: translate(63.1px, 143.5px);
+												animation-timing-function: cubic-bezier(0, 1, .2, 1);
+											}
+
+											27.273% {
+												transform: translate(63.1px, 156.2px);
+											}
+
+											54.545% {
+												transform: translate(63.1px, 141px);
+											}
+
+											100% {
+												transform: translate(63.1px, 141px);
+											}
+										}
+
+										@keyframes a1_t {
+											0% {
+												transform: translate(96.9px, -39.3px) scale(1, -1) translate(-96.9px, -38.4px);
+												animation-timing-function: cubic-bezier(0, 0, .6, 1);
+											}
+
+											54.545% {
+												transform: translate(96.9px, 39.3px) scale(1, 1) translate(-96.9px, -38.4px);
+											}
+
+											100% {
+												transform: translate(96.9px, 39.3px) scale(1, 1) translate(-96.9px, -38.4px);
+											}
+										}
+
+										@keyframes a2_t {
+											0% {
+												transform: translate(46px, 141px) rotate(-9deg) scale(0, 0) translate(-34px, -34px);
+											}
+
+											36.364% {
+												transform: translate(46px, 141px) rotate(-9deg) scale(0, 0) translate(-34px, -34px);
+												animation-timing-function: cubic-bezier(0, 1, 0, 1.3);
+											}
+
+											81.818% {
+												transform: translate(46px, 141px) rotate(-9deg) scale(1, 1) translate(-34px, -34px);
+											}
+
+											100% {
+												transform: translate(46px, 141px) rotate(-9deg) scale(1, 1) translate(-34px, -34px);
+											}
+										}
+
+										@keyframes a3_t {
+											0% {
+												transform: translate(160px, 82.5px) scale(0, 0) translate(-46px, -46px);
+											}
+
+											45.455% {
+												transform: translate(160px, 82.5px) scale(0, 0) translate(-46px, -46px);
+												animation-timing-function: cubic-bezier(0, 1, .1, 1.3);
+											}
+
+											90.909% {
+												transform: translate(160px, 82.5px) scale(1, 1) translate(-46px, -46px);
+											}
+
+											100% {
+												transform: translate(160px, 82.5px) scale(1, 1) translate(-46px, -46px);
+											}
+										}
+
+										@keyframes a4_t {
+											0% {
+												transform: translate(273px, 120.2px) rotate(8deg) scale(0, 0) translate(-30px, -30px);
+											}
+
+											54.545% {
+												transform: translate(273px, 120.2px) rotate(8deg) scale(0, 0) translate(-30px, -30px);
+												animation-timing-function: cubic-bezier(0, 1, 0, 1.3);
+											}
+
+											100% {
+												transform: translate(273px, 120.2px) rotate(8deg) scale(1, 1) translate(-30px, -30px);
+											}
+										}
+									</style>
+									<g id="letter_g_0" transform="translate(160,236.1) translate(-96.9,-92.5)">
+										<path d="M0 185h193.8v-120.1h-193.8Z" fill="#fff" fill-rule="evenodd" />
+										<path d="M0 64.9l96.9 74.7l96.9-74.7" stroke="#000" fill="#fff" fill-rule="evenodd" />
+										<path d="M193.8 185l-96.9-74.7l-96.9 74.7" stroke="#000" fill="#fff" fill-rule="evenodd" />
+										<g transform="translate(0,64.9)">
+											<path id="letter_g_1" d="M0-0.9l96.9-64.9l96.9 64.9" stroke="#000" fill="#fff" fill-rule="evenodd" transform="translate(96.9,-39.3) scale(1,-1) translate(-96.9,-38.4)" />
+										</g>
+									</g>
+									<g id="letter_g_2" fill="none" fill-rule="evenodd" transform="translate(46,141) rotate(-9) scale(0,0) translate(-34,-34)">
+										<g transform="translate(-114,-198)">
+											<g transform="translate(114,198)">
+												<path d="M34 0c18.8 0 34 15.2 34 34h-34v34c-18.8 0-34-15.2-34-34c0-18.8 15.2-34 34-34Z" fill="#503dd9" />
+												<path d="M68 34c0 18.8-15.2 34-34 34v-34Z" stroke="#000" />
+											</g>
+										</g>
+									</g>
+									<g id="letter_g_3" fill="none" fill-rule="evenodd" transform="translate(160,82.5) scale(0,0) translate(-46,-46)">
+										<g transform="translate(-213,-157)">
+											<g transform="translate(213,157)">
+												<path d="M0 0h92v92h-92Z" />
+												<path d="M7.7 46h7.6v34.5h-7.6v-34.5Zm11.5 7.7h7.6v26.8h-7.6v-26.8Zm42.1-23h7.7v49.8h-7.7v-49.8Zm11.5 7.6h7.7v42.2h-7.7v-42.2Zm-38.3-30.6h7.7v72.8h-7.7v-72.8Zm11.5 7.6h7.7v65.2h-7.7v-65.2Z" fill="#000" fill-rule="nonzero" />
+											</g>
+										</g>
+									</g>
+									<g id="letter_g_4" fill="none" fill-rule="evenodd" transform="translate(273,120.2) rotate(8) scale(0,0) translate(-30,-30)">
+										<g transform="translate(-329,-204)">
+											<g transform="translate(329,204)">
+												<path d="M0 0h60v60h-60Z" />
+												<path d="M12.1 8v40h40.2v5h-45.3v-45h5.1Zm38.4 8.2l3.5 3.5l-14.3 14.3l-7.5-7.5l-10.8 10.7l-3.6-3.5l14.4-14.3l7.5 7.5l10.8-10.7Z" fill="#503dd9" />
+											</g>
+										</g>
+									</g>
+								</svg>
 							</div>
 						</div>
 					</div>
 				</div>
 			</section>
-			<section class="page__get-started-bottom get-started">
+			<div class="page__get-started-bottom get-started">
 				<div class="get-started__body bg-white">
 					<div class="get-started__container grid gradient-top gradient-bottom">
 						<div class="get-started__text get-started__text--top title">Записывайся на встречу сейчас!</div>
@@ -944,13 +1067,12 @@
 						<div class="get-started__text get-started__text--bottom title">Удиви своих конкурентов и выйди вперед!</div>
 					</div>
 				</div>
-			</section>
+			</div>
 			<section class="page__platforms platforms">
 				<div class="platforms__container grid">
 					<div class="platforms__column">
 						<div class="platforms__title main-title">Множество платформ</div>
 						<div id="socials-platforms" class="platforms__image">
-							<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 667 373" text-rendering="geometricPrecision" shape-rendering="geometricPrecision" style="white-space: pre;">
 								<defs>
 									<linearGradient id="Gradient-0" x1="0" y1="186.5" x2="269.153" y2="186.5" gradientUnits="userSpaceOnUse">
@@ -1056,10 +1178,441 @@
 			</section>
 			<div class="bg-white">
 				<div class="noice noice--bg"></div>
+				<section class="page__choose-plan choose-plan">
+					<div class="choose-plan__container">
+						<div class="choose-plan__head">
+							<div class="choose-plan__title main-title">Выберите подходящий план</div>
+							<h2 class="choose-plan__sub-title title">Мы предлагаем решения для любых задач — от стартапов до крупных брендов.</h2>
+						</div>
+						<div class="choose-plan__table">
+							<div data-showmore-wrapper class="choose-plan__table-pc table-pc">
+								<div class="table-pc__head title title--gothic">
+									<div class="table-pc__title table-pc__title--option"><span>Опции</span></div>
+									<div class="table-pc__title">Basic</div>
+									<div class="table-pc__title">Standard</div>
+									<div class="table-pc__title">Premium</div>
+									<div class="table-pc__title">Custom</div>
+								</div>
+								<div data-showmore-container="3, 3, 3" class="table-pc__rows">
+									<div class="table-pc__row text text--medium">
+										<div class="table-pc__item table-pc__item--title">
+											<div class="text">Разработка идей канала и рубрик</div>
+										</div>
+										<div class="table-pc__item">
+											<div class="table-pc__text">10 видео в месяц</div>
+											<div class="table-pc__text-details">Предложение базовых идей для каналов, создание одной рубрики с кратким описанием</div>
+										</div>
+										<div class="table-pc__item">
+											<div class="table-pc__text">20 видео в месяц</div>
+											<div class="table-pc__text-details">Генерация до 3 идей для канала с полным описанием рубрик, форматом контента и частотой выхода </div>
+										</div>
+										<div class="table-pc__item">
+											<div class="table-pc__text">30 видео в месяц</div>
+											<div class="table-pc__text-details">Глубокая проработка до 5+ идей для канала с детализированными описаниями каждой рубрики и возможностью экспериментов с форматами</div>
+										</div>
+										<div class="table-pc__item">
+											<div class="table-pc__text">3 видео в день</div>
+											<div class="table-pc__text-details">Глубокая проработка до 5+ идей для канала с детализированными описаниями каждой рубрики и возможностью экспериментов с форматами</div>
+										</div>
+									</div>
+
+									<div class="table-pc__row text text--medium">
+										<div class="table-pc__item table-pc__item--title">
+											<div class="text">Позиционирование</div>
+										</div>
+										<div class="table-pc__item">
+											<div class="table-pc__text">Видео до 30 Секунд</div>
+											<div class="table-pc__text-details"></div>
+										</div>
+										<div class="table-pc__item">
+											<div class="table-pc__text">Видео до 60 Секунд</div>
+											<div class="table-pc__text-details">Разработка стратегии позиционирования, включая рекомендации по стилю общения, дизайну и взаимодействию с аудиторией.</div>
+										</div>
+										<div class="table-pc__item">
+											<div class="table-pc__text">Видео до 90 Секунд</div>
+											<div class="table-pc__text-details">Полное позиционирование канала, включая анализ конкурентов, проработку уникального стиля и подбор целевых аудиторий.</div>
+										</div>
+										<div class="table-pc__item">
+											<div class="table-pc__text">Видео до 90 Секунд</div>
+											<div class="table-pc__text-details">Полное позиционирование канала, включая анализ конкурентов, проработку уникального стиля, подбор целевых аудиторий и улучшение вирального контента в нише.</div>
+										</div>
+									</div>
+
+									<div class="table-pc__row text text--medium">
+										<div class="table-pc__item table-pc__item--title">
+											<div class="text">Количество видео</div>
+										</div>
+										<div class="table-pc__item">
+											<div class="table-pc__text">Базовый монтаж и простой AI-аватар</div>
+											<div class="table-pc__text-details">До 10 смонтированных видео в месяц</div>
+										</div>
+										<div class="table-pc__item">
+											<div class="table-pc__text">Продвинутый монтаж и динамический AI-аватар <span>с озвучкой</span></div>
+											<div class="table-pc__text-details">До 20 смонтированных видео в месяц</div>
+										</div>
+										<div class="table-pc__item">
+											<div class="table-pc__text"><span>Сложные анимации</span>, три динамических AI-аватара</div>
+											<div class="table-pc__text-details">До 30 смонтированных видео в месяц</div>
+										</div>
+										<div class="table-pc__item">
+											<div class="table-pc__text">Профессиональный монтаж, студийный AI-аватар, <span>перевод на разные языки</span></div>
+											<div class="table-pc__text-details">До 3х видео в день на один аккаунт</div>
+										</div>
+									</div>
+
+									<div class="table-pc__row text text--medium">
+										<div class="table-pc__item table-pc__item--title">
+											<div class="text">Длительность видео</div>
+										</div>
+										<div class="table-pc__item">
+											<div class="table-pc__text-details">Каждое видео до 30 секунд</div>
+										</div>
+										<div class="table-pc__item">
+											<div class="table-pc__text-details">Каждое видео до 60 секунд</div>
+										</div>
+										<div class="table-pc__item">
+											<div class="table-pc__text-details">Каждое видео до 90 секунд</div>
+										</div>
+										<div class="table-pc__item">
+											<div class="table-pc__text-details">Каждое видео до 90 секунд</div>
+										</div>
+									</div>
+
+									<div class="table-pc__row text text--medium">
+										<div class="table-pc__item table-pc__item--title">
+											<div class="text">Сценарий</div>
+										</div>
+										<div class="table-pc__item">
+											<div class="table-pc__text-details">Разработка сценариев для каждой рубрики</div>
+										</div>
+										<div class="table-pc__item">
+											<div class="table-pc__text-details">Детализированный сценарий с возможностью двух правок</div>
+										</div>
+										<div class="table-pc__item">
+											<div class="table-pc__text-details">Индивидуальная разработка сценариев с возможностью до 4 правок</div>
+										</div>
+										<div class="table-pc__item">
+											<div class="table-pc__text-details">Индивидуальная разработка сценариев с возможностью до 4 правок</div>
+										</div>
+									</div>
+
+									<div class="table-pc__row text text--medium">
+										<div class="table-pc__item table-pc__item--title">
+											<div class="text">Монтаж</div>
+										</div>
+										<div class="table-pc__item">
+											<div class="table-pc__text-details">Базовый монтаж (связывание сцен, простая графика)</div>
+										</div>
+										<div class="table-pc__item">
+											<div class="table-pc__text-details">Продвинутый монтаж (включая анимации и эффекты, субтитры)</div>
+										</div>
+										<div class="table-pc__item">
+											<div class="table-pc__text-details">Профессиональный монтаж (включая анимации, сложные эффекты, субтитры)</div>
+										</div>
+										<div class="table-pc__item">
+											<div class="table-pc__text-details">Профессиональный монтаж (включая анимации, сложные эффекты, субтитры)</div>
+										</div>
+									</div>
+
+									<div class="table-pc__row text text--medium">
+										<div class="table-pc__item table-pc__item--title">
+											<div class="text">AI Аватар</div>
+										</div>
+										<div class="table-pc__item">
+											<div class="table-pc__text-details">Один статический AI-аватар для видео</div>
+										</div>
+										<div class="table-pc__item">
+											<div class="table-pc__text-details">Один динамический AI-аватар с озвучкой и два статических</div>
+										</div>
+										<div class="table-pc__item">
+											<div class="table-pc__text-details">Тре динамических AI-аватаров с озвучкой и пять статических</div>
+										</div>
+										<div class="table-pc__item">
+											<div class="table-pc__text-details">Более одиного студийного, персонализированного AI-аватара, а так же 4+ динамических и 5+ статических AI-аватаров с возможностью изменения стиля и озвучки</div>
+										</div>
+									</div>
+								</div>
+								<div class="table-pc__row table-pc__row--bottom text text--medium">
+									<div class="table-pc__item-btn">
+										<button data-table-pc data-btn-showhide="Скрыть детали" class="table-pc__btn btn btn--border-lg triangle">Раскрыть детали</button>
+									</div>
+									<div class="table-pc__item table-pc__item--title">
+										<div class="text">Цена</div>
+									</div>
+									<div class="table-pc__item">
+										<div class="table-pc__price">
+											<span>$2 499</span> Старт 1 неделя
+										</div>
+									</div>
+									<div class="table-pc__item">
+										<div class="table-pc__price">
+											<span>$2 999</span> Старт 2 недели
+										</div>
+									</div>
+									<div class="table-pc__item">
+										<div class="table-pc__price">
+											<span>$4 999</span> Старт 1 месяц
+										</div>
+									</div>
+									<div class="table-pc__item">
+										<div class="table-pc__price">
+											<span>$11 995</span> Старт 1 месяц
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="choose-plan__table-mb table-mb">
+								<div data-table-slider class="table-mb__items">
+									<div data-slider class="column-table__slider swiper">
+										<div class="column-table__wrapper swiper-wrapper">
+											<div class="column-table__slide swiper-slide">
+												<div data-showmore-wrapper class="table-card">
+													<div class="table-card__head title title--gothic">
+														Basic
+													</div>
+													<div data-showmore-container="3, 3, 3" class="table-card__rows text text--medium">
+														<div class="table-card__row">
+															<div class="table-card__option-title">Разработка идей канала и рубрик</div>
+															<div class="table-card__info">
+																<div class="table-card__text">10 видео в месяц</div>
+																<div class="table-card__text-details">Предложение базовых идей для каналов, создание одной рубрики с кратким описанием</div>
+															</div>
+														</div>
+														<div class="table-card__row">
+															<div class="table-card__option-title">Позиционирование</div>
+															<div class="table-card__info">
+																<div class="table-card__text">Видео до 30 Секунд</div>
+																<div class="table-card__text-details"></div>
+															</div>
+														</div>
+														<div class="table-card__row">
+															<div class="table-card__option-title">Количество видео</div>
+															<div class="table-card__info">
+																<div class="table-card__text">Базовый монтаж и простой AI-аватар</div>
+																<div class="table-card__text-details">До 10 смонтированных видео в месяц</div>
+															</div>
+														</div>
+														<div class="table-card__row">
+															<div class="table-card__option-title">Длительность видео</div>
+															<div class="table-card__info">
+																<div class="table-card__text-details">Каждое видео до 30 секунд</div>
+															</div>
+														</div>
+														<div class="table-card__row">
+															<div class="table-card__option-title">Сценарий</div>
+															<div class="table-card__info">
+																<div class="table-card__text-details">Разработка сценариев для каждой рубрики</div>
+															</div>
+														</div>
+														<div class="table-card__row">
+															<div class="table-card__option-title">Монтаж</div>
+															<div class="table-card__info">
+																<div class="table-card__text-details">Базовый монтаж (связывание сцен, простая графика)</div>
+															</div>
+														</div>
+														<div class="table-card__row">
+															<div class="table-card__option-title">AI Аватар</div>
+															<div class="table-card__info">
+																<div class="table-card__text-details">Один статический AI-аватар для видео</div>
+															</div>
+														</div>
+													</div>
+													<div class="table-card__bottom">
+														<button data-table-mb data-btn-showhide="Скрыть детали" class="table-card__btn btn btn--border-lg triangle">Раскрыть детали</button>
+														<div class="table-card__price"><span>$2 499</span> Старт 1 неделя</div>
+													</div>
+												</div>
+											</div>
+											<div class="column-table__slide swiper-slide">
+												<div data-showmore-wrapper class="table-card">
+													<div class="table-card__head title title--gothic">
+														Standard
+													</div>
+													<div data-showmore-container="3, 3, 3" class="table-card__rows text text--medium">
+														<div class="table-card__row">
+															<div class="table-card__option-title">Разработка идей канала и рубрик</div>
+															<div class="table-card__info">
+																<div class="table-card__text">20 видео в месяц</div>
+																<div class="table-card__text-details">Генерация до 3 идей для канала с полным описанием рубрик, форматом контента и частотой выхода </div>
+															</div>
+														</div>
+														<div class="table-card__row">
+															<div class="table-card__option-title">Позиционирование</div>
+															<div class="table-card__info">
+																<div class="table-card__text">Видео до 60 Секунд</div>
+																<div class="table-card__text-details">Разработка стратегии позиционирования, включая рекомендации по стилю общения, дизайну и взаимодействию с аудиторией.</div>
+															</div>
+														</div>
+														<div class="table-card__row">
+															<div class="table-card__option-title">Количество видео</div>
+															<div class="table-card__info">
+																<div class="table-card__text">Продвинутый монтаж и динамический AI-аватар <span>с озвучкой</span></div>
+																<div class="table-card__text-details">До 20 смонтированных видео в месяц</div>
+															</div>
+														</div>
+														<div class="table-card__row">
+															<div class="table-card__option-title">Длительность видео</div>
+															<div class="table-card__info">
+																<div class="table-card__text-details">Каждое видео до 60 секунд</div>
+															</div>
+														</div>
+														<div class="table-card__row">
+															<div class="table-card__option-title">Сценарий</div>
+															<div class="table-card__info">
+																<div class="table-card__text-details">Детализированный сценарий с возможностью двух правок</div>
+															</div>
+														</div>
+														<div class="table-card__row">
+															<div class="table-card__option-title">Монтаж</div>
+															<div class="table-card__info">
+																<div class="table-card__text-details">Продвинутый монтаж (включая анимации и эффекты, субтитры)</div>
+															</div>
+														</div>
+														<div class="table-card__row">
+															<div class="table-card__option-title">AI Аватар</div>
+															<div class="table-card__info">
+																<div class="table-card__text-details">Один динамический AI-аватар с озвучкой и два статических</div>
+															</div>
+														</div>
+													</div>
+													<div class="table-card__bottom">
+														<button data-table-mb data-btn-showhide="Скрыть детали" class="table-card__btn btn btn--border-lg triangle">Раскрыть детали</button>
+														<div class="table-card__price"><span>$2 999</span> Старт 2 недели</div>
+													</div>
+												</div>
+											</div>
+											<div class="column-table__slide swiper-slide">
+												<div data-showmore-wrapper class="table-card">
+													<div class="table-card__head title title--gothic">
+														Premium
+													</div>
+													<div data-showmore-container="3, 3, 3" class="table-card__rows text text--medium">
+														<div class="table-card__row">
+															<div class="table-card__option-title">Разработка идей канала и рубрик</div>
+															<div class="table-card__info">
+																<div class="table-card__text">30 видео в месяц</div>
+																<div class="table-card__text-details"> Глубокая проработка до 5 идей для канала с детализированными описаниями каждой рубрики и возможностью экспериментов с форматами</div>
+															</div>
+														</div>
+														<div class="table-card__row">
+															<div class="table-card__option-title">Позиционирование</div>
+															<div class="table-card__info">
+																<div class="table-card__text">Видео до 90 Секунд</div>
+																<div class="table-card__text-details">Полное позиционирование канала, включая анализ конкурентов, проработку уникального стиля и подбор целевых аудиторий.</div>
+															</div>
+														</div>
+														<div class="table-card__row">
+															<div class="table-card__option-title">Количество видео</div>
+															<div class="table-card__info">
+																<div class="table-card__text">Сложные анимации, три динамических AI-аватара</div>
+																<div class="table-card__text-details">До 30 смонтированных видео в месяц</div>
+															</div>
+														</div>
+														<div class="table-card__row">
+															<div class="table-card__option-title">Длительность видео</div>
+															<div class="table-card__info">
+																<div class="table-card__text-details">Каждое видео до 90 секунд</div>
+															</div>
+														</div>
+														<div class="table-card__row">
+															<div class="table-card__option-title">Сценарий</div>
+															<div class="table-card__info">
+																<div class="table-card__text-details">Индивидуальная разработка сценариев с возможностью до 4 правок</div>
+															</div>
+														</div>
+														<div class="table-card__row">
+															<div class="table-card__option-title">Монтаж</div>
+															<div class="table-card__info">
+																<div class="table-card__text-details">Профессиональный монтаж (включая анимации, сложные эффекты, субтитры)</div>
+															</div>
+														</div>
+														<div class="table-card__row">
+															<div class="table-card__option-title">AI Аватар</div>
+															<div class="table-card__info">
+																<div class="table-card__text-details">Тре динамических AI-аватаров с озвучкой и пять статических</div>
+															</div>
+														</div>
+													</div>
+													<div class="table-card__bottom">
+														<button data-table-mb data-btn-showhide="Скрыть детали" class="table-card__btn btn btn--border-lg triangle">Раскрыть детали</button>
+														<div class="table-card__price"><span>$4 999</span> Старт 1 месяц</div>
+													</div>
+												</div>
+											</div>
+											<div class="column-table__slide swiper-slide">
+												<div data-showmore-wrapper class="table-card">
+													<div class="table-card__head title title--gothic">
+														Custom
+													</div>
+													<div data-showmore-container="3, 3, 3" class="table-card__rows text text--medium">
+														<div class="table-card__row">
+															<div class="table-card__option-title">Разработка идей канала и рубрик</div>
+															<div class="table-card__info">
+																<div class="table-card__text">3 видео в день</div>
+																<div class="table-card__text-details">Глубокая проработка до 5+ идей для канала с детализированными описаниями каждой рубрики и возможностью экспериментов с форматами</div>
+															</div>
+														</div>
+														<div class="table-card__row">
+															<div class="table-card__option-title">Позиционирование</div>
+															<div class="table-card__info">
+																<div class="table-card__text">Видео до 90 Секунд</div>
+																<div class="table-card__text-details">Полное позиционирование канала, включая анализ конкурентов, проработку уникального стиля, подбор целевых аудиторий и улучшение вирального контента в нише.</div>
+															</div>
+														</div>
+														<div class="table-card__row">
+															<div class="table-card__option-title">Количество видео</div>
+															<div class="table-card__info">
+																<div class="table-card__text">Профессиональный монтаж, студийный AI-аватар, перевод на разные языки</div>
+																<div class="table-card__text-details">До 3х видео в день на один аккаунт</div>
+															</div>
+														</div>
+														<div class="table-card__row">
+															<div class="table-card__option-title">Длительность видео</div>
+															<div class="table-card__info">
+																<div class="table-card__text-details">Каждое видео до 90 секунд</div>
+															</div>
+														</div>
+														<div class="table-card__row">
+															<div class="table-card__option-title">Сценарий</div>
+															<div class="table-card__info">
+																<div class="table-card__text-details">Индивидуальная разработка сценариев с возможностью до 4 правок</div>
+															</div>
+														</div>
+														<div class="table-card__row">
+															<div class="table-card__option-title">Монтаж</div>
+															<div class="table-card__info">
+																<div class="table-card__text-details">Профессиональный монтаж (включая анимации, сложные эффекты, субтитры)</div>
+															</div>
+														</div>
+														<div class="table-card__row">
+															<div class="table-card__option-title">AI Аватар</div>
+															<div class="table-card__info">
+																<div class="table-card__text-details">Более одиного студийного, персонализированного AI-аватара, а так же 4+ динамических и 5+ статических AI-аватаров с возможностью изменения стиля и озвучки</div>
+															</div>
+														</div>
+													</div>
+													<div class="table-card__bottom">
+														<button data-table-mb data-btn-showhide="Скрыть детали" class="table-card__btn btn btn--border-lg triangle">Раскрыть детали</button>
+														<div class="table-card__price"><span>$11 995</span> Старт 1 месяц</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="table-mb__actions">
+										<button aria-label="slide prev" data-slider-prevbtn class="table-mb__slider-btn _icon-arrow-slider"></button>
+										<div data-slider-pagination class="table-mb__pagination"></div>
+										<button aria-label="slide next" data-slider-nextbtn class="table-mb__slider-btn _icon-arrow-slider"></button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
 				<div class="page__action-start action-start">
 					<div class="action-start__container">
 						<div class="action-start__title title">Доверьте рутину специалистам по ИИ-решениям, чтобы сфокусироваться на развитии бизнеса.</div>
-						<a href="#" class="action-start__link action-link action-link--middle action-link--gradient-green">
+						<a href="#" class="action-start__link action-link action-link--large action-link--gradient-green">
 							<i class="action-link__icon _icon-arrow"></i>
 							<span class="action-link__text">Начать</span>
 						</a>
@@ -1109,18 +1662,57 @@
 		</div>
 	</div>
 
-	<!-- <div id="popup" aria-hidden="true" class="popup">
-	<div class="popup__wrapper">
-		<div class="popup__content">
-			<button data-close type="button" class="popup__close">Close</button>
-			<div class="popup__text">
-				Text
+	<div id="why" aria-hidden="true" class="popup">
+		<div class="popup__wrapper">
+			<div class="popup__content">
+				<section class="places-left">
+					<div class="places-left__wrapper">
+						<div class="places-left__container">
+							<button data-close type="button" class="popup__close _icon-close text-lg">Закрыть</button>
+						</div>
+						<div class="places-left__container grid">
+							<div class="places-left__content">
+								<div class="places-left__sub-title title">Наша компания стремится к высокому качеству обслуживания, поэтому у нас осталось ограниченное количество мест для новых клиентов.</div>
+								<div class="places-left__text text">
+									<p>Мы контролируем нагрузку на команду, чтобы каждый клиент получал внимание и поддержку.</p>
+									<p>Мы расширяем команду ИИ специалистов, но для сохранения обещанного уровня качества можем принять только ограниченное число новых клиентов.</p>
+								</div>
+							</div>
+							<div class="places-left__actions">
+								<h2 class="places-left__title main-title">Осталось <span class="main-title--bold">всего <mark class="mark-color underline">6</mark> мест</span></h2>
+								<a href="#" class="places-left__link action-link">
+									<i class="action-link__icon _icon-arrow"></i>
+									<span class="action-link__text">Связаться <br> сейчас</span>
+								</a>
+							</div>
+						</div>
+					</div>
+				</section>
 			</div>
 		</div>
 	</div>
-</div> -->
 
-	<script async src="js/homepage.min.js?_v=20241022011628"></script>
+
+	<div id="how-it-works" aria-hidden="true" class="popup">
+		<div class="popup__wrapper">
+			<div class="popup__content">
+				<div class="popup-video">
+					<div class="popup-video__container">
+						<div class="popup-video__head">
+							<button data-close type="button" class="popup__close _icon-close text-lg">Закрыть</button>
+							<div class="popup-video__title title">Как это работает?</div>
+						</div>
+						<div class="popup-video__video video">
+							<video data-video controls autoplay playsinline muted loop class="video__video video__video--controls" src="https://videos.pexels.com/video-files/5206032/5206032-uhd_2560_1440_25fps.mp4"></video>
+							<canvas data-canvas width="10" height="6" aria-hidden="true" class="video__canvas"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script async src="js/homepage.min.js?_v=20241023102433"></script>
 </body>
 
 </html>
