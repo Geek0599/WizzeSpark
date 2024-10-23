@@ -4128,7 +4128,7 @@
             if (block) {
                 setMaxHeight(gridContainer, gridItems, row, btnShowHide);
                 let savedWidth = window.innerWidth;
-                const debouncedSetMaxHeight = throttle(setMaxHeight, 100);
+                const debouncedSetMaxHeight = throttle(setMaxHeight, 50);
                 window.addEventListener("resize", (() => debouncedSetMaxHeight(gridContainer, gridItems, row, btnShowHide, savedWidth)));
                 btnShowHide.addEventListener("click", (() => toggleHeight(btnShowHide, gridContainer, gridItems, row, block)));
                 document.addEventListener("resizeOpenTable", (() => {
@@ -4207,8 +4207,10 @@
                         wrapperBlock.classList.add("_extended");
                         toggle(btnShowHide, gridContainer, gridItems, row);
                     } else {
-                        wrapperBlock.classList.remove("_extended");
                         toggle(btnShowHide, gridContainer, gridItems, row);
+                        setTimeout((() => {
+                            wrapperBlock.classList.remove("_extended");
+                        }), 500);
                     }
                 }));
             } else toggle();
