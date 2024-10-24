@@ -4057,7 +4057,6 @@
         updateCount();
     }
     function observeElements(observeElements) {
-        console.log(observeElements);
         observeElements.forEach((({element, callback, threshold = 1, offset = "0px"}) => {
             if (!element || typeof callback !== "function") {
                 console.warn("Element is not correct:", element, callback);
@@ -4230,4 +4229,24 @@
         }));
         showMoreHideGridElems();
     }
+    const buttonsBox = document.querySelectorAll("[data-magnet]");
+    buttonsBox.forEach((buttonBox => {
+        let animationFrame;
+        const magnet = buttonBox.querySelector(".action-link__magnet");
+        buttonBox.addEventListener("mousemove", (e => {
+            const position = buttonBox.getBoundingClientRect();
+            const x = e.offsetX - position.width / 3;
+            const y = e.offsetY - position.height / 3;
+            if (animationFrame) cancelAnimationFrame(animationFrame);
+            animationFrame = requestAnimationFrame((() => {
+                buttonBox.style.transform = `translate(${x * .8}px, ${y * 1.8}px)`;
+                magnet.style.transform = `translate(${x * .6}px, ${y * 1.6}px)`;
+            }));
+        }));
+        buttonBox.addEventListener("mouseout", (() => {
+            if (animationFrame) cancelAnimationFrame(animationFrame);
+            buttonBox.style.transform = `translate(0px, 0px)`;
+            magnet.style.transform = `translate(0px, 0px)`;
+        }));
+    }));
 })();
