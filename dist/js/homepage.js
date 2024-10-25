@@ -3913,7 +3913,6 @@
                 this.video = videoElement;
                 this.canvas = canvasElement;
                 window.addEventListener("load", this.init, false);
-                window.addEventListener("unload", this.cleanup, false);
             }
         }
         draw=() => {
@@ -3939,13 +3938,6 @@
             this.video.addEventListener("ended", this.drawPause, false);
             this.video.controls = false;
             if (!this.video.paused) this.drawLoop();
-        };
-        cleanup=() => {
-            this.video.removeEventListener("loadeddata", this.draw);
-            this.video.removeEventListener("seeked", this.draw);
-            this.video.removeEventListener("play", this.drawLoop);
-            this.video.removeEventListener("pause", this.drawPause);
-            this.video.removeEventListener("ended", this.drawPause);
         };
     }
     const videoContainers = document.querySelectorAll("[data-video-ambient]");
@@ -4058,10 +4050,6 @@
     }
     function observeElements(observeElements) {
         observeElements.forEach((({element, callback, threshold = 1, offset = "0px"}) => {
-            if (!element || typeof callback !== "function") {
-                console.warn("Element is not correct:", element, callback);
-                return;
-            }
             const options = {
                 threshold,
                 rootMargin: offset
@@ -4113,8 +4101,8 @@
         };
     }
     function showMoreHideGridElems() {
-        const wrapperBlock = document.querySelectorAll("[data-showmore-wrapper]");
-        if (wrapperBlock.length) wrapperBlock.forEach((block => {
+        const wrapperBlocks = document.querySelectorAll("[data-showmore-wrapper]");
+        if (wrapperBlocks.length) wrapperBlocks.forEach((block => {
             const gridContainer = block.querySelector("[data-showmore-container]");
             const gridItems = gridContainer.querySelectorAll("[data-showmore-container] > *");
             const btnShowHide = block.querySelector("[data-btn-showhide]");
@@ -4190,29 +4178,26 @@
                 window.setTimeout((() => {
                     tablePc.classList.toggle("_details");
                 }), 500);
-            } else if (btnShowHide.hasAttribute("data-table-mb")) {
-                const wrapperBlock = document.querySelectorAll("[data-showmore-wrapper]");
-                if (wrapperBlock.length) wrapperBlock.forEach((wrapperBlock => {
-                    const gridContainer = wrapperBlock.querySelector("[data-showmore-container]");
-                    const gridItems = gridContainer.querySelectorAll("[data-showmore-container] > *");
-                    const btnShowHide = wrapperBlock.querySelector("[data-btn-showhide]");
-                    const rowParameters = gridContainer.getAttribute("data-showmore-container").split(",");
-                    const row = {
-                        pc: rowParameters[0],
-                        tablet: rowParameters[1],
-                        mobile: rowParameters[2]
-                    };
-                    if (!wrapperBlock.classList.contains("_extended")) {
-                        wrapperBlock.classList.add("_extended");
-                        toggle(btnShowHide, gridContainer, gridItems, row);
-                    } else {
-                        toggle(btnShowHide, gridContainer, gridItems, row);
-                        setTimeout((() => {
-                            wrapperBlock.classList.remove("_extended");
-                        }), 500);
-                    }
-                }));
-            } else toggle();
+            } else if (btnShowHide.hasAttribute("data-table-mb")) wrapperBlocks.forEach((wrapperBlock => {
+                const gridContainer = wrapperBlock.querySelector("[data-showmore-container]");
+                const gridItems = gridContainer.querySelectorAll("[data-showmore-container] > *");
+                const btnShowHide = wrapperBlock.querySelector("[data-btn-showhide]");
+                const rowParameters = gridContainer.getAttribute("data-showmore-container").split(",");
+                const row = {
+                    pc: rowParameters[0],
+                    tablet: rowParameters[1],
+                    mobile: rowParameters[2]
+                };
+                if (!wrapperBlock.classList.contains("_extended")) {
+                    wrapperBlock.classList.add("_extended");
+                    toggle(btnShowHide, gridContainer, gridItems, row);
+                } else {
+                    toggle(btnShowHide, gridContainer, gridItems, row);
+                    setTimeout((() => {
+                        wrapperBlock.classList.remove("_extended");
+                    }), 500);
+                }
+            })); else toggle();
         }
         function extentGridHeight(gridContainer) {
             gridContainer.style.height = gridContainer.scrollHeight + "px";
@@ -4229,24 +4214,53 @@
         }));
         showMoreHideGridElems();
     }
-    const buttonsBox = document.querySelectorAll("[data-magnet]");
-    buttonsBox.forEach((buttonBox => {
+    const magnetContainers = document.querySelectorAll("[data-magnet]");
+    magnetContainers.forEach((container => {
+        const oval = container.querySelector("[data-magnet-bg]");
+        const link = container.querySelector("[data-magnet-link]");
         let animationFrame;
-        const magnet = buttonBox.querySelector(".action-link__magnet");
-        buttonBox.addEventListener("mousemove", (e => {
-            const position = buttonBox.getBoundingClientRect();
-            const x = e.offsetX - position.width / 3;
-            const y = e.offsetY - position.height / 3;
+        let calcParams = {
+            x: "-50%",
+            y: "-50%",
+            rotate: 0
+        };
+        switch (oval.getAttribute("data-magnet-bg")) {
+          case "oval":
+            calcParams.x = "-51%";
+            calcParams.rotate = "351deg";
+            break;
+
+          case "gradient":
+            calcParams.x = "-48.5%";
+            break;
+
+          case "oval-lg":
+            calcParams.y = "-46%";
+            calcParams.rotate = "351deg";
+            break;
+        }
+        const applyTransform = (offsetX, offsetY) => {
+            const ovalShiftX = offsetX * .2;
+            const ovalShiftY = offsetY * .2;
+            const linkShiftX = offsetX * .5;
+            const linkShiftY = offsetY * .5;
+            oval.style.transform = `translate(calc(${calcParams.x} + ${ovalShiftX}px), calc(${calcParams.y} + ${ovalShiftY}px)) ${calcParams.rotate ? "rotate(" + calcParams.rotate + ")" : ""}`;
+            link.style.transform = `translate(${linkShiftX}px, ${linkShiftY}px)`;
+        };
+        const resetTransform = () => {
+            oval.style.transform = `translate(${calcParams.x}, ${calcParams.y}) ${calcParams.rotate ? "rotate(" + calcParams.rotate + ")" : ""}`;
+            link.style.transform = "translate(0, 0)";
+        };
+        container.addEventListener("mousemove", (e => {
+            const rect = container.getBoundingClientRect();
+            const offsetX = e.clientX - rect.left - rect.width / 2;
+            const offsetY = e.clientY - rect.top - rect.height / 2;
             if (animationFrame) cancelAnimationFrame(animationFrame);
-            animationFrame = requestAnimationFrame((() => {
-                buttonBox.style.transform = `translate(${x * .8}px, ${y * 1.8}px)`;
-                magnet.style.transform = `translate(${x * .6}px, ${y * 1.6}px)`;
-            }));
+            animationFrame = requestAnimationFrame((() => applyTransform(offsetX, offsetY)));
         }));
-        buttonBox.addEventListener("mouseout", (() => {
+        container.addEventListener("mouseleave", (() => {
             if (animationFrame) cancelAnimationFrame(animationFrame);
-            buttonBox.style.transform = `translate(0px, 0px)`;
-            magnet.style.transform = `translate(0px, 0px)`;
+            resetTransform();
         }));
     }));
 })();

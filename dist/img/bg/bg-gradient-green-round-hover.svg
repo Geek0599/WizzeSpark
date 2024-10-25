@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="747px" height="446px" viewBox="0 0 747 446" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Oval Copy 16</title>
+    <defs>
+        <radialGradient cx="50%" cy="50%" fx="50%" fy="50%" r="48.7122579%" gradientTransform="translate(0.5, 0.5), scale(0.5971, 1), rotate(78.1573), scale(1, 1.7002), translate(-0.5, -0.5)" id="radialGradient-1">
+            <stop stop-color="#D7FA00" offset="0%"></stop>
+            <stop stop-color="#D7FA00" offset="50.5873033%"></stop>
+            <stop stop-color="#D7FA00" offset="83.9324738%"></stop>
+            <stop stop-color="#D7FA00" stop-opacity="0" offset="100%"></stop>
+        </radialGradient>
+        <filter x="0.0%" y="0.0%" width="100.0%" height="100.0%" filterUnits="objectBoundingBox" id="filter-2">
+            <feGaussianBlur stdDeviation="0" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+    </defs>
+    <g id="Page" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="hover" transform="translate(-1575, -3107)" fill="url(#radialGradient-1)">
+            <g id="Group-53-Copy" transform="translate(1575, 3107)">
+                <path d="M136.620442,417.732516 C296.061484,477.701267 531.306076,439.130827 662.053944,331.583028 C748.418241,260.543322 767.886094,176.536364 724.996406,110.840477 C702.95492,77.0786321 664.224088,48.6244296 610.100355,28.2674838 C450.659313,-31.7012669 215.414721,6.86917268 84.6668538,114.416972 C-46.0810139,221.964771 -22.8206002,357.763766 136.620442,417.732516 Z" id="Oval-Copy-16" filter="url(#filter-2)"></path>
+            </g>
+        </g>
+    </g>
+</svg>

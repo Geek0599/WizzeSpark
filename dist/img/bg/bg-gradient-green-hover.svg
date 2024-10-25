@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1347px" height="946px" viewBox="0 0 1347 946" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group 22</title>
+    <defs>
+        <radialGradient cx="50%" cy="50%" fx="50%" fy="50%" r="45.9828419%" gradientTransform="translate(0.5, 0.5), scale(1, 0.3737), rotate(3.3091), scale(1, 2.7663), translate(-0.5, -0.5)" id="radialGradient-1">
+            <stop stop-color="#D7FA00" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#D7FA00" stop-opacity="0" offset="50.5873033%"></stop>
+            <stop stop-color="#D7FA00" offset="83.9324738%"></stop>
+            <stop stop-color="#D7FA00" stop-opacity="0" offset="100%"></stop>
+        </radialGradient>
+        <filter x="-0.0%" y="0.0%" width="100.0%" height="100.0%" filterUnits="objectBoundingBox" id="filter-2">
+            <feGaussianBlur stdDeviation="0" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+        <radialGradient cx="50%" cy="50%" fx="50%" fy="50%" r="45.9828419%" gradientTransform="translate(0.5, 0.5), scale(1, 0.3737), rotate(3.3091), scale(1, 2.7663), translate(-0.5, -0.5)" id="radialGradient-3">
+            <stop stop-color="#D7FA00" offset="0%"></stop>
+            <stop stop-color="#D7FA00" offset="49.6394231%"></stop>
+            <stop stop-color="#D7FA00" offset="83.9324738%"></stop>
+            <stop stop-color="#D7FA00" stop-opacity="0" offset="100%"></stop>
+        </radialGradient>
+        <filter x="-0.0%" y="0.0%" width="100.0%" height="100.0%" filterUnits="objectBoundingBox" id="filter-4">
+            <feGaussianBlur stdDeviation="0" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+    </defs>
+    <g id="Page" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="hover" transform="translate(-1517, -1331)">
+            <g id="Group-7" transform="translate(1517, 1331)">
+                <g id="Group-22" transform="translate(-0, 0)">
+                    <path d="M757.674152,980.841195 C879.507988,773.315123 940.557514,377.841754 894.032083,97.5267035 C863.30014,-87.6328166 792.843654,-177.151969 713.760449,-156.157877 C673.118713,-145.368781 630.548285,-104.716042 589.190665,-34.2694017 C467.356829,173.25667 406.307304,568.730039 452.832734,849.04509 C499.358164,1129.36014 635.840316,1188.36727 757.674152,980.841195 Z" id="Oval-Copy" fill="url(#radialGradient-1)" filter="url(#filter-2)" transform="translate(673.4324, 472.8381) rotate(66) translate(-673.4324, -472.8381)"></path>
+                    <path d="M757.674152,980.841195 C879.507988,773.315123 940.557514,377.841754 894.032083,97.5267035 C863.30014,-87.6328166 792.843654,-177.151969 713.760449,-156.157877 C673.118713,-145.368781 630.548285,-104.716042 589.190665,-34.2694017 C467.356829,173.25667 406.307304,568.730039 452.832734,849.04509 C499.358164,1129.36014 635.840316,1188.36727 757.674152,980.841195 Z" id="Oval-Copy-18" fill="url(#radialGradient-3)" filter="url(#filter-4)" transform="translate(673.4324, 472.8381) rotate(66) translate(-673.4324, -472.8381)"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

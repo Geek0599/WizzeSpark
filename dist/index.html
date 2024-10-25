@@ -5,15 +5,22 @@
 	<title>WizzeSpark</title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
-	<link rel="stylesheet" href="css/homepage.min.css?_v=20241024163803">
+	<link rel="stylesheet" href="css/homepage.min.css?_v=20241025044723">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" href="favicon.ico">
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap&_v=20241024163803" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap&_v=20241025044723" rel="stylesheet">
 
 	<style>
+		.preloader__persent,
+		.preloader__text {
+			text-align: right;
+			-ms-grid-row-align: center;
+			align-self: center
+		}
+
 		.preloader {
 			position: fixed;
 			top: 0;
@@ -22,10 +29,9 @@
 			height: 100%;
 			z-index: 1000;
 			background-color: #503dd9;
-			-webkit-transition: -webkit-transform 1.5s cubic-bezier(0.9, 0, 0.1, 1) .48s;
-			transition: -webkit-transform 1.5s cubic-bezier(0.9, 0, 0.1, 1) .48s;
-			transition: transform 1.5s cubic-bezier(0.9, 0, 0.1, 1) .48s;
-			transition: transform 1.5s cubic-bezier(0.9, 0, 0.1, 1) .48s, -webkit-transform 1.5s cubic-bezier(0.9, 0, 0.1, 1) .48s;
+			-webkit-transition: -webkit-transform 1.5s cubic-bezier(.9, 0, .1, 1) .48s;
+			transition: transform 1.5s cubic-bezier(.9, 0, .1, 1) .48s;
+			transition: transform 1.5s cubic-bezier(.9, 0, .1, 1) .48s, -webkit-transform 1.5s cubic-bezier(.9, 0, .1, 1) .48s
 		}
 
 		.preloader::before {
@@ -36,28 +42,17 @@
 			left: 0;
 			top: 0;
 			background-color: #fff;
-			-webkit-transition: -webkit-transform 1.5s cubic-bezier(0.9, 0, 0.1, 1) .18s;
-			transition: -webkit-transform 1.5s cubic-bezier(0.9, 0, 0.1, 1) .18s;
-			transition: transform 1.5s cubic-bezier(0.9, 0, 0.1, 1) .18s;
-			transition: transform 1.5s cubic-bezier(0.9, 0, 0.1, 1) .18s, -webkit-transform 1.5s cubic-bezier(0.9, 0, 0.1, 1) .18s;
+			-webkit-transition: -webkit-transform 1.5s cubic-bezier(.9, 0, .1, 1) .18s;
+			transition: transform 1.5s cubic-bezier(.9, 0, .1, 1) .18s;
+			transition: transform 1.5s cubic-bezier(.9, 0, .1, 1) .18s, -webkit-transform 1.5s cubic-bezier(.9, 0, .1, 1) .18s
 		}
 
-		.preloader._loaded {
-			-webkit-transform: translateY(-100%);
-			-ms-transform: translateY(-100%);
-			transform: translateY(-100%);
-		}
-
+		.preloader._loaded,
+		.preloader._loaded .preloader__body,
 		.preloader._loaded::before {
 			-webkit-transform: translateY(-100%);
 			-ms-transform: translateY(-100%);
-			transform: translateY(-100%);
-		}
-
-		.preloader._loaded .preloader__body {
-			-webkit-transform: translateY(-100%);
-			-ms-transform: translateY(-100%);
-			transform: translateY(-100%);
+			transform: translateY(-100%)
 		}
 
 		.preloader__body {
@@ -74,57 +69,56 @@
 			grid-template-columns: auto auto;
 			-ms-grid-rows: 1fr auto;
 			grid-template-rows: 1fr auto;
-			-webkit-transition: -webkit-transform 1.5s cubic-bezier(0.9, 0, 0.1, 1) 0s;
-			transition: -webkit-transform 1.5s cubic-bezier(0.9, 0, 0.1, 1) 0s;
-			transition: transform 1.5s cubic-bezier(0.9, 0, 0.1, 1) 0s;
-			transition: transform 1.5s cubic-bezier(0.9, 0, 0.1, 1) 0s, -webkit-transform 1.5s cubic-bezier(0.9, 0, 0.1, 1) 0s;
+			-webkit-transition: -webkit-transform 1.5s cubic-bezier(.9, 0, .1, 1);
+			transition: transform 1.5s cubic-bezier(.9, 0, .1, 1);
+			transition: transform 1.5s cubic-bezier(.9, 0, .1, 1), -webkit-transform 1.5s cubic-bezier(.9, 0, .1, 1)
 		}
 
-		@supports (padding-top: clamp(1.5625rem, 0.2416237113rem + 4.2268041237vw, 4.125rem)) {
+		@supports (padding-top:clamp(1.5625rem, 0.2416237113rem + 4.2268041237vw, 4.125rem)) {
 			.preloader__body {
-				padding-top: clamp(1.5625rem, 0.2416237113rem + 4.2268041237vw, 4.125rem);
+				padding-top: clamp(1.5625rem, .2416237113rem + 4.2268041237vw, 4.125rem)
 			}
 		}
 
-		@supports not (padding-top: clamp(1.5625rem, 0.2416237113rem + 4.2268041237vw, 4.125rem)) {
+		@supports not (padding-top:clamp(1.5625rem, 0.2416237113rem + 4.2268041237vw, 4.125rem)) {
 			.preloader__body {
-				padding-top: calc(1.5625rem + 2.5625*(100vw - 31.25rem)/60.625);
+				padding-top: calc(1.5625rem + 2.5625*(100vw - 31.25rem)/ 60.625)
 			}
 		}
 
-		@supports (padding-bottom: clamp(1.5625rem, 0.2416237113rem + 4.2268041237vw, 4.125rem)) {
+		@supports (padding-bottom:clamp(1.5625rem, 0.2416237113rem + 4.2268041237vw, 4.125rem)) {
 			.preloader__body {
-				padding-bottom: clamp(1.5625rem, 0.2416237113rem + 4.2268041237vw, 4.125rem);
+				padding-bottom: clamp(1.5625rem, .2416237113rem + 4.2268041237vw, 4.125rem)
 			}
 		}
 
-		@supports not (padding-bottom: clamp(1.5625rem, 0.2416237113rem + 4.2268041237vw, 4.125rem)) {
+		@supports not (padding-bottom:clamp(1.5625rem, 0.2416237113rem + 4.2268041237vw, 4.125rem)) {
 			.preloader__body {
-				padding-bottom: calc(1.5625rem + 2.5625*(100vw - 31.25rem)/60.625);
+				padding-bottom: calc(1.5625rem + 2.5625*(100vw - 31.25rem)/ 60.625)
 			}
 		}
 
-		@supports (padding-left: clamp(1rem, -0.0953608247rem + 3.5051546392vw, 3.125rem)) {
+		@supports (padding-left:clamp(1rem, -0.0953608247rem + 3.5051546392vw, 3.125rem)) {
 			.preloader__body {
-				padding-left: clamp(1rem, -0.0953608247rem + 3.5051546392vw, 3.125rem);
+				padding-left: clamp(1rem, -.0953608247rem + 3.5051546392vw, 3.125rem)
 			}
 		}
 
-		@supports not (padding-left: clamp(1rem, -0.0953608247rem + 3.5051546392vw, 3.125rem)) {
+		@supports not (padding-left:clamp(1rem, -0.0953608247rem + 3.5051546392vw, 3.125rem)) {
 			.preloader__body {
-				padding-left: calc(1rem + 2.125*(100vw - 31.25rem)/60.625);
+				padding-left: calc(1rem + 2.125*(100vw - 31.25rem)/ 60.625)
 			}
 		}
 
-		@supports (padding-right: clamp(1rem, -0.0953608247rem + 3.5051546392vw, 3.125rem)) {
+		@supports (padding-right:clamp(1rem, -0.0953608247rem + 3.5051546392vw, 3.125rem)) {
 			.preloader__body {
-				padding-right: clamp(1rem, -0.0953608247rem + 3.5051546392vw, 3.125rem);
+				padding-right: clamp(1rem, -.0953608247rem + 3.5051546392vw, 3.125rem)
 			}
 		}
 
-		@supports not (padding-right: clamp(1rem, -0.0953608247rem + 3.5051546392vw, 3.125rem)) {
+		@supports not (padding-right:clamp(1rem, -0.0953608247rem + 3.5051546392vw, 3.125rem)) {
 			.preloader__body {
-				padding-right: calc(1rem + 2.125*(100vw - 31.25rem)/60.625);
+				padding-right: calc(1rem + 2.125*(100vw - 31.25rem)/ 60.625)
 			}
 		}
 
@@ -132,26 +126,23 @@
 			-ms-grid-column-span: 2;
 			grid-column: span 2;
 			color: #503dd9;
-			font-family: "Libre";
+			font-family: Libre;
 			line-height: 80%;
-			letter-spacing: -0.0600878294em;
-			text-align: right;
-			-ms-grid-row-align: center;
-			align-self: center;
+			letter-spacing: -.0600878294em;
 			text-transform: uppercase;
 			position: relative;
-			z-index: 1;
+			z-index: 1
 		}
 
-		@supports (font-size: clamp(9.0625rem, -1.5391260163rem + 53.0081300813vw, 49.8125rem)) {
+		@supports (font-size:clamp(9.0625rem, -1.5391260163rem + 53.0081300813vw, 49.8125rem)) {
 			.preloader__persent {
-				font-size: clamp(9.0625rem, -1.5391260163rem + 53.0081300813vw, 49.8125rem);
+				font-size: clamp(9.0625rem, -1.5391260163rem + 53.0081300813vw, 49.8125rem)
 			}
 		}
 
-		@supports not (font-size: clamp(9.0625rem, -1.5391260163rem + 53.0081300813vw, 49.8125rem)) {
+		@supports not (font-size:clamp(9.0625rem, -1.5391260163rem + 53.0081300813vw, 49.8125rem)) {
 			.preloader__persent {
-				font-size: calc(9.0625rem + 40.75*(100vw - 20rem)/76.875);
+				font-size: calc(9.0625rem + 40.75*(100vw - 20rem)/76.875)
 			}
 		}
 
@@ -162,95 +153,92 @@
 			left: 0;
 			top: 0;
 			background-color: #d4ee50;
-			-webkit-transition: width .1s ease 0s;
-			transition: width .1s ease 0s;
+			-webkit-transition: width .1s;
+			transition: width .1s
 		}
 
 		.preloader__logo {
 			position: relative;
-			z-index: 1;
+			z-index: 1
 		}
 
-		@supports (max-width: clamp(7.5rem, 6.9444444444rem + 2.7777777778vw, 9.375rem)) {
+		@supports (max-width:clamp(7.5rem, 6.9444444444rem + 2.7777777778vw, 9.375rem)) {
 			.preloader__logo {
-				max-width: clamp(7.5rem, 6.9444444444rem + 2.7777777778vw, 9.375rem);
+				max-width: clamp(7.5rem, 6.9444444444rem + 2.7777777778vw, 9.375rem)
 			}
 		}
 
-		@supports not (max-width: clamp(7.5rem, 6.9444444444rem + 2.7777777778vw, 9.375rem)) {
+		@supports not (max-width:clamp(7.5rem, 6.9444444444rem + 2.7777777778vw, 9.375rem)) {
 			.preloader__logo {
-				max-width: calc(7.5rem + 1.875*(100vw - 20rem)/67.5);
+				max-width: calc(7.5rem + 1.875*(100vw - 20rem)/ 67.5)
 			}
 		}
 
 		.preloader__logo svg {
 			max-width: 100%;
-			height: auto;
+			height: auto
 		}
 
 		.preloader__text {
 			color: #0b0d00;
-			font-family: "Gothic60";
-			letter-spacing: -0.02125rem;
-			text-align: right;
+			font-family: Gothic60;
+			letter-spacing: -.02125rem;
 			line-height: .8729545455;
 			text-transform: lowercase;
 			-ms-flex-item-align: center;
-			-ms-grid-row-align: center;
-			align-self: center;
 			position: relative;
-			z-index: 1;
+			z-index: 1
 		}
 
-		@supports (font-size: clamp(1.5625rem, 1.2106481481rem + 1.7592592593vw, 2.75rem)) {
+		@supports (font-size:clamp(1.5625rem, 1.2106481481rem + 1.7592592593vw, 2.75rem)) {
 			.preloader__text {
-				font-size: clamp(1.5625rem, 1.2106481481rem + 1.7592592593vw, 2.75rem);
+				font-size: clamp(1.5625rem, 1.2106481481rem + 1.7592592593vw, 2.75rem)
 			}
 		}
 
-		@supports not (font-size: clamp(1.5625rem, 1.2106481481rem + 1.7592592593vw, 2.75rem)) {
+		@supports not (font-size:clamp(1.5625rem, 1.2106481481rem + 1.7592592593vw, 2.75rem)) {
 			.preloader__text {
-				font-size: calc(1.5625rem + 1.1875*(100vw - 20rem)/67.5);
+				font-size: calc(1.5625rem + 1.1875*(100vw - 20rem)/67.5)
 			}
 		}
 
-		@media (max-height: 53.125em) {
-			@supports (font-size: clamp(9.0625rem, 0.0381097561rem + 45.1219512195vw, 43.75rem)) {
+		@media (max-height:53.125em) {
+			@supports (font-size:clamp(9.0625rem, 0.0381097561rem + 45.1219512195vw, 43.75rem)) {
 				.preloader__persent {
-					font-size: clamp(9.0625rem, 0.0381097561rem + 45.1219512195vw, 43.75rem);
+					font-size: clamp(9.0625rem, .0381097561rem + 45.1219512195vw, 43.75rem)
 				}
 			}
 
-			@supports not (font-size: clamp(9.0625rem, 0.0381097561rem + 45.1219512195vw, 43.75rem)) {
+			@supports not (font-size:clamp(9.0625rem, 0.0381097561rem + 45.1219512195vw, 43.75rem)) {
 				.preloader__persent {
-					font-size: calc(9.0625rem + 34.6875*(100vw - 20rem)/76.875);
+					font-size: calc(9.0625rem + 34.6875*(100vw - 20rem)/76.875)
 				}
 			}
 		}
 
-		@media (max-height: 48.125em) {
-			@supports (font-size: clamp(9.0625rem, 3.2901422764rem + 28.8617886179vw, 31.25rem)) {
+		@media (max-height:48.125em) {
+			@supports (font-size:clamp(9.0625rem, 3.2901422764rem + 28.8617886179vw, 31.25rem)) {
 				.preloader__persent {
-					font-size: clamp(9.0625rem, 3.2901422764rem + 28.8617886179vw, 31.25rem);
+					font-size: clamp(9.0625rem, 3.2901422764rem + 28.8617886179vw, 31.25rem)
 				}
 			}
 
-			@supports not (font-size: clamp(9.0625rem, 3.2901422764rem + 28.8617886179vw, 31.25rem)) {
+			@supports not (font-size:clamp(9.0625rem, 3.2901422764rem + 28.8617886179vw, 31.25rem)) {
 				.preloader__persent {
-					font-size: calc(9.0625rem + 22.1875*(100vw - 20rem)/76.875);
+					font-size: calc(9.0625rem + 22.1875*(100vw - 20rem)/76.875)
 				}
 			}
 		}
 
 		.preloader+.wrapper {
 			padding-top: 10%;
-			position: relative;
+			position: relative
 		}
 
 		.preloader+.wrapper._loaded {
 			padding-top: 0;
-			-webkit-transition: padding-top 1.5s cubic-bezier(0.9, 0, 0.1, 1) .48s;
-			transition: padding-top 1.5s cubic-bezier(0.9, 0, 0.1, 1) .48s;
+			-webkit-transition: padding-top 1.5s cubic-bezier(.9, 0, .1, 1) .48s;
+			transition: padding-top 1.5s cubic-bezier(.9, 0, .1, 1) .48s
 		}
 	</style>
 	<script>
@@ -261,11 +249,9 @@
 				const progressBar = document.getElementById("progress-bar");
 				const progressPersent = document.getElementById("progress-persent");
 
-
 				const resources = Array.from(document.images)
 					.concat(Array.from(document.querySelectorAll('video')))
 					.concat(Array.from(document.querySelectorAll("link[rel='stylesheet'], script")));
-
 
 				let loadedResources = 0;
 				const resourcesIsIntersecting = new Set();
@@ -275,27 +261,36 @@
 					const totalResources = resourcesIsIntersecting.size + 1;
 					const targetPercent = Math.min(100, ((loadedResources + (fontLoaded ? 1 : 0)) / totalResources) * 100);
 					const currentPercent = parseFloat(progressBar.style.width) || 0;
+					if (currentPercent < targetPercent) {
+						let increment = currentPercent;
+						const step = (targetPercent - currentPercent) / 50;
+						const interval = setInterval(() => {
+							increment += step;
+							if (increment >= targetPercent) {
+								clearInterval(interval);
+								increment = targetPercent;
+							}
+							const percentBar = parseFloat(progressBar.style.width) || 0;
+							if (increment > percentBar) {
+								progressBar.style.width = increment + "%";
+								progressPersent.textContent = Math.floor(increment) + '%';
+							}
+						}, 10);
 
-					let increment = currentPercent;
-					const step = (targetPercent - currentPercent) / 50;
-					const interval = setInterval(() => {
-						increment += step;
-						if (increment >= targetPercent) {
-							clearInterval(interval);
-							increment = targetPercent;
+
+						if (targetPercent === 100 && fontLoaded) {
+							setTimeout(() => {
+								progressBar.style.width = 100 + "%";
+								progressPersent.textContent = 100 + '%';
+							}, 300)
+							setTimeout(() => {
+								hidePreloader()
+							}, 850)
 						}
-						progressBar.style.width = increment + "%";
-						progressPersent.textContent = Math.floor(increment) + '%';
-					}, 10);
-
-					if (targetPercent === 100) {
-						setTimeout(() => {
-							hidePreloader()
-						}, 850)
 					}
 					if (forse) {
 						progressBar.style.width = 100 + "%";
-						progressPersent.textContent = Math.floor(100) + '%';
+						progressPersent.textContent = 100 + '%';
 						hidePreloader(true)
 					}
 				}
@@ -332,12 +327,20 @@
 							updateProgress();
 						}
 					} else if (resource.nodeName === "VIDEO") {
-						resource.addEventListener("loadeddata", () => {
+						resource.addEventListener("canplaythrough", () => {
+							loadedResources++;
+							updateProgress();
+						});
+						resource.addEventListener("error", () => {
 							loadedResources++;
 							updateProgress();
 						});
 					} else if (resource.nodeName === "LINK" || resource.nodeName === "SCRIPT") {
 						resource.addEventListener("load", () => {
+							loadedResources++;
+							updateProgress();
+						});
+						resource.addEventListener("error", () => {
 							loadedResources++;
 							updateProgress();
 						});
@@ -360,7 +363,7 @@
 				});
 				setTimeout(() => {
 					updateProgress(true)
-				}, 15000);
+				}, 20000);
 			}
 		});
 	</script>
@@ -453,16 +456,16 @@
 				</div>
 				<nav class="header__actions header-actions">
 					<div class="header-actions__lang lang">
-						<ul class="lang__list">
-							<li class="lang__item">
-								<a href="#" class="lang__link _active">ру</a>
-							</li>
-							<li class="lang__item">
-								<a href="#" class="lang__link">en</a>
-							</li>
-						</ul>
+						<!-- <ul class="lang__list">
+					<li class="lang__item">
+						<a href="#" class="lang__link _active">ру</a>
+					</li>
+					<li class="lang__item">
+						<a href="#" class="lang__link">en</a>
+					</li>
+				</ul> -->
 					</div>
-					<a href="#" class="header-actions__link action-link">
+					<a href="#" class="header-actions__link action-link action-link--hover">
 						<i class="action-link__icon _icon-arrow"></i>
 						<span class="action-link__text">Связаться <br> сейчас</span>
 					</a>
@@ -505,7 +508,7 @@
 							<canvas data-canvas width="10" height="6" aria-hidden="true" class="video__canvas"></canvas>
 						</div>
 						<div class="main-section__btn">
-							<button data-popup="#how-it-works" class="action-link">
+							<button data-popup="#how-it-works" class="action-link action-link--hover-play">
 								<i class="action-link__icon action-link__icon--border _icon-play"></i>
 								<span class="action-link__text">Как это <br> работает?</span>
 							</button>
@@ -550,15 +553,15 @@
 			<section class="page__video-examples video-examples">
 				<div class="video-examples__container-content grid">
 					<h2 class="video-examples__title title">Забудьте о ведении соцсетей.</h2>
-					<a data-magnet href="#" class="video-examples__link action-link action-link--middle">
-						<span class="action-link__oval"></span>
-						<span class="action-link__magnet">
+					<div data-magnet class="video-examples__link action-link action-link--middle">
+						<a data-magnet-link href="#" class="action-link__magnet">
 							<i class="action-link__icon _icon-arrow"></i>
 							<span class="action-link__text">Начать</span>
-						</span>
-					</a>
+						</a>
+						<span data-magnet-bg="oval" class="action-link__oval"></span>
+					</div>
 					<div class="video-examples__text-content">
-						<div class="video-examples__subtitle"><span class="title">Осталось мест: 6 🔥</span> <button data-popup="#why" class="video-examples__btn btn btn--border-sm">Почему?</button>
+						<div class="video-examples__subtitle"><span class="title">Осталось мест: 6 🔥</span> <button data-popup="#why" class="video-examples__btn btn btn--hover btn--border-sm">Почему?</button>
 						</div>
 						<div class="video-examples__text text--lh text--medium">Свяжитесь с нами, чтобы получить <span>персонализированное</span> решение.</div>
 					</div>
@@ -567,44 +570,44 @@
 					<div class="example-videos__container">
 						<div class="example-videos__body grid">
 							<div data-video-ambient class="example-videos__video-left video">
-								<picture><source srcset="img/example-videos/demo_1.webp" type="image/webp"><img width="288" height="200" loading="lazy" decoding="async" src="img/example-videos/demo_1.jpg" alt="video poster"></picture>
+								<picture><source srcset="img/example-videos/video_demo_1.webp, img/example-videos/video_demo_1@2x.webp 2x" type="image/webp"><img width="288" height="200" loading="lazy" decoding="async" src="img/example-videos/video_demo_1.jpg" srcset="img/example-videos/video_demo_1@2x.jpg 2x" alt="video poster"></picture>
 								<video data-video autoplay playsinline muted loop class="video__video" src="files/demo_1.mp4"></video>
 								<canvas data-canvas width="10" height="6" aria-hidden="true" class="video__canvas"></canvas>
 							</div>
 							<div data-video-ambient class="example-videos__video-top-lage video">
-								<picture><source srcset="img/example-videos/demo_2.webp" type="image/webp"><img width="288" height="200" loading="lazy" decoding="async" src="img/example-videos/demo_2.jpg" alt="video poster"></picture>
+								<picture><source srcset="img/example-videos/video_demo_2.webp, img/example-videos/video_demo_2@2x.webp 2x" type="image/webp"><img width="288" height="200" loading="lazy" decoding="async" src="img/example-videos/video_demo_2.jpg" srcset="img/example-videos/video_demo_2@2x.jpg 2x" alt="video poster"></picture>
 								<video data-video autoplay playsinline muted loop class="video__video" src="files/demo_2.mp4"></video>
 								<canvas data-canvas width="10" height="6" aria-hidden="true" class="video__canvas"></canvas>
 							</div>
 							<div data-video-ambient class="example-videos__video video">
-								<picture><source srcset="img/example-videos/demo_3.webp" type="image/webp"><img width="288" height="200" loading="lazy" decoding="async" src="img/example-videos/demo_3.jpg" alt="video poster"></picture>
+								<picture><source srcset="img/example-videos/video_demo_3.webp, img/example-videos/video_demo_3@2x.webp 2x" type="image/webp"><img width="288" height="200" loading="lazy" decoding="async" src="img/example-videos/video_demo_3.jpg" srcset="img/example-videos/video_demo_3@2x.jpg 2x" alt="video poster"></picture>
 								<video data-video autoplay playsinline muted loop class="video__video" src="files/demo_3.mp4"></video>
 								<canvas data-canvas width="10" height="6" aria-hidden="true" class="video__canvas"></canvas>
 							</div>
 							<div data-video-ambient class="example-videos__bottom-large video">
-								<picture><source srcset="img/example-videos/demo_4.webp" type="image/webp"><img width="288" height="200" loading="lazy" decoding="async" src="img/example-videos/demo_4.jpg" alt="video poster"></picture>
+								<picture><source srcset="img/example-videos/video_demo_4.webp, img/example-videos/video_demo_4@2x.webp 2x" type="image/webp"><img width="288" height="200" loading="lazy" decoding="async" src="img/example-videos/video_demo_4.jpg" srcset="img/example-videos/video_demo_4@2x.jpg 2x" alt="video poster"></picture>
 								<video data-video autoplay playsinline muted loop class="video__video" src="files/demo_4.mp4"></video>
 								<canvas data-canvas width="10" height="6" aria-hidden="true" class="video__canvas"></canvas>
 							</div>
 							<div data-video-ambient class="example-videos__video-middle video">
-								<picture><source srcset="img/example-videos/demo_5.webp" type="image/webp"><img width="288" height="200" loading="lazy" decoding="async" src="img/example-videos/demo_5.jpg" alt="video poster"></picture>
+								<picture><source srcset="img/example-videos/video_demo_5.webp, img/example-videos/video_demo_5@2x.webp 2x" type="image/webp"><img width="288" height="200" loading="lazy" decoding="async" src="img/example-videos/video_demo_5.jpg" srcset="img/example-videos/video_demo_5@2x.jpg 2x" alt="video poster"></picture>
 								<video data-video autoplay playsinline muted loop class="video__video" src="files/demo_5.mp4"></video>
 								<canvas data-canvas width="10" height="6" aria-hidden="true" class="video__canvas"></canvas>
 							</div>
 							<div class="example-videos__bottom-double">
 								<div data-video-ambient class="example-videos__bouble-top video">
-									<picture><source srcset="img/example-videos/demo_6.webp" type="image/webp"><img width="288" height="200" loading="lazy" decoding="async" src="img/example-videos/demo_6.jpg" alt="video poster"></picture>
+									<picture><source srcset="img/example-videos/video_demo_6.webp, img/example-videos/video_demo_6@2x.webp 2x" type="image/webp"><img width="288" height="200" loading="lazy" decoding="async" src="img/example-videos/video_demo_6.jpg" srcset="img/example-videos/video_demo_6@2x.jpg 2x" alt="video poster"></picture>
 									<video data-video autoplay playsinline muted loop class="video__video" src="files/demo_6.mp4"></video>
 									<canvas data-canvas width="10" height="6" aria-hidden="true" class="video__canvas"></canvas>
 								</div>
 								<div data-video-ambient class="example-videos__bouble-bottom video">
-									<picture><source srcset="img/example-videos/demo_7.webp" type="image/webp"><img width="288" height="200" loading="lazy" decoding="async" src="img/example-videos/demo_7.jpg" alt="video poster"></picture>
+									<picture><source srcset="img/example-videos/video_demo_7.webp, img/example-videos/video_demo_7@2x.webp 2x" type="image/webp"><img width="288" height="200" loading="lazy" decoding="async" src="img/example-videos/video_demo_7.jpg" srcset="img/example-videos/video_demo_7@2x.jpg 2x" alt="video poster"></picture>
 									<video data-video autoplay playsinline muted loop class="video__video" src="files/demo_7.mp4"></video>
 									<canvas data-canvas width="10" height="6" aria-hidden="true" class="video__canvas"></canvas>
 								</div>
 							</div>
 							<div data-video-ambient class="example-videos__video-right video">
-								<picture><source srcset="img/example-videos/demo_8.webp" type="image/webp"><img width="288" height="200" loading="lazy" decoding="async" src="img/example-videos/demo_8.jpg" alt="video poster"></picture>
+								<picture><source srcset="img/example-videos/video_demo_8.webp, img/example-videos/video_demo_8@2x.webp 2x" type="image/webp"><img width="288" height="200" loading="lazy" decoding="async" src="img/example-videos/video_demo_8.jpg" srcset="img/example-videos/video_demo_8@2x.jpg 2x" alt="video poster"></picture>
 								<video data-video autoplay playsinline muted loop class="video__video" src="files/demo_8.mp4"></video>
 								<canvas data-canvas width="10" height="6" aria-hidden="true" class="video__canvas"></canvas>
 							</div>
@@ -714,7 +717,8 @@
 			<div class="page__get-started-top get-started">
 				<div class="get-started__container grid">
 					<div class="get-started__text get-started__text--top title">Записывайся на встречу сейчас!</div>
-					<a href="#" class="get-started__link action-link action-link--gradient action-link--large">
+					<a href="#" class="get-started__link action-link action-link--large action-link--gradient-white action-link--hover">
+						<span class="action-link--gradient-green-lg"></span>
 						<i class="action-link__icon _icon-arrow"></i>
 						<span class="action-link__text">Начать</span>
 					</a>
@@ -872,10 +876,13 @@
 						</div>
 					</div>
 					<div class="professional__text-bottom title">Готовы обсудить детали?</div>
-					<a href="#" class="professional__link action-link action-link--large">
-						<i class="action-link__icon _icon-arrow"></i>
-						<span class="action-link__text">Начать</span>
-					</a>
+					<div data-magnet class="professional__link action-link action-link--large action-link--gradient-white">
+						<a data-magnet-link href="#" class="action-link__magnet action-link__magnet--col">
+							<i class="action-link__icon _icon-arrow"></i>
+							<span class="action-link__text">Начать</span>
+						</a>
+						<div data-magnet-bg="oval-lg" class="action-link__oval-lg"></div>
+					</div>
 				</div>
 			</section>
 			<section class="page__analysis analysis">
@@ -1067,7 +1074,8 @@
 				<div class="get-started__body bg-white">
 					<div class="get-started__container grid gradient-top gradient-bottom">
 						<div class="get-started__text get-started__text--top title">Записывайся на встречу сейчас!</div>
-						<a href="#" class="get-started__link action-link action-link--gradient action-link--large">
+						<a href="#" class="get-started__link action-link action-link--gradient-white action-link--large action-link--hover">
+							<span class="action-link--gradient-green-lg"></span>
 							<i class="action-link__icon _icon-arrow"></i>
 							<span class="action-link__text">Начать</span>
 						</a>
@@ -1175,7 +1183,7 @@
 						</div>
 						<div class="places-left__actions">
 							<h2 class="places-left__title main-title">Осталось <span class="main-title--bold">всего <mark class="mark-color underline">6</mark> мест</span></h2>
-							<a href="#" class="places-left__link action-link">
+							<a href="#" class="places-left__link action-link action-link--hover">
 								<i class="action-link__icon _icon-arrow"></i>
 								<span class="action-link__text">Связаться <br> сейчас</span>
 							</a>
@@ -1619,7 +1627,7 @@
 				<div class="page__action-start action-start">
 					<div class="action-start__container">
 						<div class="action-start__title title">Доверьте рутину специалистам по ИИ-решениям, чтобы сфокусироваться на развитии бизнеса.</div>
-						<a href="#" class="action-start__link action-link action-link--large action-link--gradient-green">
+						<a href="#" class="action-start__link action-link action-link--large action-link--gradient-green action-link--hover">
 							<i class="action-link__icon _icon-arrow"></i>
 							<span class="action-link__text">Начать</span>
 						</a>
@@ -1687,7 +1695,7 @@
 							</div>
 							<div class="places-left__actions">
 								<h2 class="places-left__title main-title">Осталось <span class="main-title--bold">всего <mark class="mark-color underline">6</mark> мест</span></h2>
-								<a href="#" class="places-left__link action-link">
+								<a href="#" class="places-left__link action-link action-link--hover">
 									<i class="action-link__icon _icon-arrow"></i>
 									<span class="action-link__text">Связаться <br> сейчас</span>
 								</a>
@@ -1719,7 +1727,7 @@
 		</div>
 	</div>
 
-	<script async src="js/homepage.min.js?_v=20241024163803"></script>
+	<script async src="js/homepage.min.js?_v=20241025044723"></script>
 </body>
 
 </html>
