@@ -2,16 +2,16 @@
 <html lang="ru">
 
 <head>
-	<title>WizzeSpark</title>
+	<title>Wizze Spark</title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
-	<link rel="stylesheet" href="css/homepage.min.css?_v=20241025044723">
+	<link rel="stylesheet" href="css/homepage.min.css?_v=20241025161726">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" href="favicon.ico">
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap&_v=20241025044723" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap&_v=20241025161726" rel="stylesheet">
 
 	<style>
 		.preloader__persent,
@@ -243,127 +243,71 @@
 	</style>
 	<script>
 		document.addEventListener("DOMContentLoaded", () => {
-			const preloader = document.querySelector('.preloader');
-			if (preloader) {
-				const wrapper = document.querySelector('.wrapper');
-				const progressBar = document.getElementById("progress-bar");
-				const progressPersent = document.getElementById("progress-persent");
+			let e = document.querySelector(".preloader");
+			if (e) {
+				let t = document.querySelector(".wrapper"),
+					r = document.getElementById("progress-bar"),
+					n = document.getElementById("progress-persent"),
+					o = Array.from(document.images).concat(Array.from(document.querySelectorAll("video"))).concat(Array.from(document.querySelectorAll("link[rel='stylesheet'], script"))),
+					d = 0,
+					l = new Set,
+					s = !1;
 
-				const resources = Array.from(document.images)
-					.concat(Array.from(document.querySelectorAll('video')))
-					.concat(Array.from(document.querySelectorAll("link[rel='stylesheet'], script")));
-
-				let loadedResources = 0;
-				const resourcesIsIntersecting = new Set();
-				let fontLoaded = false;
-
-				function updateProgress(forse = false) {
-					const totalResources = resourcesIsIntersecting.size + 1;
-					const targetPercent = Math.min(100, ((loadedResources + (fontLoaded ? 1 : 0)) / totalResources) * 100);
-					const currentPercent = parseFloat(progressBar.style.width) || 0;
-					if (currentPercent < targetPercent) {
-						let increment = currentPercent;
-						const step = (targetPercent - currentPercent) / 50;
-						const interval = setInterval(() => {
-							increment += step;
-							if (increment >= targetPercent) {
-								clearInterval(interval);
-								increment = targetPercent;
-							}
-							const percentBar = parseFloat(progressBar.style.width) || 0;
-							if (increment > percentBar) {
-								progressBar.style.width = increment + "%";
-								progressPersent.textContent = Math.floor(increment) + '%';
-							}
-						}, 10);
-
-
-						if (targetPercent === 100 && fontLoaded) {
-							setTimeout(() => {
-								progressBar.style.width = 100 + "%";
-								progressPersent.textContent = 100 + '%';
-							}, 300)
-							setTimeout(() => {
-								hidePreloader()
-							}, 850)
-						}
+				function a(e = !1) {
+					let t = l.size + 1,
+						o = Math.min(100, (d + (s ? 1 : 0)) / t * 100),
+						a = parseFloat(r.style.width) || 0;
+					if (a < o) {
+						let $ = a,
+							i = (o - a) / 50,
+							c = setInterval(() => {
+								($ += i) >= o && (clearInterval(c), $ = o);
+								let e = parseFloat(r.style.width) || 0;
+								$ > e && (r.style.width = $ + "%", n.textContent = Math.floor($) + "%")
+							}, 10);
+						100 === o && s && (setTimeout(() => {
+							r.style.width = "100%", n.textContent = "100%"
+						}, 300), setTimeout(() => {
+							h()
+						}, 850))
 					}
-					if (forse) {
-						progressBar.style.width = 100 + "%";
-						progressPersent.textContent = 100 + '%';
-						hidePreloader(true)
-					}
+					e && (r.style.width = "100%", n.textContent = "100%", h(!0))
+				}
+				let $ = {
+						rootMargin: "100px",
+						threshold: 0
+					},
+					i = new IntersectionObserver(e => {
+						e.forEach(e => {
+							let t = e.target;
+							e.isIntersecting && !l.has(t) && (l.add(t), c(t)), i.unobserve(t)
+						})
+					}, $);
+
+				function c(e) {
+					"IMG" === e.nodeName ? e.complete ? (d++, a()) : (e.addEventListener("load", () => {
+						d++, a()
+					}), e.addEventListener("error", () => {
+						d++, a()
+					})) : "VIDEO" === e.nodeName ? (e.addEventListener("canplaythrough", () => {
+						d++, a()
+					}), e.addEventListener("error", () => {
+						d++, a()
+					})) : ("LINK" === e.nodeName || "SCRIPT" === e.nodeName) && (e.addEventListener("load", () => {
+						d++, a()
+					}), e.addEventListener("error", () => {
+						d++, a()
+					}))
 				}
 
-				const observerOptions = {
-					rootMargin: "100px",
-					threshold: 0
-				};
-
-				const observer = new IntersectionObserver((entries) => {
-					entries.forEach((entry) => {
-						const resource = entry.target;
-						if (entry.isIntersecting && !resourcesIsIntersecting.has(resource)) {
-							resourcesIsIntersecting.add(resource);
-							checkResourceLoad(resource);
-						}
-						observer.unobserve(resource);
-					});
-				}, observerOptions);
-
-				function checkResourceLoad(resource) {
-					if (resource.nodeName === "IMG") {
-						if (!resource.complete) {
-							resource.addEventListener("load", () => {
-								loadedResources++;
-								updateProgress();
-							});
-							resource.addEventListener("error", () => {
-								loadedResources++;
-								updateProgress();
-							});
-						} else {
-							loadedResources++;
-							updateProgress();
-						}
-					} else if (resource.nodeName === "VIDEO") {
-						resource.addEventListener("canplaythrough", () => {
-							loadedResources++;
-							updateProgress();
-						});
-						resource.addEventListener("error", () => {
-							loadedResources++;
-							updateProgress();
-						});
-					} else if (resource.nodeName === "LINK" || resource.nodeName === "SCRIPT") {
-						resource.addEventListener("load", () => {
-							loadedResources++;
-							updateProgress();
-						});
-						resource.addEventListener("error", () => {
-							loadedResources++;
-							updateProgress();
-						});
-					}
+				function h(r) {
+					!e.classList.contains("_loaded") && (e.classList.add("_loaded"), t.classList.add("_loaded"), r || window.scrollTo(0, 0))
 				}
-
-				function hidePreloader(forse) {
-					if (!preloader.classList.contains('_loaded')) {
-						preloader.classList.add('_loaded');
-						wrapper.classList.add('_loaded');
-						!forse ? window.scrollTo(0, 0) : null;
-					}
-				}
-
-				resources.forEach((resource) => observer.observe(resource));
-
-				document.fonts.ready.then(() => {
-					fontLoaded = true;
-					updateProgress();
-				});
-				setTimeout(() => {
-					updateProgress(true)
-				}, 20000);
+				o.forEach(e => i.observe(e)), document.fonts.ready.then(() => {
+					s = !0, a()
+				}), setTimeout(() => {
+					a(!0)
+				}, 2e4)
 			}
 		});
 	</script>
@@ -465,12 +409,12 @@
 					</li>
 				</ul> -->
 					</div>
-					<a href="#" class="header-actions__link action-link action-link--hover">
+					<a href="/make-appointment.html" class="header-actions__link action-link action-link--hover">
 						<i class="action-link__icon _icon-arrow"></i>
 						<span class="action-link__text">Связаться <br> сейчас</span>
 					</a>
 				</nav>
-				<a href="#" class="header-actions__link header-actions__link--mobile action-link">
+				<a href="/make-appointment.html" class="header-actions__link header-actions__link--mobile action-link">
 					<i class="action-link__icon _icon-arrow"></i>
 					<span class="action-link__text">Связаться <br> сейчас</span>
 				</a>
@@ -554,11 +498,11 @@
 				<div class="video-examples__container-content grid">
 					<h2 class="video-examples__title title">Забудьте о ведении соцсетей.</h2>
 					<div data-magnet class="video-examples__link action-link action-link--middle">
-						<a data-magnet-link href="#" class="action-link__magnet">
+						<a data-magnet-link href="/make-appointment.html" class="action-link__magnet">
 							<i class="action-link__icon _icon-arrow"></i>
 							<span class="action-link__text">Начать</span>
 						</a>
-						<span data-magnet-bg="oval" class="action-link__oval"></span>
+						<div data-magnet-bg="oval" class="action-link__oval"></div>
 					</div>
 					<div class="video-examples__text-content">
 						<div class="video-examples__subtitle"><span class="title">Осталось мест: 6 🔥</span> <button data-popup="#why" class="video-examples__btn btn btn--hover btn--border-sm">Почему?</button>
@@ -717,7 +661,7 @@
 			<div class="page__get-started-top get-started">
 				<div class="get-started__container grid">
 					<div class="get-started__text get-started__text--top title">Записывайся на встречу сейчас!</div>
-					<a href="#" class="get-started__link action-link action-link--large action-link--gradient-white action-link--hover">
+					<a href="/make-appointment.html" class="get-started__link action-link action-link--large action-link--gradient-white action-link--hover">
 						<span class="action-link--gradient-green-lg"></span>
 						<i class="action-link__icon _icon-arrow"></i>
 						<span class="action-link__text">Начать</span>
@@ -877,7 +821,7 @@
 					</div>
 					<div class="professional__text-bottom title">Готовы обсудить детали?</div>
 					<div data-magnet class="professional__link action-link action-link--large action-link--gradient-white">
-						<a data-magnet-link href="#" class="action-link__magnet action-link__magnet--col">
+						<a data-magnet-link href="/make-appointment.html" class="action-link__magnet action-link__magnet--col">
 							<i class="action-link__icon _icon-arrow"></i>
 							<span class="action-link__text">Начать</span>
 						</a>
@@ -1074,7 +1018,7 @@
 				<div class="get-started__body bg-white">
 					<div class="get-started__container grid gradient-top gradient-bottom">
 						<div class="get-started__text get-started__text--top title">Записывайся на встречу сейчас!</div>
-						<a href="#" class="get-started__link action-link action-link--gradient-white action-link--large action-link--hover">
+						<a href="/make-appointment.html" class="get-started__link action-link action-link--gradient-white action-link--large action-link--hover">
 							<span class="action-link--gradient-green-lg"></span>
 							<i class="action-link__icon _icon-arrow"></i>
 							<span class="action-link__text">Начать</span>
@@ -1183,7 +1127,7 @@
 						</div>
 						<div class="places-left__actions">
 							<h2 class="places-left__title main-title">Осталось <span class="main-title--bold">всего <mark class="mark-color underline">6</mark> мест</span></h2>
-							<a href="#" class="places-left__link action-link action-link--hover">
+							<a href="/make-appointment.html" class="places-left__link action-link action-link--hover">
 								<i class="action-link__icon _icon-arrow"></i>
 								<span class="action-link__text">Связаться <br> сейчас</span>
 							</a>
@@ -1627,7 +1571,7 @@
 				<div class="page__action-start action-start">
 					<div class="action-start__container">
 						<div class="action-start__title title">Доверьте рутину специалистам по ИИ-решениям, чтобы сфокусироваться на развитии бизнеса.</div>
-						<a href="#" class="action-start__link action-link action-link--large action-link--gradient-green action-link--hover">
+						<a href="/make-appointment.html" class="action-start__link action-link action-link--large action-link--gradient-green action-link--hover">
 							<i class="action-link__icon _icon-arrow"></i>
 							<span class="action-link__text">Начать</span>
 						</a>
@@ -1695,7 +1639,7 @@
 							</div>
 							<div class="places-left__actions">
 								<h2 class="places-left__title main-title">Осталось <span class="main-title--bold">всего <mark class="mark-color underline">6</mark> мест</span></h2>
-								<a href="#" class="places-left__link action-link action-link--hover">
+								<a href="/make-appointment.html" class="places-left__link action-link action-link--hover">
 									<i class="action-link__icon _icon-arrow"></i>
 									<span class="action-link__text">Связаться <br> сейчас</span>
 								</a>
@@ -1727,7 +1671,7 @@
 		</div>
 	</div>
 
-	<script async src="js/homepage.min.js?_v=20241025044723"></script>
+	<script async src="js/homepage.min.js?_v=20241025161726"></script>
 </body>
 
 </html>
