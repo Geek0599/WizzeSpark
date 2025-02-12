@@ -3946,6 +3946,11 @@
         const canvasElement = container.querySelector("[data-canvas]");
         if (videoElement && canvasElement) new VideoWithBackground(videoElement, canvasElement);
     }));
+    document.addEventListener("beforePopupClose", (function(e) {
+        const currentPopup = e.detail.popup;
+        const video = currentPopup?.targetOpen?.element.querySelector("video");
+        if (video) video.pause();
+    }));
     function customSpollers() {
         const spollersArray = document.querySelectorAll("[data-spollers]");
         if (spollersArray.length > 0) {

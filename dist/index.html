@@ -5,13 +5,13 @@
 	<title>Wizze Spark</title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
-	<link rel="stylesheet" href="css/homepage.min.css?_v=20241025170844">
+	<link rel="stylesheet" href="css/homepage.min.css?_v=20250212124130">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" href="favicon.ico">
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap&_v=20241025170844" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap&_v=20250212124130" rel="stylesheet">
 
 	<style>
 		.preloader__persent,
@@ -248,7 +248,7 @@
 				let t = document.querySelector(".wrapper"),
 					r = document.getElementById("progress-bar"),
 					n = document.getElementById("progress-persent"),
-					o = Array.from(document.images).concat(Array.from(document.querySelectorAll("video"))).concat(Array.from(document.querySelectorAll("link[rel='stylesheet'], script"))),
+					o = Array.from(document.images).concat(Array.from(document.querySelectorAll("video:not([preload='none'])"))).concat(Array.from(document.querySelectorAll("link[rel='stylesheet'], script"))),
 					d = 0,
 					l = new Set,
 					s = !1;
@@ -409,12 +409,12 @@
 					</li>
 				</ul> -->
 					</div>
-					<a href="make-appointment.html" class="header-actions__link action-link action-link--hover">
+					<a href="/make-appointment.html" class="header-actions__link action-link action-link--hover">
 						<i class="action-link__icon _icon-arrow"></i>
 						<span class="action-link__text">Связаться <br> сейчас</span>
 					</a>
 				</nav>
-				<a href="make-appointment.html" class="header-actions__link header-actions__link--mobile action-link">
+				<a href="/make-appointment.html" class="header-actions__link header-actions__link--mobile action-link">
 					<i class="action-link__icon _icon-arrow"></i>
 					<span class="action-link__text">Связаться <br> сейчас</span>
 				</a>
@@ -435,7 +435,7 @@
 				<div class="main-section__container">
 					<h1 class="main-section__slogan-title text-lg grid">
 						<span>AI</span>
-						<span>Маркетинг</span>
+						<span>Маркетиг</span>
 						<span>Для</span>
 						<span>Социальных</span>
 						<span>Сетей</span>
@@ -498,7 +498,7 @@
 				<div class="video-examples__container-content grid">
 					<h2 class="video-examples__title title">Забудьте о ведении соцсетей.</h2>
 					<div data-magnet class="video-examples__link action-link action-link--middle">
-						<a data-magnet-link href="make-appointment.html" class="action-link__magnet">
+						<a data-magnet-link href="/make-appointment.html" class="action-link__magnet">
 							<i class="action-link__icon _icon-arrow"></i>
 							<span class="action-link__text">Начать</span>
 						</a>
@@ -661,7 +661,7 @@
 			<div class="page__get-started-top get-started">
 				<div class="get-started__container grid">
 					<div class="get-started__text get-started__text--top title">Записывайся на встречу сейчас!</div>
-					<a href="make-appointment.html" class="get-started__link action-link action-link--large action-link--gradient-white action-link--hover">
+					<a href="/make-appointment.html" class="get-started__link action-link action-link--large action-link--gradient-white action-link--hover">
 						<span class="action-link--gradient-green-lg"></span>
 						<i class="action-link__icon _icon-arrow"></i>
 						<span class="action-link__text">Начать</span>
@@ -821,7 +821,7 @@
 					</div>
 					<div class="professional__text-bottom title">Готовы обсудить детали?</div>
 					<div data-magnet class="professional__link action-link action-link--large action-link--gradient-white">
-						<a data-magnet-link href="make-appointment.html" class="action-link__magnet action-link__magnet--col">
+						<a data-magnet-link href="/make-appointment.html" class="action-link__magnet action-link__magnet--col">
 							<i class="action-link__icon _icon-arrow"></i>
 							<span class="action-link__text">Начать</span>
 						</a>
@@ -1018,7 +1018,7 @@
 				<div class="get-started__body bg-white">
 					<div class="get-started__container grid gradient-top gradient-bottom">
 						<div class="get-started__text get-started__text--top title">Записывайся на встречу сейчас!</div>
-						<a href="make-appointment.html" class="get-started__link action-link action-link--gradient-white action-link--large action-link--hover">
+						<a href="/make-appointment.html" class="get-started__link action-link action-link--gradient-white action-link--large action-link--hover">
 							<span class="action-link--gradient-green-lg"></span>
 							<i class="action-link__icon _icon-arrow"></i>
 							<span class="action-link__text">Начать</span>
@@ -1127,7 +1127,7 @@
 						</div>
 						<div class="places-left__actions">
 							<h2 class="places-left__title main-title">Осталось <span class="main-title--bold">всего <mark class="mark-color underline">6</mark> мест</span></h2>
-							<a href="make-appointment.html" class="places-left__link action-link action-link--hover">
+							<a href="/make-appointment.html" class="places-left__link action-link action-link--hover">
 								<i class="action-link__icon _icon-arrow"></i>
 								<span class="action-link__text">Связаться <br> сейчас</span>
 							</a>
@@ -1571,7 +1571,7 @@
 				<div class="page__action-start action-start">
 					<div class="action-start__container">
 						<div class="action-start__title title">Доверьте рутину специалистам по ИИ-решениям, чтобы сфокусироваться на развитии бизнеса.</div>
-						<a href="make-appointment.html" class="action-start__link action-link action-link--large action-link--gradient-green action-link--hover">
+						<a href="/make-appointment.html" class="action-start__link action-link action-link--large action-link--gradient-green action-link--hover">
 							<i class="action-link__icon _icon-arrow"></i>
 							<span class="action-link__text">Начать</span>
 						</a>
@@ -1639,7 +1639,7 @@
 							</div>
 							<div class="places-left__actions">
 								<h2 class="places-left__title main-title">Осталось <span class="main-title--bold">всего <mark class="mark-color underline">6</mark> мест</span></h2>
-								<a href="make-appointment.html" class="places-left__link action-link action-link--hover">
+								<a href="/make-appointment.html" class="places-left__link action-link action-link--hover">
 									<i class="action-link__icon _icon-arrow"></i>
 									<span class="action-link__text">Связаться <br> сейчас</span>
 								</a>
@@ -1662,7 +1662,7 @@
 							<div class="popup-video__title title">Как это работает?</div>
 						</div>
 						<div class="popup-video__video video">
-							<video data-video controls autoplay playsinline muted loop class="video__video video__video--controls" src="https://videos.pexels.com/video-files/5206032/5206032-uhd_2560_1440_25fps.mp4"></video>
+							<video data-video controls playsinline loop preload="none" poster="img/bg/poster.webp" class="video__video video__video--controls" src="/files/how_to.mp4"></video>
 							<canvas data-canvas width="10" height="6" aria-hidden="true" class="video__canvas"></canvas>
 						</div>
 					</div>
@@ -1671,7 +1671,7 @@
 		</div>
 	</div>
 
-	<script async src="js/homepage.min.js?_v=20241025170844"></script>
+	<script async src="js/homepage.min.js?_v=20250212124130"></script>
 </body>
 
 </html>
